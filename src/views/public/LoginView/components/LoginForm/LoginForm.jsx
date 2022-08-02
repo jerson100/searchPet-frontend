@@ -7,6 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
@@ -14,10 +15,28 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginForm = () => {
   return (
-    <Box padding={"1rem"}>
-      <Typography variant="h1">Hello Again!</Typography>
-      <Typography variant="p">
-        Ingrese sus datos para poder comenzar a interactuar con los demás
+    <Box
+      padding={{
+        xs: "2rem 1rem",
+        md: "2rem",
+      }}
+    >
+      <Typography
+        variant="h4"
+        component="h1"
+        align="center"
+        marginBottom={"1.5rem"}
+      >
+        Hola
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        component="p"
+        align="center"
+        marginBottom={"1.5rem"}
+      >
+        Ingrese sus datos correctos para poder empezar a interactuar con la
+        aplicación
       </Typography>
       <Box component="form">
         <FormControl fullWidth variant="outlined">
@@ -56,8 +75,16 @@ const LoginForm = () => {
             Password
           </InputLabel>
         </FormControl>
-        <Box display={"flex"} justifyContent="flex-end">
+        <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
           <Button variant="contained">Login</Button>
+        </Box>
+        <Box display={"flex"} flexDirection="column" alignItems={"center"}>
+          <Typography variant="body2" marginBottom={".5rem"}>
+            No tienes una cuenta?
+          </Typography>
+          <Link target={"_blank"} href="https://www.google.com.pe">
+            Registrate ahora!
+          </Link>
         </Box>
       </Box>
     </Box>
