@@ -1,11 +1,7 @@
-import logo from "./logo.svg";
+import AppRouter from "./components/route/AppRouter/AppRouter";
 
 function App() {
-  return (
-    <div className="App">
-      <p>Parte inicial ♥</p>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
