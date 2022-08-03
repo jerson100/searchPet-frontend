@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import { Link as LinkRouter } from "react-router-dom";
 
 const BottomForm = () => {
   return (
@@ -9,7 +10,9 @@ const BottomForm = () => {
       <Typography variant="body2" marginBottom={".5rem"}>
         Ya tienes una cuenta?
       </Typography>
-      <Link href="/login">Inicia sesión ahora!</Link>
+      <Link to="/login" component={LinkRouter}>
+        Inicia sesión ahora!
+      </Link>
     </Box>
   );
 };

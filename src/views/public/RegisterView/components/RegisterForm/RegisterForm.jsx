@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
 import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
 import Email from "@mui/icons-material/Email";
@@ -11,6 +13,7 @@ import Location from "../../components/Location";
 import { validateSchema } from "../../../../../utils/validateSchema";
 import validateUserCreationSchema from "../../../../../api/users.validate";
 import JeInputTextError from "../../../../../components/common/JeInputTextError";
+import useAxios from "axios-hooks";
 
 const RegisterForm = () => {
   const [data, setdata] = useState({
@@ -35,7 +38,20 @@ const RegisterForm = () => {
 
   const [location, setlocation] = useState();
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [
+    {
+      data: dataCreateUser,
+      loading: loadingCreateUser,
+      error: errorCreateUser,
+    },
+    executeCreateUser,
+  ] = useAxios(
+    {
+      method: "POST",
+    },
+    { manual: true }
+  );
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -47,18 +63,61 @@ const RegisterForm = () => {
     });
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateSchema(data, validateUserCreationSchema);
     setdataerror(errors);
     if (Object.keys(errors).length == 0 && location) {
-      enqueueSnackbar("Realizando la petición", { variant: "success" });
+      const copyUser = {
+        ...data,
+        location: {
+          latitud: location[0],
+          longitud: location[1],
+        },
+      };
+      delete copyUser.cPassword;
+      try {
+        const a = await executeCreateUser({
+          url: "/users",
+          data: copyUser,
+        });
+        console.log(a);
+        setdata({
+          name: "",
+          paternalSurname: "",
+          maternalSurname: "",
+          username: "",
+          email: "",
+          password: "",
+          cPassword: "",
+        });
+        setdataerror({
+          name: "",
+          paternalSurname: "",
+          maternalSurname: "",
+          username: "",
+          email: "",
+          password: "",
+          cPassword: "",
+        });
+        setlocation(null);
+        enqueueSnackbar(`Se creó la cuenta con gmail ${a.email}`, {
+          variant: "success",
+        });
+      } catch (e) {
+        if (e.status) {
+          enqueueSnackbar(e.message, {
+            variant: "error",
+          });
+        }
+      }
     } else {
-      enqueueSnackbar("Verifique que todos los campos est{en correctos", {
+      enqueueSnackbar("Verifique que que todos los datos sean correctos", {
         variant: "error",
       });
     }
   };
+
   return (
     <Box component="form" margin="normal" onSubmit={handleSubmit}>
       <JeInputTextError
@@ -160,9 +219,15 @@ const RegisterForm = () => {
       </Grid>
       <Location location={location} setlocation={setlocation} />
       <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
-        <Button type="submit" variant="contained">
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          loading={loadingCreateUser}
+          startIcon={<SaveIcon />}
+          loadingPosition="start"
+        >
           Crear cuenta
-        </Button>
+        </LoadingButton>
       </Box>
     </Box>
   );
