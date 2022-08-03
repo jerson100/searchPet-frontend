@@ -3,8 +3,10 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
+import { FullscreenControl } from "react-leaflet-fullscreen";
 import Box from "@mui/material/Box";
 import Background from "./components/Background/Background";
+import "react-leaflet-fullscreen/dist/styles.css";
 
 const Location = () => {
   const [position, setposition] = useState(null);
@@ -31,8 +33,9 @@ const Location = () => {
           <MapContainer
             center={position}
             zoom={13}
-            scrollWheelZoom={true}
+            scrollWheelZoom
             style={{ height: "100%" }}
+            fullscreenControl
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -45,6 +48,7 @@ const Location = () => {
     </>
   );
 };
+
 const Map = ({ position }) => {
   return !position ? null : (
     <Marker position={position}>
@@ -53,4 +57,4 @@ const Map = ({ position }) => {
   );
 };
 
-export default Location;
+export default React.memo(Location);
