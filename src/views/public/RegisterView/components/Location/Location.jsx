@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet/Marker";
@@ -10,20 +10,6 @@ import Box from "@mui/material/Box";
 import "react-leaflet-fullscreen/dist/styles.css";
 
 const Location = ({ location, setlocation }) => {
-  useEffect(() => {
-    // if ("geolocation" in navigator) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     function (position) {
-    //       console.log(position.coords);
-    //       setlocation([position.coords.latitude, position.coords.longitude]);
-    //     },
-    //     function (error) {
-    //       alert("Necesita habilitar la ubicación.");
-    //     }
-    //   );
-    // }
-  }, []);
-
   return (
     <>
       <Typography variant="h6" component="p" marginBottom={".5rem"}>
