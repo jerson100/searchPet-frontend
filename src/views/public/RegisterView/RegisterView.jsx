@@ -19,6 +19,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import Select from "@mui/material/Select";
+import Location from "./components/Location";
 
 const RegisterView = () => {
   return (
@@ -175,28 +176,8 @@ const RegisterView = () => {
               </FormControl>
             </Grid>
           </Grid>
-          <FormControl fullWidth variant="outlined" margin="normal">
-            <OutlinedInput
-              id="address"
-              type="text"
-              size="small"
-              endAdornment={
-                <InputAdornment position="start">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    edge="end"
-                  >
-                    <Directions />
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Localización"
-            />
-            <InputLabel size="small" htmlFor="address">
-              Localización
-            </InputLabel>
-          </FormControl>
-          <Grid container spacing={{ sm: 1 }}>
+          <Location />
+          {/* <Grid container spacing={{ sm: 1 }}>
             <Grid item xs={12} sm={4}>
               <FormControl fullWidth margin="normal" required>
                 <InputLabel size="small" id="departamento">
@@ -257,7 +238,7 @@ const RegisterView = () => {
                 <FormHelperText>Required</FormHelperText>
               </FormControl>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Grid container spacing={{ sm: 1 }}>
             <Grid item xs={12} sm={6}>
               <FormControl
