@@ -6,6 +6,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
 import Email from "@mui/icons-material/Email";
 import Person from "@mui/icons-material/Person";
+import { useSnackbar } from "notistack";
 import Location from "../../components/Location";
 import { validateSchema } from "../../../../../utils/validateSchema";
 import validateUserCreationSchema from "../../../../../api/users.validate";
@@ -34,6 +35,8 @@ const RegisterForm = () => {
 
   const [location, setlocation] = useState();
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setdata((previousData) => {
@@ -46,11 +49,14 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
     const errors = validateSchema(data, validateUserCreationSchema);
     setdataerror(errors);
-    if (!errors && location) {
-      console.log("realizar la petición");
+    if (Object.keys(errors).length == 0 && location) {
+      enqueueSnackbar("Realizando la petición", { variant: "success" });
+    } else {
+      enqueueSnackbar("Verifique que todos los campos est{en correctos", {
+        variant: "error",
+      });
     }
   };
   return (

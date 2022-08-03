@@ -1,6 +1,7 @@
 import AppRouter from "./components/route/AppRouter/AppRouter";
 
 import GlobalStyles from "@mui/material/GlobalStyles";
+import { SnackbarProvider } from "notistack";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
           },
         })}
       />
-      <AppRouter />
+      <SnackbarProvider>
+        <AppRouter />
+      </SnackbarProvider>
     </>
   );
 }
