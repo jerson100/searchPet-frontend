@@ -25,7 +25,7 @@ const Location = ({ location, setlocation }) => {
         severity="warning"
         style={{ marginBottom: "1rem" }}
       >
-        No seleccione una ubicación exacta a su hogar
+        No seleccione una ubicación muy cercana a su hogar
       </Alert>
       <Box height={"300px"}>
         <MapContainer
