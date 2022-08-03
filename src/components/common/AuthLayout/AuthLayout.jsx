@@ -11,7 +11,7 @@ const AuthLayout = ({ children }) => {
       alignItems={"center"}
       minHeight="100vh"
     >
-      <Box maxWidth={"1000px"} width="100%">
+      <Box maxWidth={"1000px"} width="100%" style={{ padding: "1rem" }}>
         <Paper elevation={5}>{children}</Paper>
       </Box>
     </Box>
