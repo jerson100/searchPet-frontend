@@ -38,14 +38,7 @@ const RegisterForm = () => {
 
   const [location, setlocation] = useState();
 
-  const [
-    {
-      data: dataCreateUser,
-      loading: loadingCreateUser,
-      error: errorCreateUser,
-    },
-    executeCreateUser,
-  ] = useAxios(
+  const [{ loading: loadingCreateUser }, executeCreateUser] = useAxios(
     {
       method: "POST",
     },
@@ -67,7 +60,7 @@ const RegisterForm = () => {
     e.preventDefault();
     const errors = validateSchema(data, validateUserCreationSchema);
     setdataerror(errors);
-    if (Object.keys(errors).length == 0 && location) {
+    if (Object.keys(errors).length === 0 && location) {
       const copyUser = {
         ...data,
         location: {
@@ -81,7 +74,6 @@ const RegisterForm = () => {
           url: "/users",
           data: copyUser,
         });
-        console.log(a);
         setdata({
           name: "",
           paternalSurname: "",

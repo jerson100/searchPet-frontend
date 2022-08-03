@@ -2,7 +2,7 @@ import AppRouter from "./components/route/AppRouter/AppRouter";
 
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { SnackbarProvider } from "notistack";
-import axios from "./configs/axios";
+import "./configs/axios";
 
 function App() {
   return (

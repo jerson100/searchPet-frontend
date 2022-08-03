@@ -1,6 +1,5 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,7 +10,6 @@ import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginForm = () => {
   return (

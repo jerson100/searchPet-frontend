@@ -6,7 +6,7 @@ import { Popup } from "react-leaflet/Popup";
 import { useMapEvents } from "react-leaflet/hooks";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
-import { FullscreenControl } from "react-leaflet-fullscreen";
+import "react-leaflet-fullscreen";
 import Box from "@mui/material/Box";
 import "react-leaflet-fullscreen/dist/styles.css";
 
@@ -48,7 +48,7 @@ const Location = ({ location, setlocation }) => {
 };
 
 const Map = ({ location, setlocation }) => {
-  const map = useMapEvents({
+  useMapEvents({
     click(e) {
       //   map.locate();
       if (e.latlng) {
