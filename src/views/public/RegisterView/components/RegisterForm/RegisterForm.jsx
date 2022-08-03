@@ -66,7 +66,6 @@ const RegisterForm = () => {
         inputLabel="Nombres"
         errorMessage={dataError.name}
       />
-
       <Grid container spacing={{ sm: 1 }}>
         <Grid item xs={12} sm={6}>
           <JeInputTextError
@@ -123,8 +122,7 @@ const RegisterForm = () => {
           />
         </Grid>
       </Grid>
-      <Location location={location} setlocation={setlocation} />
-      <Grid container spacing={{ sm: 1 }}>
+      <Grid container spacing={{ sm: 1 }} marginBottom="1rem">
         <Grid item xs={12} sm={6}>
           <JeInputTextError
             required
@@ -154,6 +152,7 @@ const RegisterForm = () => {
           />
         </Grid>
       </Grid>
+      <Location location={location} setlocation={setlocation} />
       <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
         <Button type="submit" variant="contained">
           Crear cuenta

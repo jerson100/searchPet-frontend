@@ -5,13 +5,14 @@ import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { useMapEvents } from "react-leaflet/hooks";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import { FullscreenControl } from "react-leaflet-fullscreen";
 import Box from "@mui/material/Box";
 import "react-leaflet-fullscreen/dist/styles.css";
 
 const Location = ({ location, setlocation }) => {
   return (
-    <>
+    <Box marginBottom={"1rem"}>
       <Typography variant="h6" component="p" marginBottom={".5rem"}>
         Tu ubicación
       </Typography>
@@ -19,6 +20,13 @@ const Location = ({ location, setlocation }) => {
         Pulse click en alguna parte del mapa para que otras personas puedan
         ponerse en contacto contigo.
       </Typography>
+      <Alert
+        variant="outlined"
+        severity="warning"
+        style={{ marginBottom: "1rem" }}
+      >
+        No seleccione una ubicación exacta a su hogar
+      </Alert>
       <Box height={"300px"}>
         <MapContainer
           center={[-12.062490398004638, -437.0360469818115]}
@@ -35,7 +43,7 @@ const Location = ({ location, setlocation }) => {
         </MapContainer>
         {/* )} */}
       </Box>
-    </>
+    </Box>
   );
 };
 
