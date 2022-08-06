@@ -19,4 +19,13 @@ const ValidateUserCreationSchema = Joi.object().keys({
   cPassword: Joi.string().required().valid(Joi.ref("password")),
 });
 
-export default ValidateUserCreationSchema;
+const LoginUserSchema = Joi.object().keys({
+  email: Joi.string().email().required(),
+  password: Joi.string()
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,20}$/
+    )
+    .required(),
+});
+
+export { ValidateUserCreationSchema, LoginUserSchema };

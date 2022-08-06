@@ -11,7 +11,7 @@ import Person from "@mui/icons-material/Person";
 import { useSnackbar } from "notistack";
 import Location from "../../components/Location";
 import { validateSchema } from "../../../../../utils/validateSchema";
-import validateUserCreationSchema from "../../../../../api/users.validate";
+import { ValidateUserCreationSchema } from "../../../../../api/users.validate";
 import JeInputTextError from "../../../../../components/common/JeInputTextError";
 import useAxios from "axios-hooks";
 
@@ -58,7 +58,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validateSchema(data, validateUserCreationSchema);
+    const errors = validateSchema(data, ValidateUserCreationSchema);
     setdataerror(errors);
     if (Object.keys(errors).length === 0 && location) {
       const copyUser = {
