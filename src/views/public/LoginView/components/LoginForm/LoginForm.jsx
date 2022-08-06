@@ -13,6 +13,7 @@ import People from "@mui/icons-material/People";
 import { useSnackbar } from "notistack";
 import SaveIcon from "@mui/icons-material/Save";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
+import { Link as LinkRouter } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -132,7 +133,7 @@ const LoginForm = () => {
           <Typography variant="body2" marginBottom={".5rem"}>
             No tienes una cuenta?
           </Typography>
-          <Link target={"_blank"} href="https://www.google.com.pe">
+          <Link to="/register" component={LinkRouter}>
             Registrate ahora!
           </Link>
         </Box>
