@@ -3,6 +3,7 @@ import AppRouter from "./components/route/AppRouter/AppRouter";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { SnackbarProvider } from "notistack";
 import "./configs/axios";
+import { AuthProvider } from "./contexts/authContext";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         })}
       />
       <SnackbarProvider>
-        <AppRouter />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </SnackbarProvider>
     </>
   );

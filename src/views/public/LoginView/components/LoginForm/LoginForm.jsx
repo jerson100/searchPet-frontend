@@ -10,24 +10,17 @@ import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
-import useAxios from "axios-hooks";
 import { useSnackbar } from "notistack";
 import SaveIcon from "@mui/icons-material/Save";
-import { validateSchema } from "../../../../../utils/validateSchema";
-import { LoginUserSchema } from "../../../../../api/users.validate";
+import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [{ loading }, execute] = useAxios(
-    {
-      method: "POST",
-    },
-    { manual: true }
-  );
-
   const { enqueueSnackbar } = useSnackbar();
+
+  const { login, loadingLogin } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,11 +28,7 @@ const LoginForm = () => {
     // if (!Object.keys(messageE).length) {
     if (email && password) {
       try {
-        const data = await execute({
-          url: "/auth/login",
-          data: { email, password },
-        });
-        console.log(data);
+        await login(email, password);
       } catch (e) {
         if (e.status) {
           enqueueSnackbar(e.message, { variant: "error" });
@@ -132,7 +121,7 @@ const LoginForm = () => {
           <LoadingButton
             type="submit"
             variant="contained"
-            loading={loading}
+            loading={loadingLogin}
             startIcon={<SaveIcon />}
             loadingPosition="start"
           >
