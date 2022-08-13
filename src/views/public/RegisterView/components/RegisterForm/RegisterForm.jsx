@@ -112,19 +112,20 @@ const RegisterForm = () => {
 
   return (
     <Box component="form" margin="normal" onSubmit={handleSubmit}>
-      <JeInputTextError
-        required
-        fullWidth
-        name="name"
-        value={data.name}
-        handleChange={handleChange}
-        error={!!dataError.name}
-        Icon={People}
-        inputLabel="Nombres"
-        errorMessage={dataError.name}
-      />
-      <Grid container spacing={{ sm: 1 }}>
-        <Grid item xs={12} sm={6}>
+      <Grid container>
+        <Grid item xs={12} md={6} lg={5}>
+          <JeInputTextError
+            required
+            fullWidth
+            name="name"
+            value={data.name}
+            handleChange={handleChange}
+            error={!!dataError.name}
+            Icon={People}
+            inputLabel="Nombres"
+            errorMessage={dataError.name}
+          />
+
           <JeInputTextError
             required
             fullWidth
@@ -136,8 +137,7 @@ const RegisterForm = () => {
             inputLabel="Apellido Paterno"
             errorMessage={dataError.paternalSurname}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+
           <JeInputTextError
             required
             fullWidth
@@ -149,10 +149,7 @@ const RegisterForm = () => {
             inputLabel="Apellido Materno"
             errorMessage={dataError.maternalSurname}
           />
-        </Grid>
-      </Grid>
-      <Grid container spacing={{ sm: 1 }}>
-        <Grid item xs={12} sm={6}>
+
           <JeInputTextError
             required
             fullWidth
@@ -164,8 +161,7 @@ const RegisterForm = () => {
             inputLabel="Nombre de usuario"
             errorMessage={dataError.username}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+
           <JeInputTextError
             required
             fullWidth
@@ -177,10 +173,7 @@ const RegisterForm = () => {
             inputLabel="email"
             errorMessage={dataError.email}
           />
-        </Grid>
-      </Grid>
-      <Grid container spacing={{ sm: 1 }} marginBottom="1rem">
-        <Grid item xs={12} sm={6}>
+
           <JeInputTextError
             required
             fullWidth
@@ -191,10 +184,10 @@ const RegisterForm = () => {
             error={!!dataError.password}
             Icon={Visibility}
             inputLabel="Contraseña"
+            autoComplete="new-password"
             errorMessage={dataError.password}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+
           <JeInputTextError
             required
             fullWidth
@@ -208,8 +201,10 @@ const RegisterForm = () => {
             errorMessage={dataError.cPassword}
           />
         </Grid>
+        <Grid item xs={12} md={6} lg={7} paddingLeft={{ md: "2rem" }}>
+          <Location location={location} setlocation={setlocation} />
+        </Grid>
       </Grid>
-      <Location location={location} setlocation={setlocation} />
       <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
         <LoadingButton
           type="submit"

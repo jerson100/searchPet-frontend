@@ -7,8 +7,8 @@ import RegisterForm from "./components/RegisterForm";
 
 const RegisterView = () => {
   return (
-    <AuthLayout maxWidth={"700px"}>
-      <Box padding={"2rem"}>
+    <AuthLayout maxWidth={"1200px"}>
+      <Box padding={{ xs: "2rem 1rem", sm: "2rem" }}>
         <Typography
           variant="h4"
           component="h1"

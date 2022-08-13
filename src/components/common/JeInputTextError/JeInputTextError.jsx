@@ -20,6 +20,7 @@ const JeInputTextError = ({
   errorMessage,
   Icon,
   inputLabel,
+  autoComplete,
 }) => {
   return (
     <FormControl
@@ -36,6 +37,7 @@ const JeInputTextError = ({
         value={value}
         onChange={handleChange}
         error={error}
+        autoComplete={autoComplete}
         endAdornment={
           <InputAdornment position="start">
             <IconButton aria-label="toggle password visibility" edge="end">
@@ -65,6 +67,7 @@ JeInputTextError.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   inputLabel: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 JeInputTextError.defaultProps = {
@@ -79,6 +82,7 @@ JeInputTextError.defaultProps = {
   error: false,
   errorMessage: "",
   inputLabel: "",
+  autoComplete: null,
 };
 
 export default React.memo(JeInputTextError);
