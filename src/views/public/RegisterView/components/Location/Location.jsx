@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
-import { useMapEvents } from "react-leaflet/hooks";
+import { useMapEvents, useMap } from "react-leaflet/hooks";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import "react-leaflet-fullscreen";
@@ -13,12 +13,13 @@ import "react-leaflet-fullscreen/dist/styles.css";
 const Location = ({ location, setlocation }) => {
   return (
     <Box marginBottom={"1rem"}>
-      <Typography variant="h6" component="p" marginBottom={".5rem"}>
+      <Typography variant="h6" component="h2" marginBottom={".5rem"}>
         Tu ubicación
       </Typography>
       <Typography variant="body1" component="p" marginBottom={"1rem"}>
         Pulse click en alguna parte del mapa para que otras personas puedan
-        ponerse en contacto contigo.
+        ponerse en contacto contigo, si tiene la ubicación activada en su equipo
+        se le mostrará un punto como referencia
       </Typography>
       <Alert
         variant="outlined"
@@ -29,7 +30,7 @@ const Location = ({ location, setlocation }) => {
       </Alert>
       <Box height={"300px"}>
         <MapContainer
-          center={[-12.062490398004638, -437.0360469818115]}
+          center={[-11.1167582, -77.3009863]}
           zoom={4}
           scrollWheelZoom
           style={{ height: "100%" }}
@@ -40,10 +41,35 @@ const Location = ({ location, setlocation }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <Map location={location} setlocation={setlocation} />
+          <MyLocation />
         </MapContainer>
         {/* )} */}
       </Box>
     </Box>
+  );
+};
+
+const MyLocation = () => {
+  const [myLocation, setmyLocation] = useState(null);
+  const map = useMap();
+
+  useEffect(() => {
+    navigator?.geolocation?.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setmyLocation([latitude, longitude]);
+        map.flyTo([latitude, longitude], 9);
+      },
+      (e) => {
+        console.log("error de localización");
+      }
+    );
+  }, [map]);
+  return (
+    myLocation && (
+      <Marker position={myLocation}>
+        <Popup>Usted está aquí bb</Popup>
+      </Marker>
+    )
   );
 };
 
@@ -63,9 +89,11 @@ const Map = ({ location, setlocation }) => {
   return (
     <>
       {location && (
-        <Marker position={location}>
-          <Popup>Usted está aquí bb</Popup>
-        </Marker>
+        <>
+          <Marker position={location}>
+            <Popup>Usted seleccionó esta posición</Popup>
+          </Marker>
+        </>
       )}
     </>
   );
