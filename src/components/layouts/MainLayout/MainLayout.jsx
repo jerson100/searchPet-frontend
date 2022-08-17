@@ -13,6 +13,13 @@ const MainLayout = () => {
   const controls = useAnimationControls();
 
   useEffect(() => {
+    return () => {
+      document.body.style = "";
+      document.documentElement.style = "";
+    };
+  }, []);
+
+  useEffect(() => {
     const d = async () => {
       if (!matches) {
         if (showMenuMobile) {
