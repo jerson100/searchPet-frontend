@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import { Container } from "@mui/material";
 
 const HomeView = () => {
   const { logout, user } = useAuthContext();
@@ -8,7 +9,7 @@ const HomeView = () => {
     logout();
   };
   return (
-    <div>
+    <Container>
       <h1>Página Principal</h1>
       {user ? (
         <>
@@ -18,7 +19,7 @@ const HomeView = () => {
           </Button>{" "}
         </>
       ) : null}
-    </div>
+    </Container>
   );
 };
 

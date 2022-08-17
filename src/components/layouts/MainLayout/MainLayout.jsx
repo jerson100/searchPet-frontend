@@ -9,7 +9,7 @@ import { mainLayout_variants } from "./mainLayout.variants";
 const MainLayout = () => {
   const [showMenuMobile, setshowMenuMobile] = useState(false);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -46,6 +46,10 @@ const MainLayout = () => {
         animate={controls}
         variants={mainLayout_variants}
         sx={{
+          paddingTop: {
+            xs: "57px",
+            sm: "65px",
+          },
           transform: {
             xs: `translateX(${showMenuMobile ? "200px" : "0"})`,
             sm: `translateX(0)`,
