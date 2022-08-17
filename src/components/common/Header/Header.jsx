@@ -3,13 +3,10 @@ import Grid from "@mui/material/Grid";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@mui/material/styles";
-import { IconButton, Typography, useMediaQuery } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import MenuNavigator from "./components/MenuNavigator";
 
-const Header = ({ setshowMenuMobile, showMenuMobile }) => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+const Header = ({ setshowMenuMobile, showMenuMobile, matches }) => {
   return (
     <>
       <AppBar
@@ -17,7 +14,10 @@ const Header = ({ setshowMenuMobile, showMenuMobile }) => {
         color="default"
         sx={{
           borderBottom: "solid 1px rgba(0,0,0,.1)",
-          transform: { xs: `translateX(${showMenuMobile ? "200px" : "0"})` },
+          transform: {
+            xs: `translateX(${showMenuMobile ? "200px" : "0"})`,
+            sm: `translateX(0)`,
+          },
         }}
       >
         <Toolbar>
