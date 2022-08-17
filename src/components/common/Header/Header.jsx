@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Typography } from "@mui/material";
 import MenuNavigator from "./components/MenuNavigator";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { header_variants } from "./header.variants";
 
 const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
@@ -48,12 +48,11 @@ const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
           </Grid>
         </Toolbar>
       </AppBar>
-      {!matches && (
-        <MenuNavigator
-          showMenuMobile={showMenuMobile}
-          setshowMenuMobile={setshowMenuMobile}
-        />
-      )}
+      <AnimatePresence>
+        {!matches && showMenuMobile && (
+          <MenuNavigator setshowMenuMobile={setshowMenuMobile} />
+        )}
+      </AnimatePresence>
     </>
   );
 };
