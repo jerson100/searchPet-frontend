@@ -5,11 +5,10 @@ const MenuNavigator = ({ showMenuMobile, setshowMenuMobile }) => {
   return (
     <>
       <Paper
-        style={{
+        sx={{
           position: "fixed",
           top: 0,
           height: "100vh",
-          background: "default",
           borderRight: "solid 1px rgba(0,0,0,.1)",
           width: "200px",
           zIndex: "10001",
@@ -18,7 +17,7 @@ const MenuNavigator = ({ showMenuMobile, setshowMenuMobile }) => {
       ></Paper>
       {showMenuMobile && (
         <Box
-          style={{
+          sx={{
             position: "absolute",
             left: "0",
             top: "0",

@@ -3,17 +3,21 @@ import Grid from "@mui/material/Grid";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { IconButton, Typography, useMediaQuery } from "@mui/material";
+import MenuNavigator from "./components/MenuNavigator";
 
 const Header = ({ setshowMenuMobile, showMenuMobile }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <>
       <AppBar
         position="fixed"
         color="default"
-        style={{
+        sx={{
           borderBottom: "solid 1px rgba(0,0,0,.1)",
-          transform: `translatex(${showMenuMobile ? "200px" : "0"})`,
+          transform: { xs: `translateX(${showMenuMobile ? "200px" : "0"})` },
         }}
       >
         <Toolbar>
@@ -24,19 +28,27 @@ const Header = ({ setshowMenuMobile, showMenuMobile }) => {
               </Typography>
             </Grid>
             <Grid flexGrow={1} item display={"flex"} justifyContent="flex-end">
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={() => setshowMenuMobile((prev) => !prev)}
-              >
-                <MenuIcon />
-              </IconButton>
+              {!matches && (
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={() => setshowMenuMobile((prev) => !prev)}
+                >
+                  <MenuIcon />
+                </IconButton>
+              )}
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
+      {!matches && (
+        <MenuNavigator
+          showMenuMobile={showMenuMobile}
+          setshowMenuMobile={setshowMenuMobile}
+        />
+      )}
     </>
   );
 };
