@@ -2,6 +2,7 @@ import { Box, Paper } from "@mui/material";
 import React from "react";
 import { motion } from "framer-motion";
 import { menu_mobile_variants } from "../../header.variants";
+import MenuContent from "../MenuContent";
 
 const MenuNavigator = ({ setshowMenuMobile }) => {
   return (
@@ -24,7 +25,9 @@ const MenuNavigator = ({ setshowMenuMobile }) => {
           zIndex: "10001",
           //   transform: `translateX(${showMenuMobile ? "0" : "-200px"})`,
         }}
-      ></Paper>
+      >
+        <MenuContent />
+      </Paper>
       <Box
         component={motion.div}
         variants={menu_mobile_variants.background}
