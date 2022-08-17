@@ -4,7 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Typography } from "@mui/material";
-import MenuNavigator from "./components/MenuNavigator";
+import MobileMenu from "./components/MobileMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { header_variants } from "./header.variants";
 
@@ -50,7 +50,7 @@ const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
       </AppBar>
       <AnimatePresence>
         {!matches && showMenuMobile && (
-          <MenuNavigator setshowMenuMobile={setshowMenuMobile} />
+          <MobileMenu setshowMenuMobile={setshowMenuMobile} />
         )}
       </AnimatePresence>
     </>

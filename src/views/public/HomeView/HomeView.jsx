@@ -7,7 +7,6 @@ const HomeView = () => {
   const handleClick = () => {
     logout();
   };
-  console.log(user);
   return (
     <div>
       <h1>Página Principal</h1>

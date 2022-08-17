@@ -1,10 +1,10 @@
-import { Box, Paper } from "@mui/material";
 import React from "react";
+import { Box, Paper } from "@mui/material";
 import { motion } from "framer-motion";
-import { menu_mobile_variants } from "../../header.variants";
-import MenuContent from "../MenuContent";
+import { menu_mobile_variants } from "./mobile.variants";
+import MenuContent from "./components/MenuContent";
 
-const MenuNavigator = ({ setshowMenuMobile }) => {
+const MobileMenu = ({ setshowMenuMobile }) => {
   return (
     <Box
       component={motion.div}
@@ -23,7 +23,6 @@ const MenuNavigator = ({ setshowMenuMobile }) => {
           borderRight: "solid 1px rgba(0,0,0,.1)",
           width: "200px",
           zIndex: "10001",
-          //   transform: `translateX(${showMenuMobile ? "0" : "-200px"})`,
         }}
       >
         <MenuContent />
@@ -46,4 +45,4 @@ const MenuNavigator = ({ setshowMenuMobile }) => {
   );
 };
 
-export default MenuNavigator;
+export default MobileMenu;

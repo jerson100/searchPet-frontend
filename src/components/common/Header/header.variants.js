@@ -7,24 +7,4 @@ const header_variants = {
   },
 };
 
-const menu_mobile_variants = {
-  container: {},
-  paper: {
-    inactive: {
-      x: "-200px",
-    },
-    active: {
-      x: 0,
-    },
-  },
-  background: {
-    inactive: {
-      opacity: 0,
-    },
-    active: {
-      opacity: 1,
-    },
-  },
-};
-
-export { header_variants, menu_mobile_variants };
+export { header_variants };
