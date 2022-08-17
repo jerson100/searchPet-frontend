@@ -21,16 +21,10 @@ const MainLayout = () => {
 
   useEffect(() => {
     const d = async () => {
-      if (!matches) {
-        if (showMenuMobile) {
-          document.body.style.overflowX = "hidden";
-          document.documentElement.style.overflow = "hidden";
-          await controls.start("active");
-        } else {
-          await controls.start("inactive");
-          document.body.style = "";
-          document.documentElement.style = "";
-        }
+      if (!matches && showMenuMobile) {
+        document.body.style.overflowX = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        await controls.start("active");
       } else {
         await controls.start("inactive");
         document.body.style = "";
