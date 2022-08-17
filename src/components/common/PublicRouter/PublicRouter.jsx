@@ -5,7 +5,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 const PublicRouter = ({ children }) => {
   const { previousLoading, isLogued } = useAuthContext();
   if (previousLoading) return <p>Cargando...</p>;
-  if (isLogued) return <Navigate to={"/app"} />;
+  if (isLogued) return <Navigate to={"/"} />;
   return <>{children}</>;
 };
 
