@@ -13,20 +13,24 @@ const MainLayout = () => {
   const controls = useAnimationControls();
 
   useEffect(() => {
-    if (showMenuMobile) {
-      document.body.style.overflowX = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    }
-  }, [showMenuMobile]);
-
-  useEffect(() => {
-    if (matches) {
-      if (showMenuMobile) {
-        controls.start("active");
+    const d = async () => {
+      if (!matches) {
+        if (showMenuMobile) {
+          document.body.style.overflowX = "hidden";
+          document.documentElement.style.overflow = "hidden";
+          await controls.start("active");
+        } else {
+          await controls.start("inactive");
+          document.body.style = "";
+          document.documentElement.style = "";
+        }
       } else {
-        controls.start("inactive");
+        await controls.start("inactive");
+        document.body.style = "";
+        document.documentElement.style = "";
       }
-    }
+    };
+    d();
   }, [showMenuMobile, controls, matches]);
 
   return (
@@ -35,6 +39,7 @@ const MainLayout = () => {
         setshowMenuMobile={setshowMenuMobile}
         showMenuMobile={showMenuMobile}
         matches={matches}
+        controls={controls}
       />
       <Box
         component={motion.main}

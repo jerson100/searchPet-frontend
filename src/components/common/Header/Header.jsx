@@ -5,13 +5,18 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Typography } from "@mui/material";
 import MenuNavigator from "./components/MenuNavigator";
+import { motion } from "framer-motion";
+import { header_variants } from "./header.variants";
 
-const Header = ({ setshowMenuMobile, showMenuMobile, matches }) => {
+const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
   return (
     <>
       <AppBar
         position="fixed"
         color="default"
+        component={motion.header}
+        animate={controls}
+        variants={header_variants}
         sx={{
           borderBottom: "solid 1px rgba(0,0,0,.1)",
           transform: {
