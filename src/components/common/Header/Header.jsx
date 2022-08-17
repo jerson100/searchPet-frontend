@@ -7,6 +7,7 @@ import { IconButton, Typography } from "@mui/material";
 import MobileMenu from "./components/MobileMenu";
 import { motion, AnimatePresence } from "framer-motion";
 import { header_variants } from "./header.variants";
+import { Container } from "@mui/system";
 
 const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
   return (
@@ -25,27 +26,34 @@ const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
           },
         }}
       >
-        <Toolbar>
-          <Grid container display={"flex"} alignItems="center">
-            <Grid item>
-              <Typography variant="h6" component="p" fontWeight={"bold"}>
-                SPet
-              </Typography>
+        <Toolbar sx={{ padding: { xs: 0, sm: 0 } }}>
+          <Container>
+            <Grid container display={"flex"} alignItems="center">
+              <Grid item>
+                <Typography variant="h6" component="p" fontWeight={"bold"}>
+                  SPet
+                </Typography>
+              </Grid>
+              <Grid
+                flexGrow={1}
+                item
+                display={"flex"}
+                justifyContent="flex-end"
+              >
+                {!matches && (
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={() => setshowMenuMobile((prev) => !prev)}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                )}
+              </Grid>
             </Grid>
-            <Grid flexGrow={1} item display={"flex"} justifyContent="flex-end">
-              {!matches && (
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={() => setshowMenuMobile((prev) => !prev)}
-                >
-                  <MenuIcon />
-                </IconButton>
-              )}
-            </Grid>
-          </Grid>
+          </Container>
         </Toolbar>
       </AppBar>
       <AnimatePresence>
