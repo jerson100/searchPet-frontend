@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListSubheader from "@mui/material/ListSubheader";
@@ -26,13 +27,13 @@ const ConfigurationMenuList = () => {
             </ListSubheader>
           }
         >
-          <ListItemButton component="li">
+          <ListItemButton to={`/profile/${user.user._id}`} component={Link}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Perfil" />
           </ListItemButton>
-          <ListItemButton component="li">
+          <ListItemButton to="/configuration/reset-password" component={Link}>
             <ListItemIcon>
               <PasswordIcon />
             </ListItemIcon>

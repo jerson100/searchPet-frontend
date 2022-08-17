@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -37,19 +38,19 @@ const AdministratortMenuList = () => {
             </ListSubheader>
           }
         >
-          <ListItemButton component="li">
+          <ListItemButton to="/" component={Link}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
             <ListItemText primary="Sent mail" />
           </ListItemButton>
-          <ListItemButton component="li">
+          <ListItemButton to="/" component={Link}>
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
             <ListItemText primary="Drafts" />
           </ListItemButton>
-          <ListItemButton component="li" onClick={handleClick}>
+          <ListItemButton to="/" component={Link} onClick={handleClick}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -58,7 +59,7 @@ const AdministratortMenuList = () => {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemButton component="li" sx={{ pl: 4 }}>
+              <ListItemButton to="/" component={Link} sx={{ pl: 4 }}>
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>

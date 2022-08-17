@@ -3,11 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeView from "../../../views/public/HomeView";
 import LoginView from "../../../views/public/LoginView";
 import RegisterView from "../../../views/public/RegisterView";
-import HomeAppView from "../../../views/private/HomeAppView";
 import NotFound from "../../common/NotFound";
 import MainLayout from "../../layouts/MainLayout";
-import AppLayout from "../../layouts/AppLayout";
 import PublicRouter from "../../common/PublicRouter";
+import LostPetView from "../../../views/public/LostPetView";
+import WeView from "../../../views/public/WeView";
+import TeamView from "../../../views/public/TeamView";
+import ProfileView from "../../../views/public/ProfileView";
+import ResetPasswordView from "../../../views/private/ResetPasswordView";
+import ConfigurationView from "../../../views/private/ConfigurationView";
+import ConfigurationLayout from "../../layouts/ConfigurationLayout";
 
 const AppRouter = () => {
   return (
@@ -25,12 +30,16 @@ const AppRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomeView />} />
           <Route path="home" element={<HomeView />} />
+          <Route path="lostPet" element={<LostPetView />} />
+          <Route path="we" element={<WeView />} />
+          <Route path="team" element={<TeamView />} />
+          <Route path="profile/:idUser" element={<ProfileView />} />
+          <Route path="configuration" element={<ConfigurationLayout />}>
+            <Route index element={<ConfigurationView />} />
+            <Route path="reset-password" element={<ResetPasswordView />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/app" element={<AppLayout />}>
-          <Route index element={<HomeAppView />} />
-          <Route path="home" element={<HomeAppView />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

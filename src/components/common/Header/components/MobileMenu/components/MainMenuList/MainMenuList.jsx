@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -16,25 +17,25 @@ const MainMenuList = () => {
         component="ul"
         aria-labelledby="nested-list-subheader"
       >
-        <ListItemButton component="li">
+        <ListItemButton to="/" component={Link}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemButton>
-        <ListItemButton component="li">
+        <ListItemButton to="/lostPet" component={Link}>
           <ListItemIcon>
             <PetsIcon />
           </ListItemIcon>
           <ListItemText primary="Mascotas perdidas" />
         </ListItemButton>
-        <ListItemButton component="li">
+        <ListItemButton to="/we" component={Link}>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
           <ListItemText primary="Nosotros" />
         </ListItemButton>
-        <ListItemButton component="li">
+        <ListItemButton to="/team" component={Link}>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
