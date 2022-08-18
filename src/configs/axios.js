@@ -21,14 +21,16 @@ axios.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if (error.response) {
-      if (error.response.status === 401) {
-        window.location.href = "/login";
-      } else {
-        return Promise.reject({
-          ...error.response.data,
-          status: error.response.status,
-        });
-      }
+      const { response } = error;
+      //   const { pathname } = window.location;
+      //   if (!urls.includes(pathname) && response.status === 401) {
+      //     // window.location.href = "/login";
+      //   } else {
+      return Promise.reject({
+        ...response.data,
+        status: response.status,
+      });
+      // }
     } else {
       return Promise.reject({
         ...error,

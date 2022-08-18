@@ -5,8 +5,10 @@ import { Outlet } from "react-router-dom";
 import Header from "../../common/Header/Header";
 import { motion, useAnimationControls } from "framer-motion";
 import { mainLayout_variants } from "./mainLayout.variants";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const MainLayout = () => {
+  const { previousLoading } = useAuthContext();
   const [showMenuMobile, setshowMenuMobile] = useState(false);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -33,6 +35,8 @@ const MainLayout = () => {
     };
     d();
   }, [showMenuMobile, controls, matches]);
+
+  if (previousLoading) return <p>Cargando...</p>;
 
   return (
     <>

@@ -2,7 +2,6 @@ const TOKEN_NAME = "AUTH_TOKEN";
 
 class AUTH_TOKEN {
   static add(data) {
-    console.log(data);
     localStorage.setItem(TOKEN_NAME, data);
   }
   static get() {

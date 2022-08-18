@@ -41,7 +41,9 @@ const AuthProvider = ({ children }) => {
           });
           setisLogued(true);
           AUTH_TOKEN.add(token);
-        } catch (e) {}
+        } catch (e) {
+          AUTH_TOKEN.remove();
+        }
       }
       setpreviousLoading(false);
     };
