@@ -14,7 +14,7 @@ const Logout = () => {
   return (
     <>
       <Divider component="li" />
-      <ListItemButton component="li" onClick={logout}>
+      <ListItemButton component="li" onClick={logout} sx={{ mb: 5 }}>
         <ListItemIcon>
           <LogoutIcon />
         </ListItemIcon>
