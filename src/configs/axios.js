@@ -2,7 +2,7 @@ import Axios from "axios";
 import { configure } from "axios-hooks";
 
 const axios = Axios.create({
-  baseURL: "http://localhost:4210/api/v1",
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:4210/api/v1",
 });
 
 // axiosConfig.interceptors.request.use(function (config) {
