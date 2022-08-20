@@ -20,7 +20,7 @@ const User = () => {
         sx={{ width: 75, height: 75, mb: 1 }}
       />
       {!user?.user ? (
-        <ButtonAcceder isLogued={true} />
+        <ButtonAcceder isLogued={false} />
       ) : (
         <Typography variant="h6" component="p">
           jerson100
