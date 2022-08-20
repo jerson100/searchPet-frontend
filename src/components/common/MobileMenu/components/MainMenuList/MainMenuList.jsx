@@ -14,7 +14,7 @@ const MainMenuList = () => {
     <li>
       <List
         sx={{ width: "100%", bgcolor: "background.paper" }}
-        component="ul"
+        component="div"
         aria-labelledby="nested-list-subheader"
       >
         <ListItemButton to="/" component={Link}>

@@ -1,6 +1,7 @@
-import { Box, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 import Header from "../../common/Header/Header";
 import { motion, useAnimationControls, AnimatePresence } from "framer-motion";

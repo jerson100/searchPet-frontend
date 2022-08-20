@@ -7,7 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PersonIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const ConfigurationMenuList = () => {
@@ -19,10 +19,10 @@ const ConfigurationMenuList = () => {
       <li>
         <List
           sx={{ width: "100%", bgcolor: "background.paper" }}
-          component="ul"
+          component="div"
           aria-labelledby="nested-list-subheader-cf"
           subheader={
-            <ListSubheader component="li" id="nested-list-subheader-cf">
+            <ListSubheader component="div" id="nested-list-subheader-cf">
               Configuración
             </ListSubheader>
           }

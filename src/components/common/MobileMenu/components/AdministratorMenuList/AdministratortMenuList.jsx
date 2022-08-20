@@ -12,7 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
-import { Divider } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const AdministratortMenuList = () => {
@@ -30,10 +30,10 @@ const AdministratortMenuList = () => {
       <li>
         <List
           sx={{ width: "100%", bgcolor: "background.paper" }}
-          component="ul"
+          component="div"
           aria-labelledby="nested-list-subheader"
           subheader={
-            <ListSubheader component="li" id="nested-list-subheader">
+            <ListSubheader component="div" id="nested-list-subheader">
               Administración
             </ListSubheader>
           }

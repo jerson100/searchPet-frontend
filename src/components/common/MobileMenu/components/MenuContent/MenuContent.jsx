@@ -20,6 +20,7 @@ const MenuContent = () => {
         <User />
         <Divider />
         <Box
+          component="nav"
           sx={{
             flexGrow: 1,
             overflow: "auto",
@@ -27,12 +28,20 @@ const MenuContent = () => {
             margin: 0,
             padding: 0,
           }}
-          component="ul"
         >
-          <MainMenuList />
-          <AdministratorMenuList />
-          <ConfigurationMenuList />
-          <Logout />
+          <Box
+            component="ul"
+            sx={{
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <MainMenuList />
+            <AdministratorMenuList />
+            <ConfigurationMenuList />
+            <Logout />
+          </Box>
         </Box>
       </Box>
     </>
