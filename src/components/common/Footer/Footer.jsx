@@ -5,6 +5,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import React from "react";
 import SocialList from "../SocialList";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/system";
 
 const Footer = () => {
   return (
@@ -45,29 +46,61 @@ const Footer = () => {
             display="flex"
             justifyContent={{ md: "flex-end" }}
           >
-            <Typography variant="h3" component="p">
+            <Typography
+              variant="h3"
+              component="p"
+              marginBottom={2}
+              display={{ xs: "none", md: "block" }}
+            >
               SPet
             </Typography>
           </Grid>
           <Grid item xs={12} display="flex" flexWrap="wrap" gap={1}>
-            <Button to="/" component={Link}>
-              Home
-            </Button>
-            <Button to="/lostPet" component={Link}>
-              Mascotas Perdidas
-            </Button>
-            <Button to="/we" component={Link}>
-              Nosotros
-            </Button>
-            <Button to="/we" component={Link}>
-              Visión
-            </Button>
-            <Button to="/we" component={Link}>
-              Ayuda
-            </Button>
-            <Button to="/team" component={Link}>
-              Team
-            </Button>
+            <nav>
+              <Box
+                component="ul"
+                sx={{
+                  listStyle: "none",
+                  display: "flex",
+                  margin: "0",
+                  padding: "0",
+                  gap: "1rem",
+                  flexWrap: "wrap;",
+                  marginLeft: "-8px",
+                }}
+              >
+                <li>
+                  <Button to="/" component={Link}>
+                    Home
+                  </Button>
+                </li>
+                <li>
+                  <Button to="/lostPet" component={Link}>
+                    Mascotas Perdidas
+                  </Button>
+                </li>
+                <li>
+                  <Button to="/we" component={Link}>
+                    Nosotros
+                  </Button>
+                </li>
+                <li>
+                  <Button to="/we" component={Link}>
+                    Visión
+                  </Button>
+                </li>
+                <li>
+                  <Button to="/we" component={Link}>
+                    Ayuda
+                  </Button>
+                </li>
+                <li>
+                  <Button to="/team" component={Link}>
+                    Team
+                  </Button>
+                </li>
+              </Box>
+            </nav>
           </Grid>
         </Grid>
       </Container>

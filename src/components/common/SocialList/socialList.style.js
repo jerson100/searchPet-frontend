@@ -6,6 +6,7 @@ const SocialListStyle = styled("ul")`
   gap: 2;
   margin: 0 0 1rem;
   padding: 0;
+  margin-left: -12px;
 `;
 
 export { SocialListStyle };
