@@ -1,7 +1,7 @@
-import { Avatar, Typography, Box, Button } from "@mui/material";
+import { Avatar, Typography, Box } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
+import ButtonAcceder from "../../../ButtonAcceder";
 
 const User = () => {
   const { user } = useAuthContext();
@@ -20,14 +20,7 @@ const User = () => {
         sx={{ width: 75, height: 75, mb: 1 }}
       />
       {!user?.user ? (
-        <Button
-          to={"/login"}
-          color="primary"
-          variant="outlined"
-          component={Link}
-        >
-          Acceder
-        </Button>
+        <ButtonAcceder isLogued={true} />
       ) : (
         <Typography variant="h6" component="p">
           jerson100

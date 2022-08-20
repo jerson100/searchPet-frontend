@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
+import DesktopMenu from "./components/DesktopMenu/DesktopMenu";
 
 const Header = ({ setshowMenuMobile, matches }) => {
   return (
@@ -41,7 +42,7 @@ const Header = ({ setshowMenuMobile, matches }) => {
                 display={"flex"}
                 justifyContent="flex-end"
               >
-                {!matches && (
+                {!matches ? (
                   <IconButton
                     size="large"
                     edge="start"
@@ -51,6 +52,8 @@ const Header = ({ setshowMenuMobile, matches }) => {
                   >
                     <MenuIcon />
                   </IconButton>
+                ) : (
+                  <DesktopMenu />
                 )}
               </Grid>
             </Grid>
