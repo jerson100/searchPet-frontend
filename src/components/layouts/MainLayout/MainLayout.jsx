@@ -8,6 +8,7 @@ import { motion, useAnimationControls, AnimatePresence } from "framer-motion";
 import { mainLayout_variants } from "./mainLayout.variants";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import MobileMenu from "../../common/MobileMenu";
+import Footer from "../../common/Footer";
 
 const MainLayout = () => {
   const { previousLoading } = useAuthContext();
@@ -78,6 +79,7 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
       >
         <Outlet />
       </Box>
+      <Footer />
     </Box>
   );
 });
