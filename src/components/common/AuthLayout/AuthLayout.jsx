@@ -11,7 +11,6 @@ const AuthLayout = ({ children, maxWidth }) => {
       justifyContent={"center"}
       alignItems={"center"}
       minHeight="100vh"
-      style={{ backgroundColor: "rgb(10, 25, 41)" }}
     >
       <Box
         maxWidth={maxWidth}

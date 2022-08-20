@@ -14,7 +14,6 @@ const settings = [
 ];
 
 const UserLogued = () => {
-  const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const { logout } = useAuthContext();
