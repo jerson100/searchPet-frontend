@@ -23,7 +23,7 @@ const MobileMenu = ({ setshowMenuMobile }) => {
           height: "100vh",
           borderRight: "solid 1px rgba(0,0,0,.1)",
           width: "200px",
-          zIndex: "10001",
+          zIndex: "2",
         }}
       >
         <MenuContent />
@@ -32,12 +32,12 @@ const MobileMenu = ({ setshowMenuMobile }) => {
         component={motion.div}
         variants={menu_mobile_variants.background}
         sx={{
-          position: "absolute",
+          position: "fixed",
           left: "0",
           top: "0",
           right: "0",
           bottom: "0",
-          zIndex: "10000",
+          zIndex: "1",
           backgroundColor: "rgba(0,0,0,.4)",
         }}
         onClick={() => setshowMenuMobile(false)}
