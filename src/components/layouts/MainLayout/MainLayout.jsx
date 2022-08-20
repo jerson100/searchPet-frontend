@@ -3,9 +3,10 @@ import { useTheme } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../../common/Header/Header";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls, AnimatePresence } from "framer-motion";
 import { mainLayout_variants } from "./mainLayout.variants";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import MobileMenu from "../../common/MobileMenu";
 
 const MainLayout = () => {
   const { previousLoading } = useAuthContext();
@@ -40,31 +41,44 @@ const MainLayout = () => {
 
   return (
     <>
-      <Header
+      <ContentLayout
         setshowMenuMobile={setshowMenuMobile}
-        showMenuMobile={showMenuMobile}
         matches={matches}
         controls={controls}
       />
+      <AnimatePresence>
+        {!matches && showMenuMobile && (
+          <MobileMenu setshowMenuMobile={setshowMenuMobile} />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
+  return (
+    <Box
+      component={motion.div}
+      animate={controls}
+      variants={mainLayout_variants}
+    >
+      <Header setshowMenuMobile={setshowMenuMobile} matches={matches} />
       <Box
-        component={motion.main}
-        animate={controls}
-        variants={mainLayout_variants}
+        component="main"
         sx={{
           paddingTop: {
             xs: "57px",
             sm: "65px",
           },
           transform: {
-            xs: `translateX(${showMenuMobile ? "200px" : "0"})`,
             sm: `translateX(0)`,
           },
         }}
       >
         <Outlet />
       </Box>
-    </>
+    </Box>
   );
-};
+});
 
 export default MainLayout;

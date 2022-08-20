@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import React from "react";
-import { useAuthContext } from "../../../../../../../hooks/useAuthContext";
+import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const Logout = () => {
   const { user, logout } = useAuthContext();

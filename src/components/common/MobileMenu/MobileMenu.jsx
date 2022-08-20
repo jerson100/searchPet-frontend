@@ -1,11 +1,12 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Box, Paper } from "@mui/material";
 import { motion } from "framer-motion";
 import { menu_mobile_variants } from "./mobile.variants";
 import MenuContent from "./components/MenuContent";
 
 const MobileMenu = ({ setshowMenuMobile }) => {
-  return (
+  return ReactDOM.createPortal(
     <Box
       component={motion.div}
       initial="inactive"
@@ -41,7 +42,8 @@ const MobileMenu = ({ setshowMenuMobile }) => {
         }}
         onClick={() => setshowMenuMobile(false)}
       />
-    </Box>
+    </Box>,
+    document.body
   );
 };
 

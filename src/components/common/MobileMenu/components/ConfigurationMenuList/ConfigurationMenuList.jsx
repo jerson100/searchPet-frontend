@@ -7,8 +7,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PersonIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
-import { useAuthContext } from "../../../../../../../hooks/useAuthContext";
 import { Divider } from "@mui/material";
+import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const ConfigurationMenuList = () => {
   const { user } = useAuthContext();

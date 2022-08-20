@@ -3,25 +3,19 @@ import Grid from "@mui/material/Grid";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, Typography } from "@mui/material";
-import MobileMenu from "./components/MobileMenu";
-import { motion, AnimatePresence } from "framer-motion";
-import { header_variants } from "./header.variants";
-import { Container } from "@mui/system";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
-const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
+const Header = ({ setshowMenuMobile, matches }) => {
   return (
     <>
       <AppBar
         position="fixed"
         color="default"
-        component={motion.header}
-        animate={controls}
-        variants={header_variants}
         sx={{
           borderBottom: "solid 1px rgba(0,0,0,.1)",
           transform: {
-            xs: `translateX(${showMenuMobile ? "200px" : "0"})`,
             sm: `translateX(0)`,
           },
         }}
@@ -56,11 +50,6 @@ const Header = ({ setshowMenuMobile, showMenuMobile, matches, controls }) => {
           </Container>
         </Toolbar>
       </AppBar>
-      <AnimatePresence>
-        {!matches && showMenuMobile && (
-          <MobileMenu setshowMenuMobile={setshowMenuMobile} />
-        )}
-      </AnimatePresence>
     </>
   );
 };
