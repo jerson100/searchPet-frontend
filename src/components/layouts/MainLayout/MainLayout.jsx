@@ -63,11 +63,13 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
       component={motion.div}
       animate={controls}
       variants={mainLayout_variants}
+      sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <Header setshowMenuMobile={setshowMenuMobile} matches={matches} />
       <Box
         component="main"
         sx={{
+          flexGrow: 1,
           paddingTop: {
             xs: "57px",
             sm: "65px",

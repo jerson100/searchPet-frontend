@@ -7,7 +7,7 @@ import SocialList from "../SocialList";
 
 const Footer = () => {
   return (
-    <Paper sx={{ padding: { xs: "1rem 0", md: "2rem 0" } }}>
+    <Paper sx={{ boxShadow: "none", padding: { xs: "1rem 0", md: "2rem 0" } }}>
       <Container>
         <Grid container>
           <Grid item xs={12} md={4}>

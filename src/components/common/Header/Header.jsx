@@ -15,6 +15,7 @@ const Header = ({ setshowMenuMobile, matches }) => {
         color="default"
         sx={{
           borderBottom: "solid 1px rgba(0,0,0,.1)",
+          boxShadow: "none",
           transform: {
             sm: `translateX(0)`,
           },
