@@ -6,6 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { Link } from "react-router-dom";
 
 const Header = ({ setshowMenuMobile, matches }) => {
   return (
@@ -26,7 +27,12 @@ const Header = ({ setshowMenuMobile, matches }) => {
             <Grid container display={"flex"} alignItems="center">
               <Grid item>
                 <Typography variant="h6" component="p" fontWeight={"bold"}>
-                  SPet
+                  <Link
+                    to="/"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    SPet
+                  </Link>
                 </Typography>
               </Grid>
               <Grid
