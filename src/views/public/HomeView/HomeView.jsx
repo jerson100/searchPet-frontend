@@ -1,19 +1,20 @@
 import React from "react";
-import Container from "@mui/material/Container";
 import Banner from "./components/Banner";
+import JeSection from "../../../components/common/JeSection/JeSection";
+import Typography from "@mui/material/Typography";
 
 const HomeView = () => {
   return (
     <>
       <Banner />
-      <Container>
-        <p style={{ padding: "6rem 0" }}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit,
-          ratione corporis, explicabo, officiis quasi veniam quibusdam eos
-          laboriosam similique in molestias laudantium laborum praesentium enim
-          dolore ducimus deleniti facere illo.
-        </p>
-      </Container>
+      <JeSection title="Funcionalidades">
+        <Typography variant="body1" component="p">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur sint
+          ullam, labore perferendis facilis tempora esse nesciunt odit delectus
+          iusto vitae illum quis animi consequatur explicabo, aperiam ipsam,
+          possimus eos.
+        </Typography>
+      </JeSection>
     </>
   );
 };
