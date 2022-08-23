@@ -1,12 +1,13 @@
 import AppRouter from "./components/route/AppRouter/AppRouter";
 import ThemeProvider from "@mui/system/ThemeProvider";
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { SnackbarProvider } from "notistack";
 import "./configs/axios";
 import { AuthProvider } from "./contexts/authContext";
 
-const theme = createTheme();
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
 
 function App() {
   return (

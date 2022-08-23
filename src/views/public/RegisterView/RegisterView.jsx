@@ -9,12 +9,7 @@ const RegisterView = () => {
   return (
     <AuthLayout maxWidth={"1200px"}>
       <Box padding={{ xs: "2rem 1rem", sm: "2rem" }}>
-        <Typography
-          variant="h4"
-          component="h1"
-          align="center"
-          marginBottom={"1.5rem"}
-        >
+        <Typography variant="h3" component="h1" align="center" marginBottom={3}>
           Registro de usuario
         </Typography>
         <RegisterForm />

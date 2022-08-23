@@ -7,7 +7,7 @@ import { Link as LinkRouter } from "react-router-dom";
 const BottomForm = () => {
   return (
     <Box display={"flex"} flexDirection="column" alignItems={"center"}>
-      <Typography variant="body2" marginBottom={".5rem"}>
+      <Typography variant="body1" marginBottom={2}>
         Ya tienes una cuenta?
       </Typography>
       <Link to="/login" component={LinkRouter}>

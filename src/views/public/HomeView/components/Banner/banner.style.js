@@ -27,24 +27,25 @@ const BannerLogoTittleStyle = styled("span")`
   }};
 `;
 
-const BannerTittleStyle = styled(Typography)`
-  margin-bottom: 1rem;
-  ${({ theme }) => {
+/* ${({ theme }) => {
     const {
       breakpoints,
       typography: { h2, h3, h4 },
     } = theme;
     return {
-      fontSize: `${h4.fontSize}`,
-      fontWeight: "bold",
-      [breakpoints.up("md")]: {
-        fontSize: `${h3.fontSize}`,
-      },
-      [breakpoints.up("lg")]: {
-        fontSize: `${h2.fontSize}`,
-      },
+      //   fontSize: `${h4.fontSize}`,
+      //   fontWeight: "bold",
+      //   [breakpoints.up("md")]: {
+      //     fontSize: `${h3.fontSize}`,
+      //   },
+      //   [breakpoints.up("lg")]: {
+      //     fontSize: `${h2.fontSize}`,
+      //   },
     };
-  }}
+  }} */
+const BannerTittleStyle = styled(Typography)`
+  margin-bottom: 1rem;
+  font-weight: bold;
 `;
 
 const BannerTextStyle = styled(Typography)`

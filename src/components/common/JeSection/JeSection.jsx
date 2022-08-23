@@ -13,7 +13,9 @@ const JeSection = ({ component, title, children, maxWidth }) => {
         sx={{ padding: { xs: "3rem 0", md: "5rem 0" } }}
       >
         <Container maxWidth={maxWidth}>
-          <TitleStyle component={"h1"}>{title}</TitleStyle>
+          <TitleStyle component={"h1"} variant="h3">
+            {title}
+          </TitleStyle>
           <Box>{children}</Box>
         </Container>
       </Box>

@@ -22,7 +22,7 @@ const Banner = () => {
               order: { xs: "2", md: "1" },
             }}
           >
-            <BannerTittleStyle component="h1">
+            <BannerTittleStyle component="h1" variant="h2">
               !Te damos la bienvenida a{" "}
               <BannerLogoTittleStyle>SPet!</BannerLogoTittleStyle>
             </BannerTittleStyle>

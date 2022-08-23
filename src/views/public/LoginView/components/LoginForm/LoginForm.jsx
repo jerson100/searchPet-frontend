@@ -58,19 +58,15 @@ const LoginForm = () => {
         md: "2rem",
       }}
     >
-      <Typography
-        variant="h4"
-        component="h1"
-        align="center"
-        marginBottom={"1.5rem"}
-      >
-        Hola
+      <Typography variant="h3" component="h1" align="center" marginBottom={3}>
+        Ingresar
       </Typography>
       <Typography
         variant="subtitle1"
         component="p"
         align="center"
-        marginBottom={"1.5rem"}
+        marginBottom={4}
+        // marginBottom={"1.5rem"}
       >
         Ingrese sus datos correctos para poder empezar a interactuar con la
         aplicación
@@ -130,7 +126,7 @@ const LoginForm = () => {
           </LoadingButton>
         </Box>
         <Box display={"flex"} flexDirection="column" alignItems={"center"}>
-          <Typography variant="body2" marginBottom={".5rem"}>
+          <Typography variant="body1" marginBottom={2}>
             No tienes una cuenta?
           </Typography>
           <Link to="/register" component={LinkRouter}>

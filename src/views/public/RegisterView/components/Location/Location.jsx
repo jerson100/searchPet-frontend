@@ -13,7 +13,7 @@ import "react-leaflet-fullscreen/dist/styles.css";
 const Location = ({ location, setlocation }) => {
   return (
     <Box marginBottom={"1rem"}>
-      <Typography variant="h6" component="h2" marginBottom={".5rem"}>
+      <Typography variant="h4" component="h2" marginBottom={2}>
         Tu ubicación
       </Typography>
       <Typography variant="body1" component="p" marginBottom={"1rem"}>
