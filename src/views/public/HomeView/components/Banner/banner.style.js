@@ -78,6 +78,10 @@ const BannerContainerStyle = styled(Box)`
       paddingTop: "2rem",
       paddingBottom: "2rem",
     },
+    [up("lg")]: {
+      paddingTop: "4rem",
+      paddingBottom: "4rem",
+    },
   })}
 `;
 

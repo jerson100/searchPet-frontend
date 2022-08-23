@@ -4,14 +4,15 @@ import { SvgIcon, Typography } from "@mui/material";
 
 const Functionality = ({ svg, text, viewBox = "0 0 400 300" }) => {
   return (
-    <Box padding={2} textAlign="center">
+    <Box textAlign="center">
       <SvgIcon
         fontSize="large"
         component={svg}
         viewBox={viewBox}
         sx={{
           width: { xs: "100%" },
-          height: { xs: "100px", md: "150px", lg: "250px" },
+          marginBottom: "1rem",
+          height: { xs: "100px", md: "150px", lg: "200px" },
         }}
       />
       <Typography variant="body1" textAlign={"center"}>
