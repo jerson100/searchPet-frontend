@@ -12,7 +12,20 @@ import { ReactComponent as GpsSVG } from "../../../../../assets/img/svg/gps.svg"
 const Functionalitites = () => {
   return (
     <JeSection title="Funcionalidades">
-      <Grid container spacing={2}>
+      <Grid container spacing={8}>
+        <Grid item xs={6} md={4}>
+          <Functionality
+            text="Chat en tiempo real"
+            svg={ChatSVG}
+            viewBox="0 0 609.98 593.41"
+          />
+        </Grid>
+        <Grid item xs={6} md={4}>
+          <Functionality text="Notificaciones" svg={NotificationSVG} />
+        </Grid>
+        <Grid item xs={6} md={4}>
+          <Functionality text="Localización por gps" svg={GpsSVG} />
+        </Grid>
         <Grid item xs={6} md={4}>
           <Functionality
             text="Chat en tiempo real"

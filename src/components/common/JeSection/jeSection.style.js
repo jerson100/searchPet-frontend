@@ -6,13 +6,14 @@ const TitleStyle = styled(Typography)`
   ${({ theme }) => {
     return {
       ...theme.typography.h5,
-      marginBottom: "2rem",
+      marginBottom: "3rem",
       [theme.breakpoints.up("md")]: {
-        marginBottom: "3rem",
-      },
-      [theme.breakpoints.up("lg")]: {
         ...theme.typography.h4,
         marginBottom: "4rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        ...theme.typography.h3,
+        marginBottom: "5rem",
       },
     };
   }};
