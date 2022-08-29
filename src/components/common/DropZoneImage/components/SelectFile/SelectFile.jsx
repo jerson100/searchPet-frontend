@@ -1,25 +1,28 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { SelectFileStyle } from "./selectFile.style";
+import { Typography } from "@mui/material";
 
 const SelectFile = ({ setfiles }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
-      console.log(acceptedFiles[0]);
       setfiles(acceptedFiles);
     },
     [setfiles]
   );
 
-  const { getRootProps, getInputProps, inputRef } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "multiple",
+  });
 
   return (
     <SelectFileStyle {...getRootProps({ refKey: "innerRef" })}>
       <input {...getInputProps()} />
-      <p>
+      <Typography variant="body2" component="p">
         Arrastre y suelte sus imágenes aquí, o de click en esta zona para
         seleccionar las imágenes
-      </p>
+      </Typography>
     </SelectFileStyle>
   );
 };

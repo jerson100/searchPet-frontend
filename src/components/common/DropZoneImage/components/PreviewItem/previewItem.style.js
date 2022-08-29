@@ -1,7 +1,12 @@
 import styled from "@mui/system/styled";
 
 const PreviewItemStyle = styled("div")`
-  border: solid 1px blue;
+  border: solid 1px
+    ${({
+      theme: {
+        palette: { divider },
+      },
+    }) => divider};
   height: 100px;
   width: 100px;
   position: relative;
