@@ -39,13 +39,15 @@ const JeInputTextError = ({
         error={error}
         autoComplete={autoComplete}
         endAdornment={
-          <InputAdornment position="start">
-            <IconButton aria-label="toggle password visibility" edge="end">
-              <Icon />
-            </IconButton>
-          </InputAdornment>
+          Icon && (
+            <InputAdornment position="start">
+              <IconButton aria-label="toggle password visibility" edge="end">
+                <Icon />
+              </IconButton>
+            </InputAdornment>
+          )
         }
-        label="Password"
+        label={inputLabel}
       />
       <InputLabel size="small" htmlFor={name}>
         {inputLabel}
