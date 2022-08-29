@@ -16,11 +16,9 @@ const Header = ({ setshowMenuMobile, matches }) => {
         position="fixed"
         color="default"
         sx={{
-          borderBottom: "solid 1px rgba(0,0,0,.1)",
+          borderBottom: ({ palette: { divider } }) => `solid 1px ${divider}`,
           boxShadow: "none",
-          transform: {
-            sm: `translateX(0)`,
-          },
+          transform: { sm: `translateX(0)` },
         }}
       >
         <Toolbar sx={{ padding: { xs: 0, sm: 0 } }}>
