@@ -38,6 +38,11 @@ const JeInputTextError = ({
         onChange={handleChange}
         error={error}
         autoComplete={autoComplete}
+        sx={{
+          backgroundColor: (theme) => {
+            return theme.palette.background.paper;
+          },
+        }}
         endAdornment={
           Icon && (
             <InputAdornment position="start">

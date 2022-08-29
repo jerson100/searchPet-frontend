@@ -34,6 +34,11 @@ const JeSelectError = ({
         onChange={handleChange}
         error={error}
         label={inputLabel}
+        sx={{
+          backgroundColor: (theme) => {
+            return theme.palette.background.paper;
+          },
+        }}
       >
         <MenuItem value="">
           <em>Ninguno</em>
