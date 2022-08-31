@@ -14,6 +14,7 @@ const AddPetForm = () => {
     name: "",
     eyeColor: "",
     hairColor: "",
+    description: "",
   });
 
   const handleChange = useCallback((e) => {
@@ -59,7 +60,7 @@ const AddPetForm = () => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={{ md: 2 }} mb={3}>
+      <Grid container spacing={{ md: 2 }}>
         <Grid item xs={12} md={4}>
           <JeSelectError
             inputLabel={"Tamaño"}
@@ -93,6 +94,15 @@ const AddPetForm = () => {
           />
         </Grid>
       </Grid>
+      <JeInputTextError
+        inputLabel={"Descripción"}
+        fullWidth
+        value={dataForm.description}
+        handleChange={handleChange}
+        multiline
+        rows={5}
+        name={"description"}
+      />
       <Grid container spacing={{ md: 2 }} mb={3}>
         <Grid item xs={12} md={12}>
           <DropZoneImage

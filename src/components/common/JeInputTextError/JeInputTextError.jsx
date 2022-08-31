@@ -21,6 +21,8 @@ const JeInputTextError = ({
   Icon,
   inputLabel,
   autoComplete,
+  multiline,
+  rows,
 }) => {
   return (
     <FormControl
@@ -38,6 +40,8 @@ const JeInputTextError = ({
         onChange={handleChange}
         error={error}
         autoComplete={autoComplete}
+        multiline={multiline}
+        rows={rows}
         sx={{
           backgroundColor: (theme) => {
             return theme.palette.background.paper;
@@ -75,6 +79,8 @@ JeInputTextError.propTypes = {
   errorMessage: PropTypes.string,
   inputLabel: PropTypes.string,
   autoComplete: PropTypes.string,
+  multiline: PropTypes.bool,
+  rows: PropTypes.number,
 };
 
 JeInputTextError.defaultProps = {
@@ -90,6 +96,8 @@ JeInputTextError.defaultProps = {
   errorMessage: "",
   inputLabel: "",
   autoComplete: null,
+  multiline: false,
+  rows: null,
 };
 
 export default React.memo(JeInputTextError);
