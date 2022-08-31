@@ -14,7 +14,7 @@ const PreviewContentStyle = styled("div")`
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
-  height: 100px;
+  min-height: 100px;
   gap: 16px;
 `;
 

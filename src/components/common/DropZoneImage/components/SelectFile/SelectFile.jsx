@@ -2,8 +2,9 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { SelectFileStyle } from "./selectFile.style";
 import { Typography } from "@mui/material";
+import PropTypes from "prop-types";
 
-const SelectFile = ({ setfiles }) => {
+const SelectFile = ({ setfiles, multiple, accept }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
       setfiles(acceptedFiles);
@@ -13,7 +14,8 @@ const SelectFile = ({ setfiles }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "multiple",
+    multiple: multiple,
+    accept: accept,
   });
 
   return (
@@ -25,6 +27,15 @@ const SelectFile = ({ setfiles }) => {
       </Typography>
     </SelectFileStyle>
   );
+};
+
+SelectFile.propTypes = {
+  multiple: PropTypes.bool,
+};
+
+SelectFile.defaultProps = {
+  multiple: false,
+  accept: {},
 };
 
 export default SelectFile;

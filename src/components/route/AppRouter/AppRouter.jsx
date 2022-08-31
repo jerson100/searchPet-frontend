@@ -13,6 +13,7 @@ import ProfileView from "../../../views/public/ProfileView";
 import ResetPasswordView from "../../../views/private/ResetPasswordView";
 import ConfigurationView from "../../../views/private/ConfigurationView";
 import ConfigurationLayout from "../../layouts/ConfigurationLayout";
+import AddPetView from "../../../views/private/AddPetView";
 
 const AppRouter = () => {
   return (
@@ -34,6 +35,7 @@ const AppRouter = () => {
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
           <Route path="profile/:idUser" element={<ProfileView />} />
+          <Route path="addPet" element={<AddPetView />} />
           <Route path="configuration" element={<ConfigurationLayout />}>
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />

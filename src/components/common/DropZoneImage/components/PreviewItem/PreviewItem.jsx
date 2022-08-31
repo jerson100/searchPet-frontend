@@ -16,7 +16,7 @@ const PreviewItem = ({ file }) => {
   }, [file]);
   return (
     <PreviewItemStyle>
-      <img src={dataURL} alt={file.name} />
+      {dataURL && <img src={dataURL} alt={file.name} />}
     </PreviewItemStyle>
   );
 };
