@@ -17,6 +17,7 @@ const JeSelectError = ({
   errorMessage,
   inputLabel,
   selectItems,
+  handleBlur,
 }) => {
   return (
     <FormControl
@@ -32,8 +33,9 @@ const JeSelectError = ({
         name={name}
         value={value}
         onChange={handleChange}
-        error={error}
+        error={error || !!errorMessage}
         label={inputLabel}
+        onBlur={handleBlur}
         sx={{
           backgroundColor: (theme) => {
             return theme.palette.background.paper;
@@ -74,6 +76,7 @@ JeSelectError.propTypes = {
       value: PropTypes.string,
     })
   ),
+  handleBlur: PropTypes.func,
 };
 
 JeSelectError.defaultProps = {
@@ -87,6 +90,7 @@ JeSelectError.defaultProps = {
   error: false,
   errorMessage: "",
   inputLabel: "",
+  handleBlur: null,
 };
 
 export default React.memo(JeSelectError);
