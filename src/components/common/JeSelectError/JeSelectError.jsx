@@ -4,6 +4,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import PropTypes from "prop-types";
 import { MenuItem, Select } from "@mui/material";
+import { ErrorMessage, Field } from "formik";
 
 const JeSelectError = ({
   required,
@@ -11,13 +12,9 @@ const JeSelectError = ({
   variant,
   name,
   size,
-  value,
-  handleChange,
-  error,
-  errorMessage,
   inputLabel,
   selectItems,
-  handleBlur,
+  error,
 }) => {
   return (
     <FormControl
@@ -26,16 +23,14 @@ const JeSelectError = ({
       variant={variant}
       margin="normal"
     >
-      <Select
+      <Field
+        as={Select}
         labelId={name}
         id={name}
         size={size}
         name={name}
-        value={value}
-        onChange={handleChange}
-        error={error || !!errorMessage}
+        error={error}
         label={inputLabel}
-        onBlur={handleBlur}
         sx={{
           backgroundColor: (theme) => {
             return theme.palette.background.paper;
@@ -50,11 +45,14 @@ const JeSelectError = ({
             {name}
           </MenuItem>
         ))}
-      </Select>
+      </Field>
       <InputLabel size="small" htmlFor={name}>
         {inputLabel}
       </InputLabel>
-      <FormHelperText>{errorMessage}</FormHelperText>
+      <ErrorMessage
+        name={name}
+        render={(msg) => <FormHelperText>{msg}</FormHelperText>}
+      />
     </FormControl>
   );
 };
@@ -65,10 +63,6 @@ JeSelectError.propTypes = {
   variant: PropTypes.string,
   name: PropTypes.string,
   size: PropTypes.string,
-  value: PropTypes.string,
-  handleChange: PropTypes.func,
-  error: PropTypes.bool,
-  errorMessage: PropTypes.string,
   inputLabel: PropTypes.string,
   selectItems: PropTypes.arrayOf(
     PropTypes.shape({
@@ -76,7 +70,7 @@ JeSelectError.propTypes = {
       value: PropTypes.string,
     })
   ),
-  handleBlur: PropTypes.func,
+  error: PropTypes.bool,
 };
 
 JeSelectError.defaultProps = {
@@ -85,12 +79,8 @@ JeSelectError.defaultProps = {
   variant: "outlined",
   name: "",
   size: "small",
-  value: "",
-  handleChange: () => {},
-  error: false,
-  errorMessage: "",
   inputLabel: "",
-  handleBlur: null,
+  error: false,
 };
 
 export default React.memo(JeSelectError);

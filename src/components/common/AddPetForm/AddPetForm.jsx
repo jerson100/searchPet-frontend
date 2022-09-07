@@ -44,36 +44,32 @@ const AddPetForm = () => {
         hairColor: "",
         description: "",
       }}
-      validate={(values) => validate(values)}
+      validate={(values) => {
+        return validate(values);
+      }}
       onSubmit={(values, { resetForm }) => {
-        resetForm();
         console.log(values);
+        resetForm();
       }}
     >
-      {({ errors, values, handleChange, handleBlur, touched }) => (
+      {({ errors, touched }) => (
         <Form>
           <Grid container spacing={{ md: 2 }}>
             <Grid item xs={12} md={6}>
               <JeInputTextError
-                inputLabel={"Nombre"}
+                error={touched.name && !!errors.name}
+                inputLabel={"Nombre*"}
                 fullWidth
-                value={values.name}
-                handleChange={handleChange}
                 name="name"
-                errorMessage={touched.name && errors.name}
-                handleBlur={handleBlur}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <JeSelectError
+                error={touched.breed && !!errors.breed}
                 Icon={DescriptionOutlined}
-                inputLabel={"Raza"}
+                inputLabel={"Raza*"}
                 fullWidth
                 name="breed"
-                value={values.breed}
-                errorMessage={touched.breed && errors.breed}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
                 selectItems={[
                   { name: "Pequeño", value: "102" },
                   { name: "Mediano", value: "103" },
@@ -85,13 +81,10 @@ const AddPetForm = () => {
           <Grid container spacing={{ md: 2 }}>
             <Grid item xs={12} md={4}>
               <JeSelectError
-                inputLabel={"Tamaño"}
+                error={touched.size && !!errors.size}
+                inputLabel={"Tamaño*"}
                 fullWidth
                 name="size"
-                value={values.size}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                errorMessage={touched.size && errors.size}
                 selectItems={[
                   { name: "Pequeño", value: "102" },
                   { name: "Mediano", value: "103" },
@@ -101,34 +94,25 @@ const AddPetForm = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <JeInputTextError
+                error={touched.eyeColor && !!errors.eyeColor}
                 inputLabel={"Color de ojos"}
                 fullWidth
-                value={values.eyeColor}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                errorMessage={touched.eyeColor && errors.eyeColor}
                 name="eyeColor"
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <JeInputTextError
+                error={touched.hairColor && !!errors.hairColor}
                 inputLabel={"Color de pelo"}
                 fullWidth
-                value={values.hairColor}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                errorMessage={touched.hairColor && errors.hairColor}
                 name="hairColor"
               />
             </Grid>
           </Grid>
           <JeInputTextError
+            error={touched.description && !!errors.description}
             inputLabel="Descripción"
             fullWidth
-            value={values.description}
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            errorMessage={touched.description && errors.description}
             multiline
             rows={5}
             name="description"

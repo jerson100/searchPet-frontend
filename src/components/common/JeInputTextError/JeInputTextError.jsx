@@ -1,4 +1,5 @@
 import React from "react";
+import { ErrorMessage, Field } from "formik";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -14,16 +15,12 @@ const JeInputTextError = ({
   name,
   size,
   type,
-  value,
-  handleChange,
-  error,
-  errorMessage,
   Icon,
   inputLabel,
   autoComplete,
   multiline,
   rows,
-  handleBlur,
+  error,
 }) => {
   return (
     <FormControl
@@ -32,18 +29,16 @@ const JeInputTextError = ({
       variant={variant}
       margin="normal"
     >
-      <OutlinedInput
+      <Field
+        as={OutlinedInput}
         id={name}
         type={type}
         size={size}
         name={name}
-        value={value}
-        onChange={handleChange}
-        error={error || !!errorMessage}
+        error={error}
         autoComplete={autoComplete}
         multiline={multiline}
         rows={rows}
-        onBlur={handleBlur}
         sx={{
           backgroundColor: (theme) => {
             return theme.palette.background.paper;
@@ -63,7 +58,9 @@ const JeInputTextError = ({
       <InputLabel size="small" htmlFor={name}>
         {inputLabel}
       </InputLabel>
-      <FormHelperText>{errorMessage}</FormHelperText>
+      <ErrorMessage name={name}>
+        {(msg) => <FormHelperText>{msg}</FormHelperText>}
+      </ErrorMessage>
     </FormControl>
   );
 };
@@ -75,15 +72,11 @@ JeInputTextError.propTypes = {
   name: PropTypes.string,
   size: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.string,
-  handleChange: PropTypes.func,
-  error: PropTypes.bool,
-  errorMessage: PropTypes.string,
   inputLabel: PropTypes.string,
   autoComplete: PropTypes.string,
   multiline: PropTypes.bool,
   rows: PropTypes.number,
-  handleBlur: PropTypes.func,
+  error: PropTypes.bool,
 };
 
 JeInputTextError.defaultProps = {
@@ -93,15 +86,11 @@ JeInputTextError.defaultProps = {
   name: "",
   size: "small",
   type: "text",
-  value: "",
-  handleChange: () => {},
-  error: false,
-  errorMessage: "",
   inputLabel: "",
   autoComplete: null,
   multiline: false,
   rows: null,
-  handleBlur: null,
+  error: false,
 };
 
 export default React.memo(JeInputTextError);
