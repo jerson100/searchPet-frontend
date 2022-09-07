@@ -3,11 +3,11 @@ import { Box, Button, Grid } from "@mui/material";
 import JeInputTextError from "../JeInputTextError";
 import { DescriptionOutlined } from "@mui/icons-material";
 import JeSelectError from "../JeSelectError";
-import DropZoneImage from "../DropZoneImage";
+// import DropZoneImage from "../DropZoneImage";
 
 const AddPetForm = () => {
-  const [urlImageProfile, seturlImageProfile] = useState(null);
-  const [imagesPet, setimagesPet] = useState(null);
+  //   const [urlImageProfile, seturlImageProfile] = useState(null);
+  //   const [imagesPet, setimagesPet] = useState(null);
   const [dataForm, setDataForm] = useState({
     breed: "",
     size: "",
@@ -19,7 +19,7 @@ const AddPetForm = () => {
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    console.log(name, value);
+    // console.log(name, value);
     setDataForm((prev) => {
       return {
         ...prev,
