@@ -103,7 +103,7 @@ const AddPetForm = () => {
         rows={5}
         name={"description"}
       />
-      <Grid container spacing={{ md: 2 }} mb={3}>
+      {/* <Grid container spacing={{ md: 2 }} mb={3}>
         <Grid item xs={12} md={12}>
           <DropZoneImage
             files={urlImageProfile}
@@ -119,7 +119,7 @@ const AddPetForm = () => {
             multiple
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Box display={"flex"} justifyContent="center">
         <Button type="submit" variant="contained">
           Agregar

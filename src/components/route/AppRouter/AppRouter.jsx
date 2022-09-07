@@ -35,7 +35,7 @@ const AppRouter = () => {
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
           <Route path="profile/:idUser" element={<ProfileView />} />
-          <Route path="addPet" element={<AddPetView />} />
+          <Route path="add-pet" element={<AddPetView />} />
           <Route path="configuration" element={<ConfigurationLayout />}>
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />
