@@ -10,6 +10,7 @@ import { AUTH_TOKEN } from "../../../configs/localstorage";
 import { LoadingButton } from "@mui/lab";
 import SaveIcon from "@mui/icons-material/Save";
 import { useSnackbar } from "notistack";
+import { ValidatePetCreationSchema } from "../../../api/pets.validation";
 
 const sizes = [
   { name: "Pequeño", value: "Pequeño" },
@@ -90,9 +91,7 @@ const AddPetForm = () => {
           hairColor: "",
           description: "",
         }}
-        validate={(values) => {
-          return validate(values);
-        }}
+        validationSchema={ValidatePetCreationSchema}
         onSubmit={async (values, { resetForm }) => {
           await createPet(values);
           resetForm();
@@ -200,34 +199,6 @@ const AddPetForm = () => {
       </Formik>
     </>
   );
-};
-
-const validate = ({ breed, size, name, eyeColor, hairColor, description }) => {
-  const errors = {};
-  if (!breed) {
-    errors.breed = "La raza no puede estar vacío.";
-  }
-  if (!size) {
-    errors.size = "El tamaño no puede estar vacío.";
-  }
-  if (!name) {
-    errors.name = "El nombre no puede estar vacío.";
-  } else if (name && !/^[a-z ]{2,40}$/i.test(name)) {
-    errors.name = "El nombre debe contener solo letras, min 2 y max 40.";
-  }
-  if (eyeColor && !/^[a-z ]{2,40}$/i.test(eyeColor)) {
-    errors.eyeColor =
-      "El color de ojos debe contener solo letras, min 2 y max 40.";
-  }
-  if (hairColor && !/^[a-z ]{2,40}$/i.test(hairColor)) {
-    errors.hairColor =
-      "El color del pelo debe contener solo letras, min 2 y max 40.";
-  }
-  if (description?.length > 400) {
-    errors.description =
-      "La descripción no puede contener más de 400 carácteres.";
-  }
-  return errors;
 };
 
 export default AddPetForm;
