@@ -1,4 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
+import { Form, Formik } from "formik";
+import { useSnackbar } from "notistack";
+import useAxios from "axios-hooks";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 // import Button from "@mui/material/Button";
@@ -8,37 +11,15 @@ import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
 import Email from "@mui/icons-material/Email";
 import Person from "@mui/icons-material/Person";
-import { useSnackbar } from "notistack";
 import Location from "../../components/Location";
-import { validateSchema } from "../../../../../utils/validateSchema";
+// import { validateSchema } from "../../../../../utils/validateSchema";
 import { ValidateUserCreationSchema } from "../../../../../api/users.validate";
 import JeInputTextError from "../../../../../components/common/JeInputTextError";
-import useAxios from "axios-hooks";
 
 const RegisterForm = () => {
-  const [data, setdata] = useState({
-    name: "",
-    paternalSurname: "",
-    maternalSurname: "",
-    username: "",
-    email: "",
-    password: "",
-    cPassword: "",
-  });
-
-  const [dataError, setdataerror] = useState({
-    name: "",
-    paternalSurname: "",
-    maternalSurname: "",
-    username: "",
-    email: "",
-    password: "",
-    cPassword: "",
-  });
-
   const [location, setlocation] = useState();
 
-  const [{ loading: loadingCreateUser }, executeCreateUser] = useAxios(
+  const [{ loading: loadingCreateUser }, createUser] = useAxios(
     {
       method: "POST",
     },
@@ -46,53 +27,21 @@ const RegisterForm = () => {
   );
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target;
-    setdata((previousData) => {
-      return {
-        ...previousData,
-        [name]: value,
-      };
-    });
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = validateSchema(data, ValidateUserCreationSchema);
-    setdataerror(errors);
-    if (Object.keys(errors).length === 0 && location) {
-      const copyUser = {
-        ...data,
-        location: {
-          latitud: location[0],
-          longitud: location[1],
-        },
-      };
-      delete copyUser.cPassword;
+  const sendNewUser = async (values, resetForm) => {
+    if (location) {
       try {
-        const a = await executeCreateUser({
+        const a = await createUser({
           url: "/users",
-          data: copyUser,
-        });
-        setdata({
-          name: "",
-          paternalSurname: "",
-          maternalSurname: "",
-          username: "",
-          email: "",
-          password: "",
-          cPassword: "",
-        });
-        setdataerror({
-          name: "",
-          paternalSurname: "",
-          maternalSurname: "",
-          username: "",
-          email: "",
-          password: "",
-          cPassword: "",
+          data: {
+            ...values,
+            location: {
+              latitud: location[0],
+              longitud: location[1],
+            },
+          },
         });
         setlocation(null);
+        resetForm();
         enqueueSnackbar(`Se creó la cuenta con gmail ${a.email}`, {
           variant: "success",
         });
@@ -104,119 +53,109 @@ const RegisterForm = () => {
         }
       }
     } else {
-      enqueueSnackbar("Verifique que que todos los datos sean correctos", {
+      enqueueSnackbar("Le faltó seleccionar la localización", {
         variant: "error",
       });
     }
   };
 
   return (
-    <Box component="form" margin="normal" onSubmit={handleSubmit}>
-      <Grid container>
-        <Grid item xs={12} md={6} lg={5}>
-          <JeInputTextError
-            required
-            fullWidth
-            name="name"
-            value={data.name}
-            handleChange={handleChange}
-            error={!!dataError.name}
-            Icon={People}
-            inputLabel="Nombres"
-            errorMessage={dataError.name}
-          />
+    <Formik
+      initialValues={{
+        name: "",
+        paternalSurname: "",
+        maternalSurname: "",
+        username: "",
+        email: "",
+        password: "",
+        cPassword: "",
+      }}
+      validationSchema={ValidateUserCreationSchema}
+      onSubmit={async (values, { resetForm }) => {
+        await sendNewUser(values, resetForm);
+      }}
+    >
+      {({ errors, touched }) => (
+        <Box component={Form} margin="normal">
+          <Grid container>
+            <Grid item xs={12} md={6} lg={5}>
+              <JeInputTextError
+                fullWidth
+                name="name"
+                error={!!touched.name && !!errors.name}
+                Icon={People}
+                inputLabel="Nombres"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            name="paternalSurname"
-            value={data.paternalSurname}
-            handleChange={handleChange}
-            error={!!dataError.paternalSurname}
-            Icon={People}
-            inputLabel="Apellido Paterno"
-            errorMessage={dataError.paternalSurname}
-          />
+              <JeInputTextError
+                fullWidth
+                name="paternalSurname"
+                error={!!touched.paternalSurname && !!errors.paternalSurname}
+                Icon={People}
+                inputLabel="Apellido Paterno"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            name="maternalSurname"
-            value={data.maternalSurname}
-            handleChange={handleChange}
-            error={!!dataError.maternalSurname}
-            Icon={People}
-            inputLabel="Apellido Materno"
-            errorMessage={dataError.maternalSurname}
-          />
+              <JeInputTextError
+                fullWidth
+                name="maternalSurname"
+                error={!!touched.maternalSurname && !!errors.maternalSurname}
+                Icon={People}
+                inputLabel="Apellido Materno"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            name="username"
-            value={data.username}
-            handleChange={handleChange}
-            error={!!dataError.username}
-            Icon={Person}
-            inputLabel="Nombre de usuario"
-            errorMessage={dataError.username}
-          />
+              <JeInputTextError
+                fullWidth
+                name="username"
+                error={!!touched.username && !!errors.username}
+                Icon={Person}
+                inputLabel="Nombre de usuario"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            name="email"
-            value={data.email}
-            handleChange={handleChange}
-            error={!!dataError.email}
-            Icon={Email}
-            inputLabel="email"
-            errorMessage={dataError.email}
-          />
+              <JeInputTextError
+                fullWidth
+                name="email"
+                error={!!touched.email && !!errors.email}
+                Icon={Email}
+                inputLabel="email"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            type="password"
-            name="password"
-            value={data.password}
-            handleChange={handleChange}
-            error={!!dataError.password}
-            Icon={Visibility}
-            inputLabel="Contraseña"
-            autoComplete="new-password"
-            errorMessage={dataError.password}
-          />
+              <JeInputTextError
+                fullWidth
+                type="password"
+                name="password"
+                error={!!touched.password && !!errors.password}
+                Icon={Visibility}
+                inputLabel="Contraseña"
+                autoComplete="new-password"
+              />
 
-          <JeInputTextError
-            required
-            fullWidth
-            type="password"
-            name="cPassword"
-            value={data.cPassword}
-            handleChange={handleChange}
-            error={!!dataError.cPassword}
-            Icon={Visibility}
-            inputLabel="Confirmar contraseña"
-            errorMessage={dataError.cPassword}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} lg={7} paddingLeft={{ md: "2rem" }}>
-          <Location location={location} setlocation={setlocation} />
-        </Grid>
-      </Grid>
-      <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
-        <LoadingButton
-          type="submit"
-          variant="contained"
-          loading={loadingCreateUser}
-          startIcon={<SaveIcon />}
-          loadingPosition="start"
-        >
-          Crear cuenta
-        </LoadingButton>
-      </Box>
-    </Box>
+              <JeInputTextError
+                fullWidth
+                type="password"
+                name="cPassword"
+                error={!!touched.cPassword && !!errors.cPassword}
+                Icon={Visibility}
+                inputLabel="Confirmar contraseña"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={7} paddingLeft={{ md: "2rem" }}>
+              <Location location={location} setlocation={setlocation} />
+            </Grid>
+          </Grid>
+          <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
+            <LoadingButton
+              type="submit"
+              variant="contained"
+              loading={loadingCreateUser}
+              startIcon={<SaveIcon />}
+              loadingPosition="start"
+            >
+              Crear cuenta
+            </LoadingButton>
+          </Box>
+        </Box>
+      )}
+    </Formik>
   );
 };
 
