@@ -23,7 +23,7 @@ const User = () => {
         <ButtonAcceder isLogued={false} />
       ) : (
         <Typography variant="h6" component="p">
-          jerson100
+          {user.user.username}
         </Typography>
       )}
     </Box>
