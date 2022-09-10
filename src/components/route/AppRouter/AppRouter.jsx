@@ -15,6 +15,7 @@ import ConfigurationView from "../../../views/private/ConfigurationView";
 import ConfigurationLayout from "../../layouts/ConfigurationLayout";
 import AddPetView from "../../../views/private/AddPetView";
 import PetLayout from "../../layouts/PetLayout";
+import PetsView from "../../../views/public/PetsView";
 
 const AppRouter = () => {
   return (
@@ -32,7 +33,8 @@ const AppRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomeView />} />
           <Route path="home" element={<HomeView />} />
-          <Route path="pets" element={<PetLayout />}>
+          <Route path="pets" element={<PetsView />} />
+          <Route path="my-pet" element={<PetLayout />}>
             <Route path="add" element={<AddPetView />} />
           </Route>
           <Route path="lostPet" element={<LostPetView />} />
