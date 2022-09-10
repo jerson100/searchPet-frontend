@@ -70,6 +70,8 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
         component="main"
         sx={{
           flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
           paddingTop: {
             xs: "57px",
             sm: "65px",
