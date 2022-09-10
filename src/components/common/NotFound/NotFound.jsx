@@ -8,10 +8,9 @@ const NotFound = () => {
     <Stack
       justifyContent="center"
       alignItems="center"
-      height="100%"
       flexGrow={1}
       padding="3rem 1rem"
-      textAlign={"center"}
+      textAlign="center"
     >
       <Box
         component="img"
