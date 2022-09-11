@@ -23,6 +23,12 @@ const MainMenuList = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemButton>
+        <ListItemButton to="/pets" component={Link}>
+          <ListItemIcon>
+            <PetsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Mascotas" />
+        </ListItemButton>
         <ListItemButton to="/lostPet" component={Link}>
           <ListItemIcon>
             <PetsIcon />
