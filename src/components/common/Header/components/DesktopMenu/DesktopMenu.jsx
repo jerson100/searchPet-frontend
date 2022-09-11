@@ -26,7 +26,7 @@ const DesktopMenu = () => {
           </Button>
         </li>
         <li>
-          <Button to="/spets" color="inherit" LinkComponent={Link}>
+          <Button to="/pets" color="inherit" LinkComponent={Link}>
             Mascotas
           </Button>
         </li>
