@@ -9,6 +9,8 @@ import { mainLayout_variants } from "./mainLayout.variants";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import MobileMenu from "../../common/MobileMenu";
 import Footer from "../../common/Footer";
+import PetLoader from "../../common/PetLoader";
+// import CatLoader from "../../common/CatLoader";
 
 const MainLayout = () => {
   const { previousLoading } = useAuthContext();
@@ -39,7 +41,7 @@ const MainLayout = () => {
     d();
   }, [showMenuMobile, controls, matches]);
 
-  if (previousLoading) return <p>Cargando...</p>;
+  if (previousLoading) return <PetLoader />;
 
   return (
     <>
