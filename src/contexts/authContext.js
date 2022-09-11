@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
             },
           });
           setuser({
-            ...data,
+            ...data.data,
             accessToken: token,
           });
           setisLogued(true);
@@ -57,9 +57,9 @@ const AuthProvider = ({ children }) => {
           url: "/auth/login",
           data: { email, password },
         });
-        setuser(data);
+        setuser(data.data);
         setisLogued(true);
-        AUTH_TOKEN.add(data.accessToken);
+        AUTH_TOKEN.add(data.data.accessToken);
       } catch (e) {
         if (e.status) {
           enqueueSnackbar(e.message, { variant: "error" });
