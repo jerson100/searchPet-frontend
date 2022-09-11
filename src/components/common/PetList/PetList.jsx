@@ -1,51 +1,102 @@
-import { Button, Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Grid, Typography, Box } from "@mui/material";
+import useAxios from "axios-hooks";
 import PetListItem from "../PetListItem";
 import { PetListContainerStyle } from "./petList.style";
+import { LoadingButton } from "@mui/lab";
 
-const PetList = ({ pets, loading, handleButton }) => {
+const PetList = ({ typePet, page, handleNextPage }) => {
+  const [loading, setLoadingPets] = useState(true);
+  const [pets, setpets] = useState([]);
+  const [isNext, setIsNext] = useState(false);
+
+  const [, getPets] = useAxios(
+    {
+      method: "GET",
+    },
+    {
+      manual: true,
+    }
+  );
+
+  useEffect(() => {
+    setLoadingPets(true);
+    const controller = new AbortController();
+    const api = async () => {
+      try {
+        const data = await getPets(
+          {
+            url: `/pets/?page=${page}&length=2${
+              typePet ? `&typepet=${typePet}` : ""
+            }`,
+            signal: controller.signal,
+          },
+          { useCache: true }
+        );
+        setIsNext(data.data.length > 0);
+        if (page === 1) {
+          setpets(data.data);
+        } else {
+          if (data.data.length > 0) {
+            setpets((previousPet) => [...previousPet, ...data.data]);
+          }
+        }
+        setLoadingPets(false);
+      } catch (e) {
+        if (e.code !== "ERR_CANCELED") {
+          setLoadingPets(false);
+        }
+      }
+    };
+    api();
+    return () => {
+      controller.abort();
+      setLoadingPets(false);
+    };
+  }, [typePet, getPets, page]);
+
   return (
     <PetListContainerStyle component={"section"}>
       <Typography variant="h4" component="h1" mb={2}>
         Lista de mascotas
       </Typography>
-      {loading && <PetListLoading />}
-      {!loading && pets?.length > 0 && (
+      {page === 1 && loading ? (
+        <PetListLoading />
+      ) : (
         <>
-          {
-            <Grid
-              container
-              component="ul"
-              spacing={2}
-              sx={{ listStyle: "none", p: 0 }}
-            >
-              {pets?.map((p) => (
-                <Grid key={p._id} component="li" item xs={12} sm={6}>
-                  <PetListItem
-                    name={p.name}
-                    urlImageProfile={p.urlImageProfile}
-                    breed={p.breed}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          }
-          <Box display="flex" justifyContent={"center"}>
-            <Button onClick={handleButton} variant="contained">
-              Ver más
-            </Button>
-          </Box>
+          <GridPets pets={pets} />
+          {isNext && (
+            <Box display="flex" justifyContent={"center"}>
+              <LoadingButton
+                loading={page > 1 && loading}
+                onClick={handleNextPage}
+                variant="contained"
+              >
+                Ver más
+              </LoadingButton>
+            </Box>
+          )}
         </>
-      )}
-      {!loading && pets?.length === 0 && (
-        <Typography variant="body" component="p">
-          No se encontraron mascotas
-        </Typography>
       )}
     </PetListContainerStyle>
   );
 };
+
+const GridPets = React.memo(({ pets }) => {
+  return (
+    <Grid container component="ul" spacing={2} sx={{ listStyle: "none", p: 0 }}>
+      {pets?.map((p) => (
+        <Grid key={p._id} component="li" item xs={12} sm={6}>
+          <PetListItem
+            name={p.name}
+            urlImageProfile={p.urlImageProfile}
+            breed={p.breed}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  );
+});
 
 const PetListLoading = () => {
   return (

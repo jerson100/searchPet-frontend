@@ -7,7 +7,13 @@ import JeSelectError from "../../../../../components/common/JeSelectError";
 import { LoadingButton } from "@mui/lab";
 import { FilterContainerStyle } from "./Filter.style";
 
-const Filter = ({ loadingTypePets, typePets, settypePet, typePet }) => {
+const Filter = ({
+  loadingTypePets,
+  typePets,
+  settypePet,
+  typePet,
+  setPage,
+}) => {
   const dataTypePets = useMemo(() => {
     return typePets?.map((t) => ({
       name: t.type,
@@ -22,6 +28,7 @@ const Filter = ({ loadingTypePets, typePets, settypePet, typePet }) => {
   );
 
   const handleSubmit = (values) => {
+    setPage(1);
     settypePet(values.typepet);
   };
 
