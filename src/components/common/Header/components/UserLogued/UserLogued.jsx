@@ -3,7 +3,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
@@ -33,16 +32,15 @@ const UserLogued = () => {
 
   return (
     <>
-      <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://mui.com/static/images/avatar/1.jpg"
-          />
-        </IconButton>
-      </Tooltip>
+      <IconButton onClick={handleOpenUserMenu} size="large">
+        <Avatar
+          alt="Remy Sharp"
+          sx={{ width: "32px", height: "32px" }}
+          src="https://mui.com/static/images/avatar/1.jpg"
+        />
+      </IconButton>
       <Menu
-        sx={{ mt: "45px" }}
+        sx={{ mt: { xs: "40px", md: "48px" } }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{

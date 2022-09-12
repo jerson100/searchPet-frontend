@@ -1,15 +1,15 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
 import DesktopMenu from "./components/DesktopMenu/DesktopMenu";
 
-const Header = ({ setshowMenuMobile, matches }) => {
+const Header = ({ setshowMenuMobile }) => {
   return (
     <>
       <AppBar
@@ -23,38 +23,27 @@ const Header = ({ setshowMenuMobile, matches }) => {
       >
         <Toolbar sx={{ padding: { xs: 0, sm: 0 } }}>
           <Container>
-            <Grid container display={"flex"} alignItems="center">
-              <Grid item>
-                <Typography variant="h6" component="p" fontWeight={"bold"}>
-                  <Link
-                    to="/"
-                    style={{ color: "inherit", textDecoration: "none" }}
-                  >
-                    SPet
-                  </Link>
-                </Typography>
-              </Grid>
-              <Grid
-                flexGrow={1}
-                item
-                display={"flex"}
-                justifyContent="flex-end"
+            <Box display="flex" alignItems="center">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ display: { md: "none" } }}
+                onClick={() => setshowMenuMobile((prev) => !prev)}
               >
-                {!matches ? (
-                  <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={() => setshowMenuMobile((prev) => !prev)}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                ) : (
-                  <DesktopMenu />
-                )}
-              </Grid>
-            </Grid>
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="span" fontWeight={"bold"}>
+                <Link
+                  to="/"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  SPet
+                </Link>
+              </Typography>
+              <DesktopMenu />
+            </Box>
           </Container>
         </Toolbar>
       </AppBar>
