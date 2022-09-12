@@ -23,7 +23,7 @@ const RightMenu = () => {
       component="ul"
     >
       <li>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -31,7 +31,7 @@ const RightMenu = () => {
       </li>
       <li>
         <IconButton
-          size="large"
+          size="medium"
           aria-label="show 17 new notifications"
           color="inherit"
         >

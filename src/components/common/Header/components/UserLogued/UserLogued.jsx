@@ -32,7 +32,7 @@ const UserLogued = () => {
 
   return (
     <>
-      <IconButton onClick={handleOpenUserMenu} size="large" sx={{ mr: -1 }}>
+      <IconButton onClick={handleOpenUserMenu} size="medium" sx={{ mr: -1 }}>
         <Avatar
           alt="Remy Sharp"
           sx={{ width: "32px", height: "32px" }}
