@@ -9,7 +9,10 @@ import { Box } from "@mui/system";
 
 const Footer = () => {
   return (
-    <Paper sx={{ boxShadow: "none", padding: { xs: "1rem 0", md: "2rem 0" } }}>
+    <Paper
+      component="footer"
+      sx={{ boxShadow: "none", padding: { xs: "1rem 0", md: "2rem 0" } }}
+    >
       <Container>
         <Grid container>
           <Grid item xs={12} md={4}>
@@ -75,7 +78,7 @@ const Footer = () => {
                   </Button>
                 </li>
                 <li>
-                  <Button to="/lostPet" component={Link}>
+                  <Button to="/lostpets" component={Link}>
                     Mascotas Perdidas
                   </Button>
                 </li>
