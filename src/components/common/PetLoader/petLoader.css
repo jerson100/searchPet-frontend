@@ -5,6 +5,14 @@
           animation-timing-function: var(--easing) !important;
 }
 
+[class=🐕],
+[class=🐕] *,
+[class=🐕] *:before,
+[class=🐕] *:after {
+  box-sizing: border-box;
+  position: relative;
+}
+
 [class=🐕] {
   --color-fur: #ffb141;
   --color-fur-dark: #f5832c;
@@ -55,7 +63,7 @@
   }
 }
 
-.neck {
+[class=🐕] .neck {
   width: 50%;
   height: 100px;
   right: -5px;
@@ -64,12 +72,12 @@
   transform: rotate(15deg);
   z-index: 2;
 }
-.neck > .fur {
+[class=🐕] .neck > .fur {
   border-bottom-left-radius: 10px;
   height: 100%;
   width: 100%;
 }
-.neck > .fur:before {
+[class=🐕] .neck > .fur:before {
   content: "";
   position: absolute;
   top: 0;
@@ -82,7 +90,7 @@
   transform: rotate(15deg);
 }
 
-.collar {
+[class=🐕] .collar {
   width: calc(100% + 10px);
   height: 15%;
   background-color: var(--color-collar);
@@ -109,7 +117,7 @@
     transform: translateY(-25%);
   }
 }
-.collar:after {
+[class=🐕] .collar:after {
   content: "";
   width: 18%;
   height: 120%;
@@ -139,7 +147,7 @@
   }
 }
 
-.head {
+[class=🐕] .head {
   height: 80%;
   width: 145%;
   left: -2%;
@@ -165,12 +173,12 @@
     transform: rotate(-15deg);
   }
 }
-.head > .fur {
+[class=🐕] .head > .fur {
   height: 100%;
   width: 100%;
   border-bottom-right-radius: 80px;
 }
-.head > .fur:before {
+[class=🐕] .head > .fur:before {
   content: "";
   position: absolute;
   top: -80%;
@@ -183,7 +191,7 @@
   border-radius: 50%;
 }
 
-.snout {
+[class=🐕] .snout {
   --color: var(--color-snout);
   width: 25%;
   height: 0;
@@ -195,7 +203,7 @@
   z-index: 1;
 }
 
-.ears {
+[class=🐕] .ears {
   bottom: 40%;
   height: 100%;
   width: 30%;
@@ -203,7 +211,7 @@
   z-index: -1;
 }
 
-.ear {
+[class=🐕] .ear {
   --color: var(--color-spot);
   width: 100%;
   height: 100%;
@@ -224,7 +232,7 @@
     transform: rotate(-15deg);
   }
 }
-.ear:before {
+[class=🐕] .ear:before {
   content: "";
   position: absolute;
   height: 25px;
@@ -257,12 +265,12 @@
     transform: rotate(25deg);
   }
 }
-.ear > .fur {
+[class=🐕] .ear > .fur {
   border-top-left-radius: 100%;
   height: 100%;
   width: 100%;
 }
-.ear:nth-child(2) {
+[class=🐕] .ear:nth-child(2) {
   left: 15px;
   bottom: 5px;
   transform: rotate(-5deg);
@@ -288,7 +296,7 @@
   }
 }
 
-.eye {
+[class=🐕] .eye {
   --size: 6%;
   --color: var(--color-snout);
   width: var(--size);
@@ -300,7 +308,7 @@
   background-color: var(--color);
   z-index: 1;
 }
-.eye:before {
+[class=🐕] .eye:before {
   content: "";
   position: absolute;
   top: 0;
@@ -311,7 +319,7 @@
   background-color: var(--color);
   z-index: 1;
 }
-.eye:after {
+[class=🐕] .eye:after {
   content: "";
   width: 100%;
   height: 100%;
@@ -328,7 +336,7 @@
   z-index: 0;
 }
 
-.torso {
+[class=🐕] .torso {
   width: 56.6666666667%;
   height: 33.3333333333%;
   -webkit-animation: torso var(--semi-duration) both infinite;
@@ -350,7 +358,7 @@
     transform: translateY(15%);
   }
 }
-.torso > .fur {
+[class=🐕] .torso > .fur {
   height: 100%;
   width: 185px;
   border-top-left-radius: 40px;
@@ -358,20 +366,20 @@
   transform: rotate(-20deg) translateY(10px);
   z-index: 1;
 }
-.torso > .fur:after {
+[class=🐕] .torso > .fur:after {
   height: 100%;
   width: 100%;
   border-bottom-left-radius: 200px 85px;
   border-bottom-right-radius: 100px;
 }
-.torso > .legs {
+[class=🐕] .torso > .legs {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.torso .spot {
+[class=🐕] .torso .spot {
   width: 120px;
   height: 120px;
   bottom: 40px;
@@ -398,7 +406,7 @@
     transform: translateX(10px);
   }
 }
-.torso .spot:after {
+[class=🐕] .torso .spot:after {
   content: "";
   height: 20px;
   width: 20px;
@@ -408,7 +416,7 @@
   bottom: -10px;
   right: 5px;
 }
-.torso > .tail {
+[class=🐕] .torso > .tail {
   --color: var(--color-spot);
   bottom: calc(100% - 15px);
   left: 0;
@@ -416,7 +424,7 @@
   transform: rotate(-45deg);
 }
 
-.tail {
+[class=🐕] .tail {
   height: 15px;
   width: 20px;
   background-color: var(--color);
@@ -441,7 +449,7 @@
     transform: rotate(-25deg) translateX(15%);
   }
 }
-.tail > .tail {
+[class=🐕] .tail > .tail {
   bottom: calc(90%);
   transform-origin: bottom left;
   transform: rotate(-10deg) translateY(50%) scaleX(0.8) scaleY(0.9);
@@ -465,35 +473,35 @@
   }
 }
 
-.legs > .leg {
+[class=🐕] .legs > .leg {
   bottom: 5px;
   --color: var(--color-fur);
 }
-.legs > .leg:nth-child(1),
-.legs .leg:nth-child(3) {
+[class=🐕] .legs > .leg:nth-child(1),
+[class=🐕] .legs .leg:nth-child(3) {
   right: 15px;
 }
-.legs > .leg:nth-child(3),
-.legs > .leg:nth-child(4) {
+[class=🐕] .legs > .leg:nth-child(3),
+[class=🐕] .legs > .leg:nth-child(4) {
   --color: var(--color-fur-dark);
   z-index: -1;
 }
-.legs > .leg:nth-child(1),
-.legs .leg:nth-child(4) {
+[class=🐕] .legs > .leg:nth-child(1),
+[class=🐕] .legs .leg:nth-child(4) {
   --delay: 0s;
 }
-.legs > .leg:nth-child(2),
-.legs > .leg:nth-child(3) {
+[class=🐕] .legs > .leg:nth-child(2),
+[class=🐕] .legs > .leg:nth-child(3) {
   --delay: calc(-1 * var(--duration) / 2);
 }
-.legs > .leg:nth-child(2) {
+[class=🐕] .legs > .leg:nth-child(2) {
   left: 0;
 }
-.legs > .leg:nth-child(4) {
+[class=🐕] .legs > .leg:nth-child(4) {
   left: 0;
 }
 
-.leg {
+[class=🐕] .leg {
   position: absolute;
   height: 65px;
   width: 45px;
@@ -502,7 +510,7 @@
   -webkit-animation: leg infinite var(--duration) var(--delay, 0s);
           animation: leg infinite var(--duration) var(--delay, 0s);
 }
-.leg > .leg-inner {
+[class=🐕] .leg > .leg-inner {
   -webkit-animation: leg-inner infinite var(--duration) calc(var(--delay));
           animation: leg-inner infinite var(--duration) calc(var(--delay));
   transform: rotate(90deg);
@@ -551,22 +559,22 @@
     transform: rotate(-20deg);
   }
 }
-.leg > .fur {
+[class=🐕] .leg > .fur {
   width: 144.4444444444%;
   height: 100%;
 }
-.leg > .fur:after {
+[class=🐕] .leg > .fur:after {
   width: 45px;
   bottom: 0;
   top: initial;
   transform: rotate(15deg);
 }
 
-.fur {
+[class=🐕] .fur {
   position: absolute;
   overflow: hidden;
 }
-.fur:after {
+[class=🐕] .fur:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -577,14 +585,14 @@
   transform-origin: center bottom;
 }
 
-.leg-inner {
+[class=🐕] .leg-inner {
   position: absolute;
   height: 65%;
   width: 100%;
   top: calc(100%);
   transform-origin: center top;
 }
-.leg-inner:before {
+[class=🐕] .leg-inner:before {
   content: "";
   width: 45px;
   height: 45px;
@@ -593,7 +601,7 @@
   border-radius: 50%;
   top: -22.5px;
 }
-.leg-inner > .fur {
+[class=🐕] .leg-inner > .fur {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -601,7 +609,7 @@
   left: 0;
   overflow: hidden;
 }
-.leg-inner > .fur:after {
+[class=🐕] .leg-inner > .fur:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -613,9 +621,3 @@
   transform: rotate(15deg);
 }
 
-[class=🐕] > *,
-[class=🐕] > *:before,
-[class=🐕] > *:after {
-  box-sizing: border-box;
-  position: relative;
-}
