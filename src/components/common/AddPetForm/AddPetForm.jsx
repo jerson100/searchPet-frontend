@@ -20,7 +20,7 @@ const sizes = [
 
 const AddPetForm = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const [{ loading, response }] = useAxios({
+  const [{ data, loading }] = useAxios({
     method: "GET",
     url: "/breeds",
   });
@@ -74,11 +74,11 @@ const AddPetForm = () => {
   };
 
   const breeds = useMemo(() => {
-    return response?.map((breed) => ({
+    return data?.map((breed) => ({
       value: breed._id,
       name: breed.name,
     }));
-  }, [response]);
+  }, [data]);
 
   return (
     <>

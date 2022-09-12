@@ -42,7 +42,7 @@ const RegisterForm = () => {
         });
         setlocation(null);
         resetForm();
-        enqueueSnackbar(`Se creó la cuenta con gmail ${a.email}`, {
+        enqueueSnackbar(`Se creó la cuenta con gmail ${a.data.email}`, {
           variant: "success",
         });
       } catch (e) {
