@@ -47,7 +47,6 @@ const MainLayout = () => {
     <>
       <ContentLayout
         setshowMenuMobile={setshowMenuMobile}
-        matches={matches}
         controls={controls}
       />
       <AnimatePresence>
@@ -59,7 +58,7 @@ const MainLayout = () => {
   );
 };
 
-const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
+const ContentLayout = React.memo(({ setshowMenuMobile, controls }) => {
   return (
     <Box
       component={motion.div}
@@ -67,7 +66,7 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls, matches }) => {
       variants={mainLayout_variants}
       sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
-      <Header setshowMenuMobile={setshowMenuMobile} matches={matches} />
+      <Header setshowMenuMobile={setshowMenuMobile} />
       <Box
         component="main"
         sx={{
