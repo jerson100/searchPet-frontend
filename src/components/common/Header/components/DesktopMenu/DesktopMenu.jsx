@@ -4,6 +4,7 @@ import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import ButtonAcceder from "../../../ButtonAcceder";
 import UserLogued from "../UserLogued";
 import { Link } from "react-router-dom";
+import PetsItemDesktopMenu from "../PetsItemDesktopMenu";
 
 const DesktopMenu = () => {
   const { user } = useAuthContext();
@@ -26,9 +27,7 @@ const DesktopMenu = () => {
           </Button>
         </li>
         <li>
-          <Button to="/pets" color="inherit" LinkComponent={Link}>
-            Mascotas
-          </Button>
+          <PetsItemDesktopMenu />
         </li>
         <li>
           <Button to="/we" color="inherit" LinkComponent={Link}>
