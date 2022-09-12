@@ -22,24 +22,32 @@ const RightMenu = () => {
       }}
       component="ul"
     >
-      <li>
-        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-      </li>
-      <li>
-        <IconButton
-          size="medium"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-      </li>
+      {user?.user && (
+        <>
+          <li>
+            <IconButton
+              size="medium"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+          </li>
+          <li>
+            <IconButton
+              size="medium"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </li>
+        </>
+      )}
 
       <li>
         {!user?.user ? <ButtonAcceder isLogued={false} /> : <UserLogued />}

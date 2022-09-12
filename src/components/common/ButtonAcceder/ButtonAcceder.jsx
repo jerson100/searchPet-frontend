@@ -6,7 +6,13 @@ const ButtonAcceder = ({ isLogued }) => {
   return (
     <>
       {!isLogued ? (
-        <Button to="/login" color="primary" variant="outlined" component={Link}>
+        <Button
+          to="/login"
+          color="primary"
+          variant="outlined"
+          sx={{ ml: 1 }}
+          component={Link}
+        >
           Acceder
         </Button>
       ) : null}
