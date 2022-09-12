@@ -91,6 +91,7 @@ const GridPets = React.memo(({ pets }) => {
             name={p.name}
             urlImageProfile={p.urlImageProfile}
             breed={p.breed}
+            user={p.user}
           />
         </Grid>
       ))}

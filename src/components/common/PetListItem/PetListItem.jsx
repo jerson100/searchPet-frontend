@@ -1,8 +1,9 @@
 import {
   Avatar,
   Box,
+  ButtonBase,
+  Chip,
   Grid,
-  IconButton,
   Skeleton,
   Stack,
   Typography,
@@ -16,7 +17,7 @@ import {
 } from "./petItem.style";
 import NotFoundPet from "../../../assets/img/webp/notFoundPet.webp";
 
-const PetListItem = ({ loading, name, urlImageProfile, breed }) => {
+const PetListItem = ({ loading, name, urlImageProfile, breed, user }) => {
   if (loading) return <PetListItemLoading />;
   return (
     <PetItemStyle>
@@ -33,7 +34,7 @@ const PetListItem = ({ loading, name, urlImageProfile, breed }) => {
         )}
       </ImageProfileContainerStyle>
       <Box p={2}>
-        <Grid container spacing={2} mb={1}>
+        <Grid container spacing={2} mb={2}>
           <Grid item xs={5}>
             <Typography variant="body" component="p" fontWeight={"700"}>
               Nombre:
@@ -46,16 +47,19 @@ const PetListItem = ({ loading, name, urlImageProfile, breed }) => {
           </Grid>
         </Grid>
         {breed?.typePet?.type && (
-          <Grid container spacing={2} mb={1}>
+          <Grid container spacing={2} mb={2}>
             <Grid item xs={5}>
               <Typography variant="body" component="p" fontWeight={"700"}>
                 Tipo de mascota:
               </Typography>
             </Grid>
             <Grid item xs={7}>
-              <Typography variant="body" component="p">
-                {breed.typePet.type}
-              </Typography>
+              <Chip
+                label={breed.typePet.type}
+                variant="outlined"
+                color="primary"
+                size="small"
+              />
             </Grid>
           </Grid>
         )}
@@ -66,12 +70,21 @@ const PetListItem = ({ loading, name, urlImageProfile, breed }) => {
             </Typography>
           </Grid>
           <Grid item xs={7}>
-            <IconButton LinkComponent={Link} to="/">
-              <Avatar
-                alt={name}
-                src="https://mui.com/static/images/avatar/1.jpg"
+            <ButtonBase LinkComponent={Link} to="/" sx={{ padding: 0 }}>
+              <Chip
+                label={user.name}
+                variant="filled"
+                color="primary"
+                size="medium"
+                sx={{ cursor: "pointer" }}
+                avatar={
+                  <Avatar
+                    alt={user.name}
+                    src="https://mui.com/static/images/avatar/1.jpg"
+                  />
+                }
               />
-            </IconButton>
+            </ButtonBase>
           </Grid>
         </Grid>
       </Box>
