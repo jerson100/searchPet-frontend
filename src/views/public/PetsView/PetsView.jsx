@@ -5,6 +5,7 @@ import { Container, Grid } from "@mui/material";
 import PetList from "../../../components/common/PetList";
 import Filter from "./components/Filter";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const PetsView = () => {
   const [params, setParams] = useSearchParams();
@@ -26,33 +27,42 @@ const PetsView = () => {
   }, [setPage]);
 
   return (
-    <Container
-      sx={{
-        pl: { xs: 0, md: 3 },
-        pr: { xs: 0, md: 3 },
-        pt: 4,
-        pb: 4,
-      }}
-    >
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Filter
-            loadingTypePets={loadingTypePets}
-            typePets={responseTypePets}
-            typePet={typePet}
-            settypePet={settypePet}
-            setPage={setPage}
-          />
+    <>
+      <Helmet>
+        <title>Mascotas | Spet</title>
+        <meta
+          name="description"
+          content="Mira todas las mascotas de los usuarios"
+        />
+      </Helmet>
+      <Container
+        sx={{
+          pl: { xs: 0, md: 3 },
+          pr: { xs: 0, md: 3 },
+          pt: 4,
+          pb: 4,
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <Filter
+              loadingTypePets={loadingTypePets}
+              typePets={responseTypePets}
+              typePet={typePet}
+              settypePet={settypePet}
+              setPage={setPage}
+            />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <PetList
+              typePet={typePet}
+              page={page}
+              handleNextPage={handleNextPage}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={8}>
-          <PetList
-            typePet={typePet}
-            page={page}
-            handleNextPage={handleNextPage}
-          />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 };
 
