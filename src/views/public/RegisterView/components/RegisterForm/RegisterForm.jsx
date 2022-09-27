@@ -11,10 +11,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
 import Email from "@mui/icons-material/Email";
 import Person from "@mui/icons-material/Person";
-import Location from "../../components/Location";
 // import { validateSchema } from "../../../../../utils/validateSchema";
 import { ValidateUserCreationSchema } from "../../../../../api/users.validate";
 import JeInputTextError from "../../../../../components/common/JeInputTextError";
+import Location from "../../../../../components/common/Location";
 
 const RegisterForm = () => {
   const [location, setlocation] = useState();
