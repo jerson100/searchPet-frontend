@@ -4,10 +4,14 @@ import { SelectFileStyle } from "./selectFile.style";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
-const SelectFile = ({ setfiles, multiple, accept }) => {
+const SelectFile = ({ name, setfiles, multiple, accept, setFieldValue }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
-      setfiles(acceptedFiles);
+      if (setfiles) {
+        setfiles(acceptedFiles);
+      } else if (setFieldValue) {
+        setFieldValue(name, acceptedFiles);
+      }
     },
     [setfiles]
   );
@@ -19,7 +23,7 @@ const SelectFile = ({ setfiles, multiple, accept }) => {
   });
 
   return (
-    <SelectFileStyle {...getRootProps({ refKey: "innerRef" })}>
+    <SelectFileStyle {...getRootProps({ refKey: "innerref" })}>
       <input {...getInputProps()} />
       <Typography variant="body2" component="p">
         Arrastre y suelte sus imágenes aquí, o de click en esta zona para

@@ -4,13 +4,31 @@ import SelectFile from "./components/SelectFile";
 import Preview from "./components/Preview";
 import PropTypes from "prop-types";
 
-const DropZoneImage = ({ title, files, setfiles, multiple, accept }) => {
+const DropZoneImage = ({
+  title,
+  files,
+  setfiles,
+  setFieldValue,
+  multiple,
+  accept,
+  name,
+}) => {
   return (
     <Box marginBottom={2}>
       <Typography variant="h6" component="p" mb={2} fontWeight="400">
         {title}
       </Typography>
-      <SelectFile setfiles={setfiles} multiple={multiple} accept={accept} />
+      {/* <ErrorMessage
+        name={name}
+        render={(msg) => <FormHelperText>{msg}</FormHelperText>}
+      /> */}
+      <SelectFile
+        setfiles={setfiles}
+        setFieldValue={setFieldValue}
+        multiple={multiple}
+        accept={accept}
+        name={name}
+      />
       <Preview files={files} />
     </Box>
   );
