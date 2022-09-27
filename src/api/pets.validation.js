@@ -22,4 +22,19 @@ const ValidatePetCreationSchema = Yup.object().shape({
   ),
 });
 
-export { ValidatePetCreationSchema };
+const ValidatePetCreationRequestSchema = Yup.object().shape({
+  pets: Yup.array()
+    .of(Yup.string("Seleccione una mascota como mínimo"))
+    .min(1, "Seleccione una mascota como mínimo"),
+  description: Yup.string().max(
+    500,
+    "La descripción como máximo debe tener 500 letras"
+  ),
+  location: Yup.array()
+    .of(Yup.number("Solo se adminiten un arreglo de números"))
+    .min(2)
+    .max(2)
+    .nullable(true),
+});
+
+export { ValidatePetCreationSchema, ValidatePetCreationRequestSchema };

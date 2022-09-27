@@ -5,7 +5,7 @@ import { Button, Grid } from "@mui/material";
 import JeInputTextError from "../JeInputTextError/JeInputTextError";
 import DropZoneImage from "../DropZoneImage/DropZoneImage";
 import Location from "../Location";
-import { useState } from "react";
+import { ValidatePetCreationRequestSchema } from "../../../api/pets.validation";
 
 const names = [
   { name: "Oliver Hansen", value: "Oliver Hansen" },
@@ -29,6 +29,7 @@ const LostPetRequestForm = () => {
         images: [],
         location: null,
       }}
+      validationSchema={ValidatePetCreationRequestSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
@@ -53,7 +54,6 @@ const LostPetRequestForm = () => {
                 rows={6}
               />
               <DropZoneImage
-                // error={touched.images && !!errors.images}
                 files={values.images}
                 setFieldValue={setFieldValue}
                 title="Imágenes"
