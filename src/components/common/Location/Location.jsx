@@ -10,9 +10,14 @@ import "react-leaflet-fullscreen";
 import Box from "@mui/material/Box";
 import "react-leaflet-fullscreen/dist/styles.css";
 
-const Location = ({ location, setlocation }) => {
+const Location = ({ location, setlocation, name, setFieldValue }) => {
   return (
-    <Box marginBottom={"1rem"}>
+    <Box
+      marginBottom={"1rem"}
+      display="flex"
+      flexDirection={"column"}
+      height="100%"
+    >
       <Typography variant="h4" component="h2" marginBottom={2}>
         Tu ubicación
       </Typography>
@@ -28,7 +33,7 @@ const Location = ({ location, setlocation }) => {
       >
         No seleccione una ubicación muy cercana a su hogar
       </Alert>
-      <Box height={"300px"}>
+      <Box height={"300px"} flexGrow={1} mb={2}>
         <MapContainer
           center={[-11.1167582, -77.3009863]}
           zoom={4}
@@ -40,7 +45,12 @@ const Location = ({ location, setlocation }) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Map location={location} setlocation={setlocation} />
+          <Map
+            location={location}
+            setlocation={setlocation}
+            name={name}
+            setFieldValue={setFieldValue}
+          />
           <MyLocation />
         </MapContainer>
         {/* )} */}
@@ -73,12 +83,16 @@ const MyLocation = () => {
   );
 };
 
-const Map = ({ location, setlocation }) => {
+const Map = ({ location, setlocation, name, setFieldValue }) => {
   useMapEvents({
     click(e) {
       //   map.locate();
       if (e.latlng) {
-        setlocation([e.latlng.lat, e.latlng.lng]);
+        if (setlocation) {
+          setlocation([e.latlng.lat, e.latlng.lng]);
+        } else if (setFieldValue) {
+          setFieldValue(name, [e.latlng.lat, e.latlng.lng]);
+        }
       }
     },
     // locationfound(e) {

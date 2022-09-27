@@ -13,7 +13,7 @@ const AddLostPetView = () => {
       <JeSection
         component={"div"}
         title={"Generar solicitud de perdida"}
-        maxWidth={"md"}
+        // maxWidth={"md"}
       >
         <LostPetRequestForm />
       </JeSection>

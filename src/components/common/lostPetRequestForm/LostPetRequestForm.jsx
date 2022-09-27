@@ -1,9 +1,11 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import LostPetsSelect from "../LostPetsSelect";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import JeInputTextError from "../JeInputTextError/JeInputTextError";
 import DropZoneImage from "../DropZoneImage/DropZoneImage";
+import Location from "../Location";
+import { useState } from "react";
 
 const names = [
   { name: "Oliver Hansen", value: "Oliver Hansen" },
@@ -33,29 +35,40 @@ const LostPetRequestForm = () => {
     >
       {({ touched, errors, values, setFieldValue }) => (
         <Form>
-          <LostPetsSelect
-            name="pets"
-            inputLabel="Mascotas"
-            fullWidth
-            error={touched.pets && !!errors.pets}
-            selectItems={names}
-          />
-          <JeInputTextError
-            name="description"
-            inputLabel="Descripción"
-            fullWidth
-            error={touched.description && !!errors.description}
-            multiline
-            rows={6}
-          />
-          <DropZoneImage
-            // error={touched.images && !!errors.images}
-            files={values.images}
-            setFieldValue={setFieldValue}
-            title="Imágenes"
-            multiple
-            name="images"
-          />
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4}>
+              <LostPetsSelect
+                name="pets"
+                inputLabel="Mascotas"
+                fullWidth
+                error={touched.pets && !!errors.pets}
+                selectItems={names}
+              />
+              <JeInputTextError
+                name="description"
+                inputLabel="Descripción"
+                fullWidth
+                error={touched.description && !!errors.description}
+                multiline
+                rows={6}
+              />
+              <DropZoneImage
+                // error={touched.images && !!errors.images}
+                files={values.images}
+                setFieldValue={setFieldValue}
+                title="Imágenes"
+                multiple
+                name="images"
+              />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <Location
+                location={values.location}
+                setFieldValue={setFieldValue}
+                name="location"
+              />
+            </Grid>
+          </Grid>
           <Button
             sx={{ marginLeft: "auto", marginRight: "auto", display: "block" }}
             variant="contained"
