@@ -16,6 +16,7 @@ import ConfigurationLayout from "../../layouts/ConfigurationLayout";
 import AddPetView from "../../../views/private/AddPetView";
 import PetLayout from "../../layouts/PetLayout";
 import PetsView from "../../../views/public/PetsView";
+import AddLostPetView from "../../../views/private/AddLostPetView";
 
 const AppRouter = () => {
   return (
@@ -36,6 +37,7 @@ const AppRouter = () => {
           <Route path="pets" element={<PetsView />} />
           <Route path="my-pet" element={<PetLayout />}>
             <Route path="add" element={<AddPetView />} />
+            <Route path="add-lost" element={<AddLostPetView />} />
           </Route>
           <Route path="lostPet" element={<LostPetView />} />
           <Route path="we" element={<WeView />} />
