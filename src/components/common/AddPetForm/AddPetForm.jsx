@@ -11,6 +11,7 @@ import { LoadingButton } from "@mui/lab";
 import SaveIcon from "@mui/icons-material/Save";
 import { useSnackbar } from "notistack";
 import { ValidatePetCreationSchema } from "../../../api/pets.validation";
+import DropZoneImage from "../DropZoneImage/DropZoneImage";
 
 const sizes = [
   { name: "Pequeño", value: "Pequeño" },
@@ -26,6 +27,11 @@ const AddPetForm = () => {
   });
   const [{ loading: loadingCreatePet }, createNewPet] = useAxios(
     {
+      headers: {
+        authorization: `Bearer ${AUTH_TOKEN.get()}`,
+        "content-type": "multipart/form-data",
+      },
+      url: "/pets",
       method: "POST",
     },
     {
@@ -33,32 +39,24 @@ const AddPetForm = () => {
     }
   );
 
-  const createPet = async ({
-    breed,
-    size,
-    name,
-    eyeColor,
-    hairColor,
-    description,
-  }) => {
-    const token = AUTH_TOKEN.get();
+  const createPet = async (
+    { breed, size, name, eyeColor, hairColor, description, profile },
+    resetForm
+  ) => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("breed", breed);
+    formData.append("description", description);
+    formData.append("size", size);
+    formData.append("eyeColor", eyeColor);
+    formData.append("hairColor", hairColor);
+    console.log(profile && profile.length);
+    if (profile && profile.length) {
+      formData.append("profile", profile[0], profile[0].path);
+    }
     try {
-      await createNewPet({
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        url: "/pets",
-        data: {
-          name: name,
-          breed: breed,
-          description: description,
-          characteristics: {
-            size: size,
-            eyeColor: eyeColor,
-            hairColor: hairColor,
-          },
-        },
-      });
+      await createNewPet({ data: formData });
+      resetForm();
       enqueueSnackbar("Mascota creada satisfactoriamente", {
         variant: "success",
       });
@@ -90,14 +88,14 @@ const AddPetForm = () => {
           eyeColor: "",
           hairColor: "",
           description: "",
+          profile: [],
         }}
         validationSchema={ValidatePetCreationSchema}
         onSubmit={async (values, { resetForm }) => {
-          await createPet(values);
-          resetForm();
+          await createPet(values, resetForm);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, setFieldValue, values }) => (
           <Form>
             <Grid container spacing={{ md: 2 }}>
               <Grid item xs={12} md={6}>
@@ -162,23 +160,14 @@ const AddPetForm = () => {
               rows={5}
               name="description"
             />
-            {/* <Grid container spacing={{ md: 2 }} mb={3}>
             <Grid item xs={12} md={12}>
               <DropZoneImage
-                files={urlImageProfile}
-                setfiles={seturlImageProfile}
+                files={values.profile}
+                setFieldValue={setFieldValue}
                 title="Imagen de perfil"
+                name="profile"
               />
             </Grid>
-            <Grid item xs={12} md={12}>
-              <DropZoneImage
-                files={imagesPet}
-                setfiles={setimagesPet}
-                title="Imágenes"
-                multiple
-              />
-            </Grid>
-          </Grid> */}
             <Box display={"flex"} justifyContent="center">
               {loading ? (
                 <Skeleton variant="rounded" height={40} width={120} />
