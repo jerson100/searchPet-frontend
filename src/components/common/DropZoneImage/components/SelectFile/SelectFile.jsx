@@ -13,7 +13,7 @@ const SelectFile = ({ name, setfiles, multiple, accept, setFieldValue }) => {
         setFieldValue(name, acceptedFiles);
       }
     },
-    [setfiles]
+    [setfiles, setFieldValue, name]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
