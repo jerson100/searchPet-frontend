@@ -39,7 +39,7 @@ const AppRouter = () => {
             <Route path="add" element={<AddPetView />} />
             <Route path="add-lost" element={<AddLostPetView />} />
           </Route>
-          <Route path="lostPet" element={<LostPetView />} />
+          <Route path="pets/lost" element={<LostPetView />} />
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
           <Route path="profile/:idUser" element={<ProfileView />} />

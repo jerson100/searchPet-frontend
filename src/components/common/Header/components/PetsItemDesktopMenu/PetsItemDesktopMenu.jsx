@@ -10,7 +10,7 @@ const links = [
   },
   {
     name: "Mascotas perdidas",
-    to: "/lostpets",
+    to: "/pets/lost",
   },
 ];
 
