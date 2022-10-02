@@ -68,9 +68,14 @@ const LostPetRequestForm = () => {
             location: null,
           }}
           validationSchema={ValidatePetCreationRequestSchema}
-          onSubmit={async ({ description, images, location, pets }) => {
-            if (!location?.length > 2) {
-              enqueueSnackbar("Location es requerido");
+          onSubmit={async (
+            { description, images, location, pets },
+            { resetForm }
+          ) => {
+            if (!(location?.length > 1)) {
+              enqueueSnackbar("Location es requerido", {
+                variant: "error",
+              });
               return;
             }
             const formData = new FormData();
@@ -85,6 +90,7 @@ const LostPetRequestForm = () => {
               await executeCreateLostPet({
                 data: formData,
               });
+              resetForm();
               enqueueSnackbar("Solicitud creada exitosamente.", {
                 variant: "success",
               });
