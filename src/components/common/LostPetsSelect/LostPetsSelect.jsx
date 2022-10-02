@@ -3,7 +3,6 @@ import {
   Avatar,
   FormControl,
   Grid,
-  OutlinedInput,
   InputLabel,
   MenuItem,
   Select,
@@ -54,13 +53,7 @@ const LostPetsSelect = ({
         multiple={multiple}
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            {selected.map((value) => (
-              <Chip
-                key={value}
-                label={value}
-                avatar={<Avatar title="Jerson" />}
-              />
-            ))}
+            {selectItem(selectItems, selected)}
           </Box>
         )}
         MenuProps={MenuProps}
@@ -70,9 +63,9 @@ const LostPetsSelect = ({
           },
         }}
       >
-        {selectItems.map(({ name }) => (
+        {selectItems.map(({ value, name, urlImageProfile }) => (
           <MenuItem key={name} value={name}>
-            <LostPetItem key={name} name={name} urlImageProfile="" />
+            <LostPetItem name={value} urlImageProfile={urlImageProfile} />
           </MenuItem>
         ))}
       </Field>
@@ -84,6 +77,25 @@ const LostPetsSelect = ({
         render={(msg) => <FormHelperText>{msg}</FormHelperText>}
       />
     </FormControl>
+  );
+};
+
+const selectItem = (items, selectedItems) => {
+  return (
+    <>
+      {selectedItems?.map((i) => {
+        const { name, value, urlImageProfile } = items?.find(
+          (o) => o.name === i
+        );
+        return (
+          <Chip
+            key={name}
+            label={value}
+            avatar={<Avatar title={name} src={urlImageProfile} />}
+          />
+        );
+      })}
+    </>
   );
 };
 
