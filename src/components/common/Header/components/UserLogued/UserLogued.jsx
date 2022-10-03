@@ -14,6 +14,7 @@ const settings = [
 
 const UserLogued = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const { logout } = useAuthContext();
 
@@ -34,9 +35,9 @@ const UserLogued = () => {
     <>
       <IconButton onClick={handleOpenUserMenu} size="medium" sx={{ mr: -1 }}>
         <Avatar
-          alt="Remy Sharp"
+          alt={user.user.name}
           sx={{ width: "32px", height: "32px" }}
-          src="https://mui.com/static/images/avatar/1.jpg"
+          src={user.user.urlImageProfile}
         />
       </IconButton>
       <Menu

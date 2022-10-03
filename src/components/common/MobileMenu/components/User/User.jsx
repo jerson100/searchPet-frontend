@@ -15,9 +15,9 @@ const User = () => {
       }}
     >
       <Avatar
-        alt="Remy Sharp"
-        src="https://mui.com/static/images/avatar/1.jpg"
+        alt={user?.user?.name}
         sx={{ width: 75, height: 75, mb: 1 }}
+        src={user?.user?.urlImageProfile}
       />
       {!user?.user ? (
         <ButtonAcceder isLogued={false} />
