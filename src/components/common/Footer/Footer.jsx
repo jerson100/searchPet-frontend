@@ -78,7 +78,7 @@ const Footer = () => {
                   </Button>
                 </li>
                 <li>
-                  <Button to="/lostpets" component={Link}>
+                  <Button to="/pets/lost" component={Link}>
                     Mascotas Perdidas
                   </Button>
                 </li>

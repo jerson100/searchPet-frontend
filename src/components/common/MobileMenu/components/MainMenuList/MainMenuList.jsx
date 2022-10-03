@@ -72,7 +72,7 @@ const PetListItem = () => {
             </ListItemIcon>
             <ListItemText primary="Ver mascotas" />
           </ListItemButton>
-          <ListItemButton to="/lostPet" component={Link} sx={{ pl: 4 }}>
+          <ListItemButton to="/pets/lost" component={Link} sx={{ pl: 4 }}>
             <ListItemIcon>
               <FlagIcon />
             </ListItemIcon>
