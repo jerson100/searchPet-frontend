@@ -19,7 +19,13 @@ const LostPetView = () => {
       {loading ? (
         <p>Cargando...</p>
       ) : (
-        <Container sx={{ padding: { xs: "0", sm: 3 } }}>
+        <Container
+          sx={{
+            p: { xs: 0, sm: 3 },
+            pt: { xs: 2, sm: 3 },
+            pb: { xs: 2, sm: 3 },
+          }}
+        >
           <Grid container rowSpacing={2} columnSpacing={2}>
             <Grid item xs={12} md={8} lg={7}>
               <LostPetList items={data} />
