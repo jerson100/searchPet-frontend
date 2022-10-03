@@ -70,7 +70,7 @@ const PetListItem = () => {
             <ListItemIcon>
               <VisibilityIcon />
             </ListItemIcon>
-            <ListItemText primary="Ver mascotas" />
+            <ListItemText primary="Todas las mascotas" />
           </ListItemButton>
           <ListItemButton to="/pets/lost" component={Link} sx={{ pl: 4 }}>
             <ListItemIcon>
@@ -79,12 +79,24 @@ const PetListItem = () => {
             <ListItemText primary="Mascotas perdidas" />
           </ListItemButton>
           {user && (
-            <ListItemButton to="/my-pet/add" component={Link} sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <AddPetIcon />
-              </ListItemIcon>
-              <ListItemText primary="Agregar mascota" />
-            </ListItemButton>
+            <>
+              <ListItemButton to="/pets/add" component={Link} sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <AddPetIcon />
+                </ListItemIcon>
+                <ListItemText primary="Agregar mascota" />
+              </ListItemButton>
+              <ListItemButton
+                to="/pets/lost/add"
+                component={Link}
+                sx={{ pl: 4 }}
+              >
+                <ListItemIcon>
+                  <AddPetIcon />
+                </ListItemIcon>
+                <ListItemText primary="Agregar mascotas perdidas" />
+              </ListItemButton>
+            </>
           )}
         </List>
       </Collapse>

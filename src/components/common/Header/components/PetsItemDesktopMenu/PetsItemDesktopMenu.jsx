@@ -7,10 +7,22 @@ const links = [
   {
     name: "Ver mascotas",
     to: "/pets",
+    authorization: false,
   },
   {
     name: "Mascotas perdidas",
     to: "/pets/lost",
+    authorization: false,
+  },
+  {
+    name: "Agregar mascota",
+    to: "/pets/add",
+    authorization: true,
+  },
+  {
+    name: "Agregar mascotas perdidas",
+    to: "/pets/lost/add",
+    authorization: true,
   },
 ];
 
@@ -53,28 +65,55 @@ const PetsItemDesktopMenu = () => {
         open={Boolean(anchorElMenu)}
         onClose={handleClosePetMenu}
       >
-        {links.map(({ name, to }) => (
-          <MenuItem
-            component={Link}
-            key={name}
-            name={name}
-            to={to}
-            onClick={handleClosePetMenu}
-          >
-            <Typography textAlign="center">{name}</Typography>
-          </MenuItem>
-        ))}
-        {user && (
-          <MenuItem
-            component={Link}
-            key={"Agregar mascota"}
-            name={"Agregar mascota"}
-            to={"/my-pet/add"}
-            onClick={handleClosePetMenu}
-          >
-            <Typography textAlign="center">Agregar mascota</Typography>
-          </MenuItem>
+        {links.map(({ name, to, authorization }) =>
+          authorization ? (
+            user && (
+              <MenuItem
+                component={Link}
+                key={name}
+                name={name}
+                to={to}
+                onClick={handleClosePetMenu}
+              >
+                <Typography textAlign="center">{name}</Typography>
+              </MenuItem>
+            )
+          ) : (
+            <MenuItem
+              component={Link}
+              key={name}
+              name={name}
+              to={to}
+              onClick={handleClosePetMenu}
+            >
+              <Typography textAlign="center">{name}</Typography>
+            </MenuItem>
+          )
         )}
+        {/* {user && (
+          <>
+            <MenuItem
+              component={Link}
+              key={"Agregar mascota"}
+              name={"Agregar mascota"}
+              to={"/my-pet/add"}
+              onClick={handleClosePetMenu}
+            >
+              <Typography textAlign="center">Agregar mascota</Typography>
+            </MenuItem>
+            <MenuItem
+              component={Link}
+              key={"Agregar mascota"}
+              name={"Agregar mascota"}
+              to={"/my-pet/lost/add"}
+              onClick={handleClosePetMenu}
+            >
+              <Typography textAlign="center">
+                Agregar mascotas perdidas
+              </Typography>
+            </MenuItem>
+          </>
+        )} */}
       </Menu>
     </div>
   );

@@ -35,11 +35,11 @@ const AppRouter = () => {
           <Route index element={<HomeView />} />
           <Route path="home" element={<HomeView />} />
           <Route path="pets" element={<PetsView />} />
-          <Route path="my-pet" element={<PetLayout />}>
-            <Route path="add" element={<AddPetView />} />
-            <Route path="add-lost" element={<AddLostPetView />} />
-          </Route>
           <Route path="pets/lost" element={<LostPetView />} />
+          <Route path="pets" element={<PetLayout />}>
+            <Route path="add" element={<AddPetView />} />
+            <Route path="lost/add" element={<AddLostPetView />} />
+          </Route>
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
           <Route path="profile/:idUser" element={<ProfileView />} />
