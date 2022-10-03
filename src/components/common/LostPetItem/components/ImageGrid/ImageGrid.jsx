@@ -26,7 +26,7 @@ const ImageGrid = ({ images }) => {
         display={"flex"}
         flexWrap="wrap"
         sx={{
-          height: { xs: "400px", sm: "600px" },
+          height: { xs: "300px", sm: "400px" },
           alignItems: "stretch",
           overflow: "hidden",
         }}
@@ -42,7 +42,7 @@ const ImageGrid = ({ images }) => {
               flexShrink: "1",
               width: "50%",
               minHeight: `calc(100% / 2)`,
-              maxHeight: `${getMaxHeight(images, index)}`,
+              maxHeight: `${getMaxHeight(images)}`,
               objectFit: "cover",
               cursor: "pointer",
             }}
@@ -73,8 +73,8 @@ const ImageGrid = ({ images }) => {
   );
 };
 
-const getMaxHeight = (items, index) => {
-  if ((index === 1 || index === 2) && items.length > 2) {
+const getMaxHeight = (items) => {
+  if (items.length > 2) {
     return "calc(100% / 2)";
   }
   return "100%";
