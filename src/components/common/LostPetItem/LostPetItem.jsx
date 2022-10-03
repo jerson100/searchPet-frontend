@@ -16,7 +16,7 @@ const LostPetItem = ({
   _id,
 }) => {
   return (
-    <ContainerStyle mb={2}>
+    <ContainerStyle>
       <Box p={2}>
         <LostPetItemHeader user={user} createdAt={createdAt} />
         <Typography paragraph>{description}</Typography>

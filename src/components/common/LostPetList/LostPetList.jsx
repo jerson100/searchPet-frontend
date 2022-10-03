@@ -1,23 +1,24 @@
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import LostPetItem from "../LostPetItem";
 
 const LostPetList = ({ items }) => {
   return (
-    <Box mt={2}>
+    <Grid container rowSpacing={2} columnSpacing={2}>
       {items.map((item) => (
-        <LostPetItem
-          key={item._id}
-          createdAt={item.createdAt}
-          description={item.description}
-          images={item.images}
-          pets={item.pets}
-          located={item.located}
-          user={item.user}
-          _id={item._id}
-        />
+        <Grid item xs={12} key={item._id}>
+          <LostPetItem
+            createdAt={item.createdAt}
+            description={item.description}
+            images={item.images}
+            pets={item.pets}
+            located={item.located}
+            user={item.user}
+            _id={item._id}
+          />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 };
 
