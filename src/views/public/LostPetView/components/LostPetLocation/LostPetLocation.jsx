@@ -67,20 +67,6 @@ const MyLocationMarker = () => {
   const [location, setlocation] = useState(null);
 
   useEffect(() => {
-    // navigator.geolocation.getCurrentPosition(
-    //   ({ coords: { latitude: lat, longitude: lng } }) => {
-    //     setlocation({
-    //       lat,
-    //       lng,
-    //     });
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   },
-    //   {
-    //     enableHighAccuracy: true,
-    //   }
-    // );
     const id = navigator.geolocation.watchPosition(
       ({ coords: { latitude: lat, longitude: lng } }) => {
         setlocation({

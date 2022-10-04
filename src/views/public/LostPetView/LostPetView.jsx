@@ -28,7 +28,7 @@ const LostPetView = () => {
       ) : (
         <>
           <Grid container spacing={2} mb={2}>
-            <Grid item xs={12} md={5} lg={4}>
+            <Grid item xs={12} md={5}>
               <LostPetItem
                 _id={lostPet._id}
                 createdAt={lostPet.createdAt}
@@ -40,7 +40,7 @@ const LostPetView = () => {
               />
             </Grid>
             {idDesktop && (
-              <Grid item xs={12} md={7} lg={8}>
+              <Grid item xs={12} md={7}>
                 <LostPetLocation
                   position={lostPet.location}
                   image={lostPet.user.urlImageProfile}
