@@ -30,10 +30,6 @@ const LostPetRequestForm = () => {
     {
       url: "/lostpet",
       method: "POST",
-      headers: {
-        authorization: `Bearer ${AUTH_TOKEN.get()}`,
-        "content-type": "multipart/form-data",
-      },
     },
     { manual: true }
   );
@@ -73,7 +69,7 @@ const LostPetRequestForm = () => {
             { resetForm }
           ) => {
             if (!(location?.length > 1)) {
-              enqueueSnackbar("Location es requerido", {
+              enqueueSnackbar("La localización es requerida", {
                 variant: "error",
               });
               return;
@@ -89,14 +85,30 @@ const LostPetRequestForm = () => {
             try {
               await executeCreateLostPet({
                 data: formData,
+                headers: {
+                  authorization: `Bearer ${AUTH_TOKEN.get()}`,
+                  "content-type": "multipart/form-data",
+                },
               });
               resetForm();
               enqueueSnackbar("Solicitud creada exitosamente.", {
                 variant: "success",
               });
             } catch (e) {
+              console.log(e);
               if (e.status) {
-                enqueueSnackbar(e.message, { variant: "error" });
+                if (e.status === 401) {
+                  window.location.href = "/login";
+                } else {
+                  enqueueSnackbar(e.message, { variant: "error" });
+                }
+              } else {
+                enqueueSnackbar(
+                  "Ocurrió un error, intentelo más tarde o póngase en contacto con el administrador",
+                  {
+                    variant: "error",
+                  }
+                );
               }
             }
           }}
