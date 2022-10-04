@@ -4,7 +4,7 @@ import { Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetList from "../../../components/common/LostPetList";
 
-const LostPetView = () => {
+const LostPetsView = () => {
   const [{ loading, data }] = useAxios(
     {
       url: "/lostpet",
@@ -52,4 +52,4 @@ const LostPetView = () => {
   );
 };
 
-export default LostPetView;
+export default LostPetsView;
