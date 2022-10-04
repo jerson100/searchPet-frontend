@@ -1,12 +1,16 @@
 import useAxios from "axios-hooks";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useMediaQuery } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import LostPetItem from "../../../components/common/LostPetItem";
+import LostPetLocation from "./components/LostPetLocation";
 
 const LostPetView = () => {
   const params = useParams();
+  const idDesktop = useMediaQuery((x) => {
+    return x.breakpoints.up("md");
+  });
   const [{ loading, data: lostPet, error }] = useAxios({
     url: `/lostpet/${params.idLostPet}`,
     method: "GET",
@@ -35,21 +39,15 @@ const LostPetView = () => {
                 user={lostPet.user}
               />
             </Grid>
-            <Grid item xs={12} md={7} lg={8}>
-              <Box
-                bgcolor={"background.paper"}
-                border="solid 1px"
-                borderColor={"divider"}
-                height="100%"
-              ></Box>
-            </Grid>
+            {idDesktop && (
+              <Grid item xs={12} md={7} lg={8}>
+                <LostPetLocation
+                  position={lostPet.location}
+                  image={lostPet.user.urlImageProfile}
+                />
+              </Grid>
+            )}
           </Grid>
-          <Box
-            bgcolor={"background.paper"}
-            border="solid 1px"
-            borderColor={"divider"}
-            height="200px"
-          ></Box>
         </>
       )}
     </Container>
