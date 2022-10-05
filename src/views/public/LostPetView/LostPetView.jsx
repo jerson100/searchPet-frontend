@@ -2,9 +2,10 @@ import useAxios from "axios-hooks";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 import LostPetItem from "../../../components/common/LostPetItem";
 import LostPetLocation from "./components/LostPetLocation";
+import CommentList from "../../../components/common/CommentList";
 
 const LostPetView = () => {
   const params = useParams();
@@ -48,6 +49,7 @@ const LostPetView = () => {
               </Grid>
             )}
           </Grid>
+          <CommentList />
         </>
       )}
     </Container>

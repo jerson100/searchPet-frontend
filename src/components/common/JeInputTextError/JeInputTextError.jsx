@@ -21,6 +21,7 @@ const JeInputTextError = ({
   multiline,
   rows,
   error,
+  ...props
 }) => {
   return (
     <FormControl
@@ -28,6 +29,7 @@ const JeInputTextError = ({
       fullWidth={fullWidth}
       variant={variant}
       margin="normal"
+      {...props}
     >
       <Field
         as={OutlinedInput}
