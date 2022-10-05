@@ -1,20 +1,26 @@
 import useAxios from "axios-hooks";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetItem from "../../../components/common/LostPetItem";
 import LostPetLocation from "./components/LostPetLocation";
 import CommentList from "../../../components/common/CommentList";
+import AddCommentForm from "../../../components/common/AddCommentForm";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const LostPetView = () => {
   const params = useParams();
+  const { user } = useAuthContext();
   const idDesktop = useMediaQuery((x) => {
     return x.breakpoints.up("md");
   });
-  const [{ loading, data: lostPet, error }] = useAxios({
+  const [{ loading, data: lostPet }] = useAxios({
     url: `/lostpet/${params.idLostPet}`,
     method: "GET",
+  });
+  const [{ loading: loadingComments, data: LostPetComments }] = useAxios({
+    url: `lostpet/${params.idLostPet}/comments`,
   });
   return (
     <Container
@@ -49,7 +55,22 @@ const LostPetView = () => {
               </Grid>
             )}
           </Grid>
-          <CommentList />
+          <Box
+            bgcolor={"background.paper"}
+            border="solid 1px"
+            borderColor={"divider"}
+            p={2}
+          >
+            <Typography variant="h5" component="h2" mb={3} id="comments">
+              Comentarios
+            </Typography>
+            <AddCommentForm user={user} />
+            {loadingComments ? (
+              <Typography paragraph>Cargando comentarios...</Typography>
+            ) : (
+              <CommentList comments={LostPetComments} />
+            )}
+          </Box>
         </>
       )}
     </Container>

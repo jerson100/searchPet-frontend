@@ -1,8 +1,11 @@
 import React from "react";
 import { Avatar, Grid, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { getTweetPublicationDate } from "../../../utils/date";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
-const Comment = () => {
+const Comment = ({ user, description, createdAt }) => {
+  const { user: userAuth } = useAuthContext();
   return (
     <Grid
       border="solid 1px"
@@ -15,32 +18,26 @@ const Comment = () => {
       sx={{ backgroundColor: "rgb(243, 242, 239)" }}
     >
       <Grid item pr={2}>
-        <Avatar
-          alt="example"
-          src="https://res.cloudinary.com/dgakkw9kj/image/upload/v1664890363/sPet/pets/vzuvv5ktatzldxdyennl.jpg"
-        />
+        <Avatar alt={user.username} src={user.urlImageProfile} />
       </Grid>
       <Grid item container flexDirection={"column"}>
         <Grid item mb={1} container justifyContent={"space-between"}>
           <Grid item>
             <Typography variant="body1" component="p">
-              jerson100
+              {user.username}
             </Typography>
             <Typography variant="body2" component="p">
-              13 h
+              {getTweetPublicationDate(new Date(createdAt))}
             </Typography>
           </Grid>
-          <Grid item>
-            <MoreVertIcon cursor="pointer" />
-          </Grid>
+          {userAuth?.user._id === user._id && (
+            <Grid item>
+              <MoreVertIcon cursor="pointer" />
+            </Grid>
+          )}
         </Grid>
         <Grid item>
-          <Typography variant="body2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-            vero temporibus nam, fuga odit consectetur odio voluptas omnis quam,
-            accusamus libero doloremque! Neque earum modi, tempora officia sit
-            quibusdam quod.
-          </Typography>
+          <Typography variant="body2">{description}</Typography>
         </Grid>
       </Grid>
     </Grid>
