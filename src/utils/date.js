@@ -8,11 +8,11 @@ const differenceDates = (d1, d2) => {
   const d1_Milis = d1.getTime();
   const d2_Milis = d2.getTime();
   const diff = d2_Milis - d1_Milis;
-  const segs = parseInt((diff / 1000) % 60);
-  const minutes = parseInt((diff / (60 * 1000)) % 60);
-  const hours = parseInt((diff / (60 * 60 * 1000)) % 24);
-  const days = parseInt((diff / (24 * 60 * 60 * 1000)) % 30);
-  const years = parseInt(diff / (24 * 60 * 60 * 1000) / (30 * 12));
+  const segs = Math.floor((diff / 1000) % 60);
+  const minutes = Math.floor((diff / (60 * 1000)) % 60);
+  const hours = Math.floor((diff / (60 * 60 * 1000)) % 24);
+  const days = Math.floor((diff / (24 * 60 * 60 * 1000)) % 30);
+  const years = Math.floor(diff / (24 * 60 * 60 * 1000) / (30 * 12));
   return {
     years,
     days,
@@ -32,7 +32,7 @@ const getTweetPublicationDate = (publicationDate) => {
     publicationDate,
     new Date()
   );
-
+  //   console.log(days, hours, minutes, segs);
   if (days > 0) {
     return `${days} día${days > 1 ? "s" : ""} `;
   }
@@ -42,10 +42,10 @@ const getTweetPublicationDate = (publicationDate) => {
   if (minutes > 0) {
     return `${minutes} m`;
   }
-  if (segs > 0) {
+  if (segs > 30) {
     return `${segs} s`;
   }
-  return "0 s";
+  return "Hace instantes";
 };
 
 export { getTweetPublicationDate, differenceDates };
