@@ -25,9 +25,12 @@ const LostPetView = () => {
     method: "GET",
   });
 
-  const [{ loading: loadingComments, data: LostPetComments }] = useAxios({
-    url: `lostpet/${params.idLostPet}/comments`,
-  });
+  const [{ loading: loadingComments, data: LostPetComments }] = useAxios(
+    {
+      url: `lostpet/${params.idLostPet}/comments`,
+    },
+    { useCache: false }
+  );
 
   const [{ loading: loadingCreateComment }, createComment] = useAxios(
     { url: `lostpetcomments`, method: "POST" },
