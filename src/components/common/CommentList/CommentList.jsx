@@ -3,7 +3,6 @@ import React from "react";
 import Comment from "../Comment";
 
 const CommentList = ({ comments }) => {
-  console.log(comments);
   return (
     <Box>
       {comments.map((c) => (

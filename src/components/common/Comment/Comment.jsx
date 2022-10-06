@@ -26,7 +26,7 @@ const Comment = ({ user, description, createdAt }) => {
             <Typography variant="body1" component="p">
               {user.username}
             </Typography>
-            <Typography variant="body2" component="p">
+            <Typography component="span" variant="caption">
               {getTweetPublicationDate(new Date(createdAt))}
             </Typography>
           </Grid>
@@ -44,4 +44,4 @@ const Comment = ({ user, description, createdAt }) => {
   );
 };
 
-export default Comment;
+export default React.memo(Comment);
