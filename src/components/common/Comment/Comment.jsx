@@ -3,8 +3,27 @@ import { Avatar, Grid, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import { motion } from "framer-motion";
 
-const Comment = ({ user, description, createdAt }) => {
+const variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    transformOrigin: "center top",
+    transition: {
+      duration: 0.4,
+    },
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+    },
+  },
+};
+
+const Comment = ({ user, description, createdAt, animate }) => {
   const { user: userAuth } = useAuthContext();
   return (
     <Grid
@@ -16,6 +35,10 @@ const Comment = ({ user, description, createdAt }) => {
       mb={2}
       borderRadius="5px"
       sx={{ backgroundColor: "rgb(243, 242, 239)" }}
+      component={motion.div}
+      initial={"hidden"}
+      animate={"show"}
+      variants={animate && variants}
     >
       <Grid item pr={2}>
         <Avatar alt={user.username} src={user.urlImageProfile} />

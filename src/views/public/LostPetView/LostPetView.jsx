@@ -47,7 +47,10 @@ const LostPetView = () => {
             authorization: `Bearer ${AUTH_TOKEN.get()}`,
           },
         });
-        setComments((prev) => [{ ...newComment, user: user.user }, ...prev]);
+        setComments((prev) => [
+          { ...newComment, user: user.user, animateAddNewComment: true },
+          ...prev,
+        ]);
         enqueueSnackbar("Comentario creado", {
           variant: "success",
         });

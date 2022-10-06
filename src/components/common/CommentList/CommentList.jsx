@@ -11,6 +11,7 @@ const CommentList = ({ comments }) => {
           user={c.user}
           description={c.description}
           createdAt={c.createdAt}
+          animate={c.animateAddNewComment}
         />
       ))}
     </Box>
