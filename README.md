@@ -8,13 +8,21 @@ Estamos usando todo el stack MERN.
 
 ## Vistas
 
-* Login
-* Registro
-* Home
-* Configuration/reset-password
-* Pet
-  * add
-* Etc
+* /register
+* /home
+* /pets
+* /pets/:idPet
+* /pets/lost
+* /pets/lost/:idLostPet
+* /pets
+* /add
+* /lost/add
+* /we
+* /team
+* /users/:idUser
+* /configuration
+* /reset-password
+* Error Page
 
 ## Autor
 
