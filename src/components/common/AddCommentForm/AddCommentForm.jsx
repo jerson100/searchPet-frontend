@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import ButtonAcceder from "../ButtonAcceder/ButtonAcceder";
 import JeInputTextError from "../JeInputTextError/JeInputTextError";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+import { CreateLostPetCommentSchema } from "../../../api/lostPet.validation";
 
 const AddCommentForm = ({ addComment, loadingComment }) => {
   const { user } = useAuthContext();
@@ -17,6 +18,7 @@ const AddCommentForm = ({ addComment, loadingComment }) => {
             initialValues={{
               description: "",
             }}
+            validationSchema={CreateLostPetCommentSchema}
             onSubmit={async ({ description }, { resetForm }) => {
               await addComment(description);
               resetForm();
