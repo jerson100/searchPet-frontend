@@ -23,6 +23,7 @@ const LostPetRequestForm = () => {
     },
     {
       manual: false,
+      useCache: false,
     }
   );
 
