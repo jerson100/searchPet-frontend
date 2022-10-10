@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeView from "../../../views/public/HomeView";
 import LoginView from "../../../views/public/LoginView";
 import RegisterView from "../../../views/public/RegisterView";
-import NotFound from "../../common/NotFound";
+import ErrorPage from "../../common/ErrorPage";
 import MainLayout from "../../layouts/MainLayout";
 import PublicRouter from "../../common/PublicRouter";
 import WeView from "../../../views/public/WeView";
@@ -49,7 +49,7 @@ const AppRouter = () => {
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </Router>

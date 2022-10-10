@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import LostPetItem from "../../../components/common/LostPetItem";
 import LostPetLocation from "./components/LostPetLocation";
 import useLostPet from "../../../hooks/useLostPet";
-import NotFound from "../../../components/common/NotFound/NotFound";
+import ErrorPage from "../../../components/common/ErrorPage";
 import LostPetComments from "./components/LostPetComments";
 
 const LostPetView = () => {
@@ -16,7 +16,13 @@ const LostPetView = () => {
   });
 
   if (!loadingLostPet && !lostPet) {
-    return <NotFound />;
+    return (
+      <ErrorPage
+        msg="El registro de la mascota(as) no existe"
+        buttonText="Ver todas las mascotas perdidas"
+        to="/pets/lost"
+      />
+    );
   }
 
   return (
