@@ -18,6 +18,7 @@ import PetsView from "../../../views/public/PetsView";
 import AddLostPetView from "../../../views/private/AddLostPetView";
 import LostPetsView from "../../../views/public/LostPetsView";
 import LostPetView from "../../../views/public/LostPetView";
+import PetView from "../../../views/public/PetView";
 
 const AppRouter = () => {
   return (
@@ -36,6 +37,7 @@ const AppRouter = () => {
           <Route index element={<HomeView />} />
           <Route path="home" element={<HomeView />} />
           <Route path="pets" element={<PetsView />} />
+          <Route path="pets/:idPet" element={<PetView />} />
           <Route path="pets/lost" element={<LostPetsView />} />
           <Route path="pets/lost/:idLostPet" element={<LostPetView />} />
           <Route path="pets" element={<PetLayout />}>
@@ -44,7 +46,7 @@ const AppRouter = () => {
           </Route>
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
-          <Route path="profile/:idUser" element={<ProfileView />} />
+          <Route path="users/:idUser" element={<ProfileView />} />
           <Route path="configuration" element={<ConfigurationLayout />}>
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />

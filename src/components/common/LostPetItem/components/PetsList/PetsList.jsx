@@ -10,7 +10,7 @@ const PetsList = ({ pets }) => {
           <ButtonBase
             key={p._id}
             LinkComponent={Link}
-            to="/"
+            to={`/pets/${p._id}`}
             sx={{ padding: 0 }}
           >
             <Chip

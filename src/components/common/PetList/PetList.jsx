@@ -40,6 +40,7 @@ const GridPets = React.memo(({ pets }) => {
       {pets?.map((p) => (
         <Grid key={p._id} component="li" item xs={12} sm={6}>
           <PetListItem
+            _id={p._id}
             name={p.name}
             urlImageProfile={p.urlImageProfile}
             breed={p.breed}

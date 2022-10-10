@@ -1,8 +1,8 @@
 import React from "react";
 import PageUnderConstruction from "../../../components/common/pageUnderConstruction";
 
-const ProfileView = () => {
+const PetView = () => {
   return <PageUnderConstruction />;
 };
 
-export default ProfileView;
+export default PetView;

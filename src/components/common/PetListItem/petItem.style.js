@@ -16,14 +16,14 @@ const ImageProfileContainerStyle = styled("div")`
 const PetItemStyle = styled("div")(({ theme }) => ({
   border: `solid 1px ${theme.palette.divider}`,
   backgroundColor: "rgb(243, 242, 239)",
-  cursor: "pointer",
+  //   cursor: "pointer",
   position: "relative",
-  [theme.breakpoints.up("sm")]: {
-    transition: "transform 0.2s ease",
-    "&:hover": {
-      transform: "scale(0.9)",
-    },
-  },
+  //   [theme.breakpoints.up("sm")]: {
+  //     transition: "transform 0.2s ease",
+  //     "&:hover": {
+  //       transform: "scale(0.9)",
+  //     },
+  //   },
 }));
 
 const ImgProfileStyle = styled("img")`

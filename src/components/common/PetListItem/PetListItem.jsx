@@ -17,7 +17,7 @@ import {
 } from "./petItem.style";
 import NotFoundPet from "../../../assets/img/webp/notFoundPet.webp";
 
-const PetListItem = ({ loading, name, urlImageProfile, breed, user }) => {
+const PetListItem = ({ loading, name, urlImageProfile, breed, user, _id }) => {
   if (loading) return <PetListItemLoading />;
   return (
     <PetItemStyle>
@@ -70,7 +70,11 @@ const PetListItem = ({ loading, name, urlImageProfile, breed, user }) => {
             </Typography>
           </Grid>
           <Grid item xs={7}>
-            <ButtonBase LinkComponent={Link} to="/" sx={{ padding: 0 }}>
+            <ButtonBase
+              LinkComponent={Link}
+              to={`/users/${user._id}`}
+              sx={{ padding: 0 }}
+            >
               <Chip
                 label={user.name}
                 variant="filled"
