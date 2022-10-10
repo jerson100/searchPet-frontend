@@ -60,32 +60,41 @@ const MainLayout = () => {
 
 const ContentLayout = React.memo(({ setshowMenuMobile, controls }) => {
   return (
-    <Box
-      component={motion.div}
-      animate={controls}
-      variants={mainLayout_variants}
-      sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
-      <Header setshowMenuMobile={setshowMenuMobile} />
+    <>
+      <Header setshowMenuMobile={setshowMenuMobile} controls={controls} />
       <Box
-        component="main"
+        component={motion.div}
+        animate={controls}
+        variants={mainLayout_variants}
         sx={{
-          flexGrow: 1,
           display: "flex",
           flexDirection: "column",
+          minHeight: {
+            xs: "calc(100vh - 57px)",
+            sm: "calc(100vh - 65px)",
+          },
           paddingTop: {
             xs: "57px",
             sm: "65px",
           },
-          transform: {
-            sm: `translateX(0)`,
-          },
         }}
       >
-        <Outlet />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            transform: {
+              sm: `translateX(0)`,
+            },
+          }}
+        >
+          <Outlet />
+        </Box>
+        <Footer />
       </Box>
-      <Footer />
-    </Box>
+    </>
   );
 });
 

@@ -23,7 +23,9 @@ const MobileMenu = ({ setshowMenuMobile }) => {
           height: "100vh",
           borderRight: "solid 1px rgba(0,0,0,.1)",
           width: "200px",
-          zIndex: "2",
+          zIndex: (props) => {
+            return props.zIndex.appBar + 2;
+          },
         }}
       >
         <MenuContent />
@@ -37,8 +39,10 @@ const MobileMenu = ({ setshowMenuMobile }) => {
           top: "0",
           right: "0",
           bottom: "0",
-          zIndex: "1",
           backgroundColor: "rgba(0,0,0,.4)",
+          zIndex: (props) => {
+            return props.zIndex.appBar + 1;
+          },
         }}
         onClick={() => setshowMenuMobile(false)}
       />
