@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Grid, Typography } from "@mui/material";
+import { Avatar, Grid, Skeleton, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
@@ -31,6 +31,7 @@ const Comment = ({
   createdAt,
   animate,
   handleDelete,
+  loading = false,
 }) => {
   const [laodingDeleteComment, setlaodingDeleteComment] = useState(false);
 
@@ -43,6 +44,7 @@ const Comment = ({
   };
 
   const { user: userAuth } = useAuthContext();
+  if (loading) return <LoadingComment />;
   return (
     <Grid
       border="solid 1px"
@@ -79,6 +81,36 @@ const Comment = ({
         </Grid>
         <Grid item>
           <Typography variant="body2">{description}</Typography>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
+
+const LoadingComment = () => {
+  return (
+    <Grid
+      border="solid 1px"
+      borderColor="divider"
+      container
+      p={2}
+      flexWrap={"nowrap"}
+      mb={2}
+      borderRadius="5px"
+      sx={{ backgroundColor: "rgb(243, 242, 239)" }}
+    >
+      <Grid item pr={2}>
+        <Skeleton variant="circular" height="40px" width="40px" />
+      </Grid>
+      <Grid item container flexDirection={"column"}>
+        <Grid item mb={1} container justifyContent={"space-between"}>
+          <Grid item>
+            <Skeleton variant="text" height="30px" width="60px" />
+            <Skeleton variant="text" height="30px" width="40px" />
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Skeleton variant="text" height="30px" />
         </Grid>
       </Grid>
     </Grid>

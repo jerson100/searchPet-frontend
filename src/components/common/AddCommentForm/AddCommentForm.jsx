@@ -5,8 +5,10 @@ import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
 import ButtonAcceder from "../ButtonAcceder/ButtonAcceder";
 import JeInputTextError from "../JeInputTextError/JeInputTextError";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
-const AddCommentForm = ({ user, addComment, loadingComment }) => {
+const AddCommentForm = ({ addComment, loadingComment }) => {
+  const { user } = useAuthContext();
   return (
     <>
       {user?.user ? (
