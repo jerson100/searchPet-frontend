@@ -22,10 +22,12 @@ const LostPetComments = ({ idLostPet }) => {
       <Typography variant="h5" component="h2" mb={3} id="comments">
         Comentarios
       </Typography>
-      <AddCommentForm
-        addComment={addComment}
-        loadingComment={loadingCreateComment}
-      />
+      {!loadingComments && (
+        <AddCommentForm
+          addComment={addComment}
+          loadingComment={loadingCreateComment}
+        />
+      )}
       <CommentList
         comments={comments}
         handleDelete={deleteComment}
