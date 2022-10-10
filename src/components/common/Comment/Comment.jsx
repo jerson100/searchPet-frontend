@@ -4,6 +4,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const variants = {
   hidden: {
@@ -23,7 +24,24 @@ const variants = {
   },
 };
 
-const Comment = ({ user, description, createdAt, animate }) => {
+const Comment = ({
+  user,
+  _id,
+  description,
+  createdAt,
+  animate,
+  handleDelete,
+}) => {
+  const [laodingDeleteComment, setlaodingDeleteComment] = useState(false);
+
+  const _handleDelete = async () => {
+    if (!laodingDeleteComment) {
+      setlaodingDeleteComment(true);
+      await handleDelete(_id);
+      setlaodingDeleteComment(false);
+    }
+  };
+
   const { user: userAuth } = useAuthContext();
   return (
     <Grid
@@ -55,7 +73,7 @@ const Comment = ({ user, description, createdAt, animate }) => {
           </Grid>
           {userAuth?.user._id === user._id && (
             <Grid item>
-              <MoreVertIcon cursor="pointer" />
+              <MoreVertIcon cursor="pointer" onClick={() => _handleDelete()} />
             </Grid>
           )}
         </Grid>

@@ -10,12 +10,15 @@ import AddCommentForm from "../../../components/common/AddCommentForm";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useSnackbar } from "notistack";
 import { AUTH_TOKEN } from "../../../configs/localstorage";
+import axios from "../../../configs/axios";
 
 const LostPetView = () => {
   const params = useParams();
   const [comments, setComments] = useState([]);
   const { user } = useAuthContext();
   const { enqueueSnackbar } = useSnackbar();
+  const [deleteComemntAbortControllers, setDeleteComemntAbortController] =
+    useState([]);
   const idDesktop = useMediaQuery((x) => {
     return x.breakpoints.up("md");
   });
@@ -36,6 +39,14 @@ const LostPetView = () => {
     { url: `lostpetcomments`, method: "POST" },
     { manual: true }
   );
+
+  useEffect(() => {
+    return () => {
+      deleteComemntAbortControllers.forEach((abortC) => {
+        abortC.abort();
+      });
+    };
+  }, [deleteComemntAbortControllers]);
 
   useEffect(() => {
     if (LostPetComments) setComments(LostPetComments);
@@ -76,6 +87,42 @@ const LostPetView = () => {
     },
     [lostPet, enqueueSnackbar, createComment, user?.user]
   );
+
+  const handleDelete = useCallback(
+    async (id) => {
+      try {
+        const abortC = new AbortController();
+        setDeleteComemntAbortController((prev) => [...prev, abortC]);
+        await axios.delete(`lostpetcomments/${id}`, {
+          signal: abortC.signal,
+          headers: {
+            authorization: `Bearer ${AUTH_TOKEN.get()}`,
+          },
+        });
+        setComments((prev) => prev.filter(({ _id }) => _id !== id));
+        return true;
+      } catch (e) {
+        if (e.status) {
+          if (e.status === 401) {
+            window.location.href = "/login";
+          } else {
+            enqueueSnackbar(e.message, {
+              variant: "error",
+            });
+          }
+        } else if (e.status !== 0) {
+          enqueueSnackbar(
+            "Ocurrió un error, puede volver a intentarlo más tarde",
+            {
+              variant: "error",
+            }
+          );
+        }
+      }
+    },
+    [enqueueSnackbar, setComments]
+  );
+
   return (
     <Container
       sx={{
@@ -126,7 +173,7 @@ const LostPetView = () => {
             {loadingComments ? (
               <Typography paragraph>Cargando comentarios...</Typography>
             ) : (
-              <CommentList comments={comments} />
+              <CommentList comments={comments} handleDelete={handleDelete} />
             )}
           </Box>
         </>
