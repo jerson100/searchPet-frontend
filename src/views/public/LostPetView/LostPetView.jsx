@@ -1,7 +1,7 @@
 import useAxios from "axios-hooks";
 import React, { useState, useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Skeleton, Typography, useMediaQuery } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetItem from "../../../components/common/LostPetItem";
 import LostPetLocation from "./components/LostPetLocation";
@@ -131,53 +131,56 @@ const LostPetView = () => {
         pb: { xs: 2, sm: 3 },
       }}
     >
-      {loading ? (
-        <Typography paragraph>Cargando...</Typography>
-      ) : (
-        <>
-          <Grid container spacing={2} mb={2}>
-            <Grid item xs={12} md={5}>
-              <LostPetItem
-                _id={lostPet._id}
-                createdAt={lostPet.createdAt}
-                description={lostPet.description}
-                images={lostPet.images}
-                located={lostPet.located}
-                pets={lostPet.pets}
-                user={lostPet.user}
-              />
-            </Grid>
-            {idDesktop && (
-              <Grid item xs={12} md={7}>
+      <>
+        <Grid container spacing={2} mb={2}>
+          <Grid item xs={12} md={5}>
+            <LostPetItem
+              loading={loading}
+              _id={lostPet?._id}
+              createdAt={lostPet?.createdAt}
+              description={lostPet?.description}
+              images={lostPet?.images}
+              located={lostPet?.located}
+              pets={lostPet?.pets}
+              user={lostPet?.user}
+            />
+          </Grid>
+          {idDesktop && (
+            <Grid item xs={12} md={7}>
+              {loading ? (
+                <>
+                  <Skeleton variant="rectangular" height={"100%"} />
+                </>
+              ) : (
                 <LostPetLocation
                   position={lostPet.location}
                   image={lostPet.user.urlImageProfile}
                 />
-              </Grid>
-            )}
-          </Grid>
-          <Box
-            bgcolor={"background.paper"}
-            border="solid 1px"
-            borderColor={"divider"}
-            p={2}
-          >
-            <Typography variant="h5" component="h2" mb={3} id="comments">
-              Comentarios
-            </Typography>
-            <AddCommentForm
-              user={user}
-              addComment={addComment}
-              loadingComment={loadingCreateComment}
-            />
-            {loadingComments ? (
-              <Typography paragraph>Cargando comentarios...</Typography>
-            ) : (
-              <CommentList comments={comments} handleDelete={handleDelete} />
-            )}
-          </Box>
-        </>
-      )}
+              )}
+            </Grid>
+          )}
+        </Grid>
+        <Box
+          bgcolor={"background.paper"}
+          border="solid 1px"
+          borderColor={"divider"}
+          p={2}
+        >
+          <Typography variant="h5" component="h2" mb={3} id="comments">
+            Comentarios
+          </Typography>
+          <AddCommentForm
+            user={user}
+            addComment={addComment}
+            loadingComment={loadingCreateComment}
+          />
+          {loadingComments ? (
+            <Typography paragraph>Cargando comentarios...</Typography>
+          ) : (
+            <CommentList comments={comments} handleDelete={handleDelete} />
+          )}
+        </Box>
+      </>
     </Container>
   );
 };
