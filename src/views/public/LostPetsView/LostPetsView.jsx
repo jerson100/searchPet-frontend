@@ -1,18 +1,18 @@
 import React from "react";
 import useAxios from "axios-hooks";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetList from "../../../components/common/LostPetList";
 
 const LostPetsView = () => {
-  const [{ loading, data }] = useAxios(
+  const [{ loading, data, error }] = useAxios(
     {
       url: "/lostpet",
       params: {
         length: 100000,
       },
     },
-    { manual: false }
+    { manual: false, useCache: false }
   );
   return (
     <>
@@ -25,7 +25,14 @@ const LostPetsView = () => {
       >
         <Grid container rowSpacing={2} columnSpacing={2}>
           <Grid item xs={12} md={8} lg={7}>
-            <LostPetList items={data} loading={loading} />
+            {error ? (
+              <Typography paragraph>
+                Ocurrió un problema al momento de obtener los registros, vuelve
+                a intentarlo más tarde
+              </Typography>
+            ) : (
+              <LostPetList items={data} loading={loading} />
+            )}
           </Grid>
           <Grid item xs={12} md={4} lg={5}>
             <Box
