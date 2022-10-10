@@ -15,6 +15,7 @@ const LostPetItem = ({
   user,
   _id,
   loading,
+  isToPublication = true,
 }) => {
   if (loading) return <LostPetItemLoading />;
   return (
@@ -32,19 +33,20 @@ const LostPetItem = ({
       >
         <ImageGrid images={images} />
       </Box>
-      <Grid container p={2} justifyContent="flex-end" spacing={2}>
-        <Grid item>
-          <Link
-            variant="link"
-            underline="hover"
-            component={LinkRouter}
-            color="text.secondary"
-            to={`/pets/lost/${_id}`}
-          >
-            Ir a la publicación
-          </Link>
-        </Grid>
-        {/* <Grid item>
+      {isToPublication && (
+        <Grid container p={2} justifyContent="flex-end" spacing={2}>
+          <Grid item>
+            <Link
+              variant="link"
+              underline="hover"
+              component={LinkRouter}
+              color="text.secondary"
+              to={`/pets/lost/${_id}`}
+            >
+              Ir a la publicación
+            </Link>
+          </Grid>
+          {/* <Grid item>
           <Link
             underline="hover"
             component={LinkRouter}
@@ -54,7 +56,8 @@ const LostPetItem = ({
             698 comentarios
           </Link>
         </Grid> */}
-      </Grid>
+        </Grid>
+      )}
     </ContainerStyle>
   );
 };

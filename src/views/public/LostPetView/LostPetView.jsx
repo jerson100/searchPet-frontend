@@ -143,6 +143,7 @@ const LostPetView = () => {
               located={lostPet?.located}
               pets={lostPet?.pets}
               user={lostPet?.user}
+              isToPublication={false}
             />
           </Grid>
           {idDesktop && (
