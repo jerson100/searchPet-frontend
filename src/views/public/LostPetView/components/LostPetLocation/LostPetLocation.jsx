@@ -14,7 +14,7 @@ import { useMap } from "react-leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import useMyLocationGps from "../../../../../hooks/useMyLocationGps";
 
-const LostPetLocation = ({ position, image, zoom = 9 }) => {
+const LostPetLocation = ({ position, image, zoom = 9, fullScreen = true }) => {
   //   const position = [51.505, -0.09];
   return (
     <Box
@@ -31,7 +31,7 @@ const LostPetLocation = ({ position, image, zoom = 9 }) => {
         zoom={zoom}
         scrollWheelZoom
         style={{ minHeight: "600px", height: "100%" }}
-        fullscreenControl
+        fullscreenControl={fullScreen}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

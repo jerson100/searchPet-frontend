@@ -6,6 +6,7 @@ import LostPetLocation from "./components/LostPetLocation";
 import useLostPet from "../../../hooks/useLostPet";
 import ErrorPage from "../../../components/common/ErrorPage";
 import LostPetComments from "./components/LostPetComments";
+import Actions from "./components/Actions";
 
 const LostPetView = () => {
   const params = useParams();
@@ -48,7 +49,7 @@ const LostPetView = () => {
               isToPublication={false}
             />
           </Grid>
-          {idDesktop && (
+          {idDesktop ? (
             <Grid item xs={12} md={7}>
               {loadingLostPet ? (
                 <>
@@ -56,14 +57,22 @@ const LostPetView = () => {
                 </>
               ) : (
                 <LostPetLocation
-                  position={lostPet.location}
-                  image={lostPet.user.urlImageProfile}
+                  position={lostPet?.location}
+                  image={lostPet?.user?.urlImageProfile}
                 />
               )}
             </Grid>
+          ) : (
+            !loadingLostPet && (
+              <Actions
+                position={lostPet?.location}
+                image={lostPet?.user?.urlImageProfile}
+                idLostPet={lostPet?._id}
+              />
+            )
           )}
         </Grid>
-        <LostPetComments idLostPet={lostPet?._id} />
+        {idDesktop && <LostPetComments idLostPet={lostPet?._id} />}
       </>
     </Container>
   );
