@@ -47,8 +47,12 @@ const Markers = ({ position, image }) => {
   const { location } = useMyLocationGps();
   const map = useMap();
   const iconPerson = new L.Icon({
-    iconUrl: image,
-    iconRetinaUrl: image,
+    iconUrl:
+      image ||
+      "https://www.goredforwomen.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg",
+    iconRetinaUrl:
+      image ||
+      "https://www.goredforwomen.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg",
     // iconAnchor: null,
     // popupAnchor: null,
     shadowUrl: null,
