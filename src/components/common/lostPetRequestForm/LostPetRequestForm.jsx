@@ -51,8 +51,8 @@ const LostPetRequestForm = () => {
           <Typography component="p" mb={2}>
             Primero necesita agregar mascotas para poder continuar.
           </Typography>
-          <Button variant="contained" onClick={() => navigate("/my-pet/add")}>
-            Ir a agregar mascotas
+          <Button variant="contained" onClick={() => navigate("/pets/add")}>
+            Agregar Mascotas
           </Button>
         </>
       ) : (
