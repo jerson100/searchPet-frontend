@@ -7,4 +7,16 @@ const header_variants = {
   },
 };
 
-export { header_variants };
+const show_header_initial_state_variants = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
+
+export { header_variants, show_header_initial_state_variants };

@@ -9,7 +9,10 @@ import Container from "@mui/material/Container";
 import { motion } from "framer-motion";
 import Box from "@mui/material/Box";
 import DesktopMenu from "./components/DesktopMenu/DesktopMenu";
-import { header_variants } from "./header.variants";
+import {
+  header_variants,
+  show_header_initial_state_variants,
+} from "./header.variants";
 
 const Header = ({ setshowMenuMobile, controls }) => {
   return (
@@ -25,7 +28,13 @@ const Header = ({ setshowMenuMobile, controls }) => {
         transform: { sm: `translateX(0)` },
       }}
     >
-      <Toolbar sx={{ padding: { xs: 0, sm: 0 } }}>
+      <Toolbar
+        sx={{ padding: { xs: 0, sm: 0 } }}
+        component={motion.div}
+        variants={show_header_initial_state_variants}
+        initial="hidden"
+        animate="show"
+      >
         <Container>
           <Box display="flex" alignItems="center">
             <IconButton
