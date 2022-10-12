@@ -14,7 +14,7 @@ const show_header_initial_state_variants = {
   show: {
     opacity: 1,
     transition: {
-      duration: 1,
+      duration: 1.5,
     },
   },
 };
