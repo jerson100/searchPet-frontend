@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { motion } from "framer-motion";
 
-const BannerSvgPetsStyle = styled("svg")`
+const BannerSvgPetsStyle = styled(motion.svg)`
   width: 260px;
   height: 260px;
   ${({
@@ -52,7 +53,7 @@ const BannerTextStyle = styled(Typography)`
   margin-bottom: 1em;
 `;
 
-const BannerContainerStyle = styled(Box)`
+const BannerContainerStyle = styled(motion.div)`
   min-height: calc(100vh - 57px);
   display: flex;
   align-items: center;
