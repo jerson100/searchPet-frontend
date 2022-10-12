@@ -22,6 +22,7 @@ const Banner = () => {
       variants={bannerContainerVariants}
       viewport={{
         once: true,
+        amount: 0.5,
       }}
     >
       <Container>

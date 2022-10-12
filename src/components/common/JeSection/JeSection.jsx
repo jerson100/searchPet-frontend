@@ -30,6 +30,7 @@ const JeSection = ({
               whileInView="show"
               viewport={{
                 once: true,
+                amount: 1,
               }}
             >
               {title}
