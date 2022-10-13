@@ -13,6 +13,7 @@ const JeSection = ({
   component = "section",
   maxWidth = "lg",
   children,
+  variantPaper,
   sx = { padding: { xs: "3rem 1rem", md: "5rem 1rem" } },
   ...props
 }) => {
@@ -20,6 +21,7 @@ const JeSection = ({
     <Paper
       component={component}
       sx={{ backgroundColor: backgroundColor, boxShadow: "none" }}
+      variant={variantPaper}
     >
       {/* <Box component={component} sx={sx}> */}
       <Container maxWidth={maxWidth} sx={sx} {...props}>
@@ -88,6 +90,7 @@ JeSection.Content = Content;
 
 JeSection.propTypes = {
   maxWidth: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
+  variant: PropTypes.oneOf(["outlined", "elevation", ""]),
 };
 
 export default JeSection;
