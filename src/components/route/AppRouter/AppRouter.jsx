@@ -19,6 +19,9 @@ import LostPetsView from "../../../views/public/LostPetsView";
 import LostPetView from "../../../views/public/LostPetView";
 import PetView from "../../../views/public/PetView";
 import UserProfileView from "../../../views/public/UserProfileView";
+import UserActivities from "../../../views/public/UserProfileView/components/UserActivities";
+import UserPets from "../../../views/public/UserProfileView/components/UserPets";
+import UserLostPets from "../../../views/public/UserProfileView/components/UserLostPets";
 
 const AppRouter = () => {
   return (
@@ -46,7 +49,12 @@ const AppRouter = () => {
           </Route>
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
-          <Route path="users/:idUser" element={<UserProfileView />} />
+          <Route path="users/:idUser" element={<UserProfileView />}>
+            <Route index element={<UserActivities />} />
+            <Route path="activities" element={<UserActivities />} />
+            <Route path="pets" element={<UserPets />} />
+            <Route path="lost-pets" element={<UserLostPets />} />
+          </Route>
           <Route path="configuration" element={<ConfigurationLayout />}>
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />

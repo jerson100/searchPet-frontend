@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -115,19 +116,31 @@ const UserProfileView = () => {
                     spacing={2}
                     sx={{ height: { xs: "50px", md: "75px" } }}
                   >
-                    <MenuItem sx={{ marginLeft: "0 !important" }}>
+                    <MenuItem
+                      sx={{ marginLeft: "0 !important" }}
+                      component={Link}
+                      to="activities"
+                    >
                       <ListItemIcon>
                         <AutoGraphIcon fontSize="small" />
                       </ListItemIcon>
                       Actividad
                     </MenuItem>
-                    <MenuItem sx={{ marginLeft: "0 !important" }}>
+                    <MenuItem
+                      sx={{ marginLeft: "0 !important" }}
+                      component={Link}
+                      to="pets"
+                    >
                       <ListItemIcon>
                         <PetsIcon fontSize="small" />
                       </ListItemIcon>{" "}
                       Mascotas
                     </MenuItem>
-                    <MenuItem sx={{ marginLeft: "0 !important" }}>
+                    <MenuItem
+                      sx={{ marginLeft: "0 !important" }}
+                      component={Link}
+                      to="lost-pets"
+                    >
                       <ListItemIcon>
                         <ManageSearchIcon fontSize="small" />
                       </ListItemIcon>{" "}
@@ -141,7 +154,7 @@ const UserProfileView = () => {
         </Container>
       </Box>
       <Container>
-        <Grid container mb={2}>
+        <Grid container mb={2} spacing={2}>
           <Grid item xs={12} md={4}>
             <JeSection
               backgroundColor={"background.paper"}
@@ -158,7 +171,18 @@ const UserProfileView = () => {
               </JeSection.Content>
             </JeSection>
           </Grid>
-          <Grid item xs={12} md={8}></Grid>
+          <Grid item xs={12} md={8}>
+            <JeSection
+              backgroundColor={"background.paper"}
+              variantPaper="outlined"
+              sx={{
+                minHeight: { xs: "200px", md: "250px" },
+                padding: { xs: 2, md: 2 },
+              }}
+            >
+              <Outlet />
+            </JeSection>
+          </Grid>
         </Grid>
       </Container>
     </>
@@ -171,7 +195,7 @@ const TooogleMobileMenu = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
   };
   return (
@@ -233,21 +257,21 @@ const TooogleMobileMenu = () => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
+        <MenuItem component={Link} to="activities">
           <ListItemIcon>
             <AutoGraphIcon fontSize="small" />
           </ListItemIcon>
           Actividad
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="pets">
           <ListItemIcon>
             <PetsIcon fontSize="small" />
           </ListItemIcon>{" "}
           Mascotas
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="lost-pets">
           <ListItemIcon>
-            <ManageSearchIcon fontSize="small" />
+            <ManageSearchIcon fontSize="small" to="lost-pets" />
           </ListItemIcon>{" "}
           Mascotas Perdidas
         </MenuItem>
