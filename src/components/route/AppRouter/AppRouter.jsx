@@ -8,7 +8,6 @@ import MainLayout from "../../layouts/MainLayout";
 import PublicRouter from "../../common/PublicRouter";
 import WeView from "../../../views/public/WeView";
 import TeamView from "../../../views/public/TeamView";
-import ProfileView from "../../../views/public/ProfileView";
 import ResetPasswordView from "../../../views/private/ResetPasswordView";
 import ConfigurationView from "../../../views/private/ConfigurationView";
 import ConfigurationLayout from "../../layouts/ConfigurationLayout";
@@ -19,6 +18,7 @@ import AddLostPetView from "../../../views/private/AddLostPetView";
 import LostPetsView from "../../../views/public/LostPetsView";
 import LostPetView from "../../../views/public/LostPetView";
 import PetView from "../../../views/public/PetView";
+import UserProfileView from "../../../views/public/UserProfileView";
 
 const AppRouter = () => {
   return (
@@ -46,7 +46,7 @@ const AppRouter = () => {
           </Route>
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
-          <Route path="users/:idUser" element={<ProfileView />} />
+          <Route path="users/:idUser" element={<UserProfileView />} />
           <Route path="configuration" element={<ConfigurationLayout />}>
             <Route index element={<ConfigurationView />} />
             <Route path="reset-password" element={<ResetPasswordView />} />
