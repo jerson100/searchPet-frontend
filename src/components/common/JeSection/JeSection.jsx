@@ -8,55 +8,81 @@ import { TitleStyle } from "./jeSection.style";
 import { variantsTitle, variantsContent } from "./jeSection.variants";
 
 const JeSection = ({
+  backgroundColor = "rgb(243, 242, 239)",
   component = "section",
-  title = "",
-  variantTitle = "h3",
   maxWidth = "lg",
   children,
+  sx = { padding: { xs: "3rem 0", md: "5rem 0" } },
+  ...props
 }) => {
   return (
-    <Paper sx={{ backgroundColor: "rgb(243, 242, 239)", boxShadow: "none" }}>
-      <Box
-        component={component}
-        sx={{ padding: { xs: "3rem 0", md: "5rem 0" } }}
-      >
-        <Container maxWidth={maxWidth}>
-          {title && (
-            <TitleStyle
-              component={motion.h1}
-              variants={variantsTitle}
-              variant={variantTitle}
-              initial="hidden"
-              whileInView="show"
-              viewport={{
-                once: true,
-                amount: 1,
-              }}
-            >
-              {title}
-            </TitleStyle>
-          )}
-          <Box
-            component={motion.div}
-            variants={variantsContent}
-            initial="hidden"
-            whileInView="show"
-            viewport={{
-              once: true,
-              amount: 0.5,
-            }}
-          >
-            {children}
-          </Box>
-        </Container>
-      </Box>
+    <Paper sx={{ backgroundColor: backgroundColor, boxShadow: "none" }}>
+      {/* <Box component={component} sx={sx}> */}
+      <Container maxWidth={maxWidth} sx={sx} {...props}>
+        {children}
+      </Container>
+      {/* </Box> */}
     </Paper>
   );
 };
 
+const Title = ({
+  component = motion.h1,
+  children,
+  variant = "h3",
+  mb = 2,
+  ...props
+}) => {
+  return (
+    <TitleStyle
+      component={typeof component === "string" ? motion[component] : component}
+      variants={variantsTitle}
+      variant={variant}
+      initial="hidden"
+      whileInView="show"
+      mb={mb}
+      viewport={{
+        once: true,
+        amount: 1,
+      }}
+      {...props}
+    >
+      {children}
+    </TitleStyle>
+  );
+};
+
+const Content = ({
+  component = motion.div,
+  children,
+  whileInView = "show",
+  initial = "hidden",
+  viewport = {
+    once: true,
+    amount: 0.5,
+  },
+  p = "0 1rem",
+  ...props
+}) => {
+  return (
+    <Box
+      component={typeof component === "string" ? motion[component] : component}
+      variants={variantsContent}
+      initial={initial}
+      whileInView={whileInView}
+      viewport={viewport}
+      p={p}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+};
+
+JeSection.Title = Title;
+JeSection.Content = Content;
+
 JeSection.propTypes = {
-  component: PropTypes.oneOf(["section", "div", "span"]),
-  title: PropTypes.string,
   maxWidth: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
 };
 
