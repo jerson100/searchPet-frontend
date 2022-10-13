@@ -17,7 +17,10 @@ const JeSection = ({
   ...props
 }) => {
   return (
-    <Paper sx={{ backgroundColor: backgroundColor, boxShadow: "none" }}>
+    <Paper
+      component={component}
+      sx={{ backgroundColor: backgroundColor, boxShadow: "none" }}
+    >
       {/* <Box component={component} sx={sx}> */}
       <Container maxWidth={maxWidth} sx={sx} {...props}>
         {children}
