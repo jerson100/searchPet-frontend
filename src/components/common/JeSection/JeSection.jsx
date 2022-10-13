@@ -4,15 +4,16 @@ import PropTypes from "prop-types";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { motion } from "framer-motion";
-import { TitleStyle } from "./jeSection.style";
+// import { TitleStyle } from "./jeSection.style";
 import { variantsTitle, variantsContent } from "./jeSection.variants";
+import { Typography } from "@mui/material";
 
 const JeSection = ({
   backgroundColor = "rgb(243, 242, 239)",
   component = "section",
   maxWidth = "lg",
   children,
-  sx = { padding: { xs: "3rem 0", md: "5rem 0" } },
+  sx = { padding: { xs: "3rem 1rem", md: "5rem 1rem" } },
   ...props
 }) => {
   return (
@@ -30,17 +31,19 @@ const Title = ({
   component = motion.h1,
   children,
   variant = "h3",
-  mb = 2,
+  textAlign = "center",
+  mb = 3,
   ...props
 }) => {
   return (
-    <TitleStyle
+    <Typography
       component={typeof component === "string" ? motion[component] : component}
       variants={variantsTitle}
       variant={variant}
       initial="hidden"
       whileInView="show"
       mb={mb}
+      textAlign={textAlign}
       viewport={{
         once: true,
         amount: 1,
@@ -48,7 +51,7 @@ const Title = ({
       {...props}
     >
       {children}
-    </TitleStyle>
+    </Typography>
   );
 };
 
@@ -61,7 +64,6 @@ const Content = ({
     once: true,
     amount: 0.5,
   },
-  p = "0 1rem",
   ...props
 }) => {
   return (
@@ -71,7 +73,6 @@ const Content = ({
       initial={initial}
       whileInView={whileInView}
       viewport={viewport}
-      p={p}
       {...props}
     >
       {children}
