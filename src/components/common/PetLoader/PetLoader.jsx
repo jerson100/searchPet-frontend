@@ -1,15 +1,19 @@
-import { Box } from "@mui/material";
 import React from "react";
+import ReactDOM from "react-dom";
+import { Box } from "@mui/material";
 import "./petLoader.css";
 
 const PerLoader = () => {
-  return (
+  return ReactDOM.createPortal(
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        position: "fixed",
+        top: "0",
+        left: "0",
         minHeight: "100vh",
       }}
     >
@@ -79,7 +83,8 @@ const PerLoader = () => {
           </div>
         </div>
       </div>
-    </Box>
+    </Box>,
+    document.body
   );
 };
 

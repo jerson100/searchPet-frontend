@@ -1,15 +1,22 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Box } from "@mui/material";
 import "./catLoader.css";
 
 const CatLoader = () => {
-  return (
+  return ReactDOM.createPortal(
     <Box
       sx={{
         minHeight: "100vh",
         width: "100%",
         overflow: "hidden",
         background: "#1F1F3C",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        zIndex: (theme) => {
+          return theme.zIndex.tooltip + 1;
+        },
       }}
     >
       <div className="all-wrap">
@@ -137,7 +144,8 @@ const CatLoader = () => {
           </div>
         </div>
       </div>
-    </Box>
+    </Box>,
+    window.document.body
   );
 };
 
