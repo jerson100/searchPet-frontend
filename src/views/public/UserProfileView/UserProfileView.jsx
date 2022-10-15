@@ -36,7 +36,7 @@ const UserProfileView = () => {
   return (
     <>
       <Header
-        loadingGetUser={loadingGetUser}
+        loadingGetUser={true}
         urlImageProfile={us?.urlImageProfile}
         name={`${us?.name} ${us?.paternalSurname} ${us?.maternalSurname}`}
       />

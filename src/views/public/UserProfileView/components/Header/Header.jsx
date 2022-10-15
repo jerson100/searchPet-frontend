@@ -20,9 +20,13 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
   } = useTheme();
   const isMobile = useMediaQuery(down("sm"));
   return (
-    <Box borderBottom={(theme) => `solid 1px ${theme.palette.divider}`} mb={3}>
+    <>
       <Banner loadingGetUser={loadingGetUser} />
-      <Box bgcolor="background.paper">
+      <Box
+        bgcolor="background.paper"
+        borderBottom={(theme) => `solid 1px ${theme.palette.divider}`}
+        mb={3}
+      >
         <Container>
           <Box
             sx={{
@@ -78,7 +82,7 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
           </Box>
         </Container>
       </Box>
-    </Box>
+    </>
   );
 };
 
