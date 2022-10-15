@@ -19,9 +19,9 @@ import LostPetsView from "../../../views/public/LostPetsView";
 import LostPetView from "../../../views/public/LostPetView";
 import PetView from "../../../views/public/PetView";
 import UserProfileView from "../../../views/public/UserProfileView";
-import UserActivities from "../../../views/public/UserProfileView/components/UserActivities";
 import UserPets from "../../../views/public/UserProfileView/components/UserPets";
 import UserLostPets from "../../../views/public/UserProfileView/components/UserLostPets";
+import UsActivities from "../../../views/public/UserProfileView/components/UsActivities";
 
 const AppRouter = () => {
   return (
@@ -50,8 +50,8 @@ const AppRouter = () => {
           <Route path="we" element={<WeView />} />
           <Route path="team" element={<TeamView />} />
           <Route path="users/:idUser" element={<UserProfileView />}>
-            <Route index element={<UserActivities />} />
-            <Route path="activities" element={<UserActivities />} />
+            <Route index element={<UsActivities />} />
+            <Route path="activities" element={<UsActivities />} />
             <Route path="pets" element={<UserPets />} />
             <Route path="lost-pets" element={<UserLostPets />} />
           </Route>
