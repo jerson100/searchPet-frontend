@@ -20,9 +20,9 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
   } = useTheme();
   const isMobile = useMediaQuery(down("sm"));
   return (
-    <>
+    <Box borderBottom={(theme) => `solid 1px ${theme.palette.divider}`} mb={3}>
       <Banner loadingGetUser={loadingGetUser} />
-      <Box bgcolor="background.paper" sx={{ zIndex: "1" }} mb={2}>
+      <Box bgcolor="background.paper">
         <Container>
           <Box
             sx={{
@@ -59,6 +59,7 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
                         whiteSpace: "nowrap",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
+                        zIndex: "1",
                       }}
                     >
                       Jerson Omar Ramírez Ortiz
@@ -77,7 +78,7 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
           </Box>
         </Container>
       </Box>
-    </>
+    </Box>
   );
 };
 

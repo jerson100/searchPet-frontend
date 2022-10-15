@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { Container, Grid, Skeleton } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import JeSection from "../../../components/common/JeSection";
 import Information from "./components/Information";
 import Header from "./components/Header/Header";
@@ -41,7 +41,7 @@ const UserProfileView = () => {
         name={`${us?.name} ${us?.paternalSurname} ${us?.maternalSurname}`}
       />
       <Container>
-        <Grid container mb={2} spacing={2}>
+        <Grid container mb={3} spacing={2}>
           <Grid item xs={12} md={4}>
             <Information
               loadingGetUser={loadingGetUser}
