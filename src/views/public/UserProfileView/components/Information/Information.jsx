@@ -104,9 +104,7 @@ const Information = ({
                 )}
               </Stack>
             </InformationRow>
-            <InformationRow description="Location:">
-              <LocationInformation location={location} />
-            </InformationRow>
+            <LocationInformation location={location} />
           </JeSection.Content>
         </>
       )}
