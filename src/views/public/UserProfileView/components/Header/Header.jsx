@@ -10,11 +10,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import SecurityIcon from "@mui/icons-material/Security";
 import MobileNavigation from "../MobileNavigation";
 import DesktopNavigation from "../DesktopNavigation";
 import Banner from "../Banner";
 
-const Header = ({ loadingGetUser, name, urlImageProfile }) => {
+const Header = ({ loadingGetUser, name, urlImageProfile, typeUser }) => {
   const {
     breakpoints: { down },
   } = useTheme();
@@ -35,12 +36,22 @@ const Header = ({ loadingGetUser, name, urlImageProfile }) => {
             }}
           >
             <Grid container flexWrap="nowrap">
-              <Grid item>
+              <Grid item sx={{ position: "relative" }}>
                 <ImageProfile
                   loadingGetUser={loadingGetUser}
                   name={name}
                   urlImageProfile={urlImageProfile}
                 />
+                {!loadingGetUser && typeUser === "administrator" && (
+                  <SecurityIcon
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      fill: "white",
+                    }}
+                  />
+                )}
               </Grid>
               <Grid item flexBasis={0} flexGrow={1} overflow="hidden">
                 <Box

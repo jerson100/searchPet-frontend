@@ -36,8 +36,9 @@ const UserProfileView = () => {
   return (
     <>
       <Header
-        loadingGetUser={true}
+        loadingGetUser={loadingGetUser}
         urlImageProfile={us?.urlImageProfile}
+        typeUser={us?.typeUser}
         name={`${us?.name} ${us?.paternalSurname} ${us?.maternalSurname}`}
       />
       <Container>
@@ -55,6 +56,7 @@ const UserProfileView = () => {
               updatedAt={us?.updatedAt}
               urlImageProfile={us?.urlImageProfile}
               username={us?.username}
+              socialNetWorks={us?.socialNetWorks}
             />
           </Grid>
           {!loadingGetUser && (

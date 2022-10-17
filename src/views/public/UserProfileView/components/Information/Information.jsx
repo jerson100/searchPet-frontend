@@ -1,7 +1,18 @@
-import { Grid, Skeleton, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import React, { useMemo } from "react";
+import {
+  Grid,
+  IconButton,
+  Skeleton,
+  Stack,
+  Typography,
+  Link,
+} from "@mui/material";
+import { Box } from "@mui/system";
 import JeSection from "../../../../../components/common/JeSection";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Information = ({
   loadingGetUser,
@@ -14,6 +25,7 @@ const Information = ({
   typeUser,
   updatedAt,
   username,
+  socialNetWorks,
 }) => {
   const formatedDate = useMemo(() => {
     if (!createdAt) return;
@@ -44,8 +56,52 @@ const Information = ({
             Información
           </JeSection.Title>
           <JeSection.Content>
-            <InformationRow description="Username:" value={username} />
-            <InformationRow description="Desde:" value={formatedDate} />
+            <InformationRow description="Username:">
+              <Typography paragraph mb={0}>
+                {username}
+              </Typography>
+            </InformationRow>
+            <InformationRow description="Desde:">
+              <Typography paragraph mb={0}>
+                {formatedDate}
+              </Typography>
+            </InformationRow>
+            <InformationRow description="Social:">
+              <Stack direction={"row"}>
+                {socialNetWorks?.facebook && (
+                  <IconButton
+                    LinkComponent={Link}
+                    href={socialNetWorks.facebook}
+                  >
+                    <FacebookIcon />
+                  </IconButton>
+                )}
+                {socialNetWorks?.twitter && (
+                  <IconButton
+                    LinkComponent={Link}
+                    href={socialNetWorks.twitter}
+                  >
+                    <TwitterIcon />
+                  </IconButton>
+                )}
+                {socialNetWorks?.instagram && (
+                  <IconButton
+                    LinkComponent={Link}
+                    href={socialNetWorks.instagram}
+                  >
+                    <InstagramIcon />
+                  </IconButton>
+                )}
+                {socialNetWorks?.whatsapp && (
+                  <IconButton
+                    LinkComponent={Link}
+                    href={socialNetWorks.whatsapp}
+                  >
+                    <WhatsAppIcon />
+                  </IconButton>
+                )}
+              </Stack>
+            </InformationRow>
           </JeSection.Content>
         </>
       )}
@@ -53,7 +109,7 @@ const Information = ({
   );
 };
 
-const InformationRow = ({ description, value }) => {
+const InformationRow = ({ description, children }) => {
   return (
     <Grid container mb={1}>
       <Grid item xs={4}>
@@ -62,9 +118,7 @@ const InformationRow = ({ description, value }) => {
         </Typography>
       </Grid>
       <Grid item xs={8}>
-        <Typography paragraph mb={0}>
-          {value}
-        </Typography>
+        {children}
       </Grid>
     </Grid>
   );
