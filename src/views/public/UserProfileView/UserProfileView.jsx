@@ -6,6 +6,7 @@ import Information from "./components/Information";
 import Header from "./components/Header/Header";
 import useAxios from "axios-hooks";
 import ErrorPage from "../../../components/common/ErrorPage";
+import { Helmet } from "react-helmet";
 
 const UserProfileView = () => {
   const { idUser } = useParams();
@@ -35,6 +36,10 @@ const UserProfileView = () => {
 
   return (
     <>
+      <Helmet>
+        {us && <meta name="description" content={us.username} />}
+        <title>{us ? `${us.username} | SPet` : "Loading..."}</title>
+      </Helmet>
       <Header
         loadingGetUser={loadingGetUser}
         urlImageProfile={us?.urlImageProfile}
