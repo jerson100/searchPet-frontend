@@ -57,6 +57,7 @@ const UserProfileView = () => {
               urlImageProfile={us?.urlImageProfile}
               username={us?.username}
               socialNetWorks={us?.socialNetWorks}
+              location={us?.location}
             />
           </Grid>
           {!loadingGetUser && (

@@ -13,6 +13,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import LocationInformation from "../LocationInformation";
 
 const Information = ({
   loadingGetUser,
@@ -26,6 +27,7 @@ const Information = ({
   updatedAt,
   username,
   socialNetWorks,
+  location,
 }) => {
   const formatedDate = useMemo(() => {
     if (!createdAt) return;
@@ -101,6 +103,9 @@ const Information = ({
                   </IconButton>
                 )}
               </Stack>
+            </InformationRow>
+            <InformationRow description="Location:">
+              <LocationInformation location={location} />
             </InformationRow>
           </JeSection.Content>
         </>
