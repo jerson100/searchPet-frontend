@@ -75,7 +75,7 @@ const UserProfileView = () => {
                   padding: { xs: 2, md: 2 },
                 }}
               >
-                <Outlet />
+                <Outlet context={{ idUser: idUser }} />
               </JeSection>
             </Grid>
           )}

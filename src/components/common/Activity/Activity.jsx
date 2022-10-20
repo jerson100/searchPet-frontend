@@ -82,7 +82,7 @@ const ActivityWrapper = ({ Icon, Header, description, to }) => {
         secondary={
           description && (
             <Typography variant="caption" color={"text.secondary"}>
-              <LinesEllipsis maxLine={2} text={`${description}`} />
+              {description}
             </Typography>
           )
         }

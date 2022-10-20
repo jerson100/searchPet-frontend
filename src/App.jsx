@@ -1,3 +1,4 @@
+import React from "react";
 import AppRouter from "./components/route/AppRouter/AppRouter";
 import ThemeProvider from "@mui/system/ThemeProvider";
 import { createTheme, responsiveFontSizes } from "@mui/material";
