@@ -1,19 +1,10 @@
 import React, { useMemo } from "react";
-import {
-  Grid,
-  IconButton,
-  Skeleton,
-  Stack,
-  Typography,
-  Link,
-} from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import JeSection from "../../../../../components/common/JeSection";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LocationInformation from "../LocationInformation";
+import InformationRow from "../InformationRow";
+import SocialNetworkInformation from "../SocialNetworkInformation";
 
 const Information = ({
   loadingGetUser,
@@ -69,61 +60,13 @@ const Information = ({
               </Typography>
             </InformationRow>
             <InformationRow description="Social:">
-              <Stack direction={"row"}>
-                {socialNetWorks?.facebook && (
-                  <IconButton
-                    LinkComponent={Link}
-                    href={socialNetWorks.facebook}
-                  >
-                    <FacebookIcon />
-                  </IconButton>
-                )}
-                {socialNetWorks?.twitter && (
-                  <IconButton
-                    LinkComponent={Link}
-                    href={socialNetWorks.twitter}
-                  >
-                    <TwitterIcon />
-                  </IconButton>
-                )}
-                {socialNetWorks?.instagram && (
-                  <IconButton
-                    LinkComponent={Link}
-                    href={socialNetWorks.instagram}
-                  >
-                    <InstagramIcon />
-                  </IconButton>
-                )}
-                {socialNetWorks?.whatsapp && (
-                  <IconButton
-                    LinkComponent={Link}
-                    href={socialNetWorks.whatsapp}
-                  >
-                    <WhatsAppIcon />
-                  </IconButton>
-                )}
-              </Stack>
+              <SocialNetworkInformation socialNetWorks={socialNetWorks} />
             </InformationRow>
             <LocationInformation location={location} />
           </JeSection.Content>
         </>
       )}
     </JeSection>
-  );
-};
-
-const InformationRow = ({ description, children }) => {
-  return (
-    <Grid container mb={1}>
-      <Grid item xs={4}>
-        <Typography variant="body1" component="p">
-          {description}
-        </Typography>
-      </Grid>
-      <Grid item xs={8}>
-        {children}
-      </Grid>
-    </Grid>
   );
 };
 
