@@ -19,9 +19,9 @@ import LostPetsView from "../../../views/public/LostPetsView";
 import LostPetView from "../../../views/public/LostPetView";
 import PetView from "../../../views/public/PetView";
 import UserProfileView from "../../../views/public/UserProfileView";
-import UserPets from "../../../views/public/UserProfileView/components/UserPets";
-import UserLostPets from "../../../views/public/UserProfileView/components/UserLostPets";
-import UsActivities from "../../../views/public/UserProfileView/components/UsActivities";
+import UserPets from "../../../views/public/UserProfileView/views/UserPets";
+import UserLostPets from "../../../views/public/UserProfileView/views/UserLostPets";
+import UsActivities from "../../../views/public/UserProfileView/views/UsActivities";
 
 const AppRouter = () => {
   return (
