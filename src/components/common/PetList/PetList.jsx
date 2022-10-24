@@ -15,8 +15,12 @@ const PetList = React.memo(
     page,
     handleNext,
   }) => {
+    console.log(bordered);
     return (
-      <PetListContainerStyle component={component} bordered={bordered}>
+      <PetListContainerStyle
+        component={component}
+        bordered={bordered ? "true" : "false"}
+      >
         {title && (
           <Typography variant="h4" component="h1" mb={2}>
             Lista de mascotas

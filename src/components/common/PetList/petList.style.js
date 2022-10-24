@@ -6,10 +6,10 @@ const PetListContainerStyle = styled(Paper)`
   padding: 2;
   min-height: 200px;
   padding: ${({ theme }) => theme.spacing(2)};
-  ${({ bordered }) =>
-    bordered &&
+  ${({ bordered, theme: { palette } }) =>
+    bordered === "true" &&
     `
-    border: solid 1px ${({ theme: { palette } }) => palette.divider};
+    border: solid 1px ${palette.divider};
   `}
 `;
 
