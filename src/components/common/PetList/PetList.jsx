@@ -15,7 +15,6 @@ const PetList = React.memo(
     page,
     handleNext,
   }) => {
-    console.log(bordered);
     return (
       <PetListContainerStyle
         component={component}

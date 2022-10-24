@@ -4,7 +4,6 @@ import { MapContainer, TileLayer } from "react-leaflet";
 const LocationInformation = ({ location }) => {
   if (!location?.latitud || !location?.longitud) return null;
   const { latitud, longitud } = location;
-  console.log(location);
   return (
     <MapContainer
       center={[latitud, longitud]}
