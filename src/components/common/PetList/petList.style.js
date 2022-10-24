@@ -3,7 +3,6 @@ import styled from "@mui/system/styled";
 
 const PetListContainerStyle = styled(Paper)`
   box-shadow: none;
-  padding: 2;
   min-height: 200px;
   padding: ${({ theme }) => theme.spacing(2)};
   ${({ bordered, theme: { palette } }) =>

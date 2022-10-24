@@ -14,6 +14,7 @@ const PetList = React.memo(
     loading,
     page,
     handleNext,
+    ...props
   }) => {
     if (!pets?.length)
       return (
@@ -23,6 +24,7 @@ const PetList = React.memo(
       <PetListContainerStyle
         component={component}
         bordered={bordered ? "true" : "false"}
+        {...props}
       >
         {title && (
           <Typography variant="h4" component="h1" mb={2}>

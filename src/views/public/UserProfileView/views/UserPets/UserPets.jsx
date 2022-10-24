@@ -29,6 +29,7 @@ const UserPets = () => {
           page={page}
           isNext={isNext}
           handleNext={handleNext}
+          sx={{ p: 0 }}
         />
       )}
     </>
