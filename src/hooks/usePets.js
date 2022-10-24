@@ -1,10 +1,12 @@
+import { useCallback, useEffect, useState } from "react";
 import useAxios from "axios-hooks";
-import { useEffect, useState } from "react";
 
-const usePets = (typePet, page, length = 2) => {
+const usePets = (path, typePet, _page = 1, _length = 2) => {
   const [loading, setLoadingPets] = useState(true);
   const [pets, setpets] = useState([]);
   const [isNext, setIsNext] = useState(false);
+  const [page, setPage] = useState(_page);
+  const [length, setLength] = useState(_length);
 
   const [, getPets] = useAxios(
     {
@@ -22,7 +24,7 @@ const usePets = (typePet, page, length = 2) => {
       try {
         const data = await getPets(
           {
-            url: `/pets/?page=${page}&length=${length}${
+            url: `${path}/?page=${page}&length=${length}${
               typePet ? `&typepet=${typePet}` : ""
             }`,
             signal: controller.signal,
@@ -51,10 +53,23 @@ const usePets = (typePet, page, length = 2) => {
     };
   }, [typePet, getPets, page, length]);
 
+  const handleNext = useCallback(() => {
+    setPage((prev) => prev + 1);
+  }, []);
+
+  const handlePrevious = useCallback(() => {
+    setPage((prev) => prev - 1);
+  }, []);
+
   return {
     loading,
     pets,
     isNext,
+    handleNext,
+    handlePrevious,
+    setLength,
+    setPage,
+    page,
   };
 };
 
