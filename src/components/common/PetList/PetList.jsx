@@ -3,36 +3,28 @@ import { Grid, Typography, Box } from "@mui/material";
 import PetListItem from "../PetListItem";
 import { PetListContainerStyle } from "./petList.style";
 import { LoadingButton } from "@mui/lab";
-import { usePets } from "../../../hooks/usePets";
 
-const PetList = ({ typePet, page, handleNextPage }) => {
-  const { isNext, loading, pets } = usePets(typePet, page);
+const PetList = React.memo(({ isNext, pets, loading, page, handleNext }) => {
   return (
     <PetListContainerStyle component={"section"}>
       <Typography variant="h4" component="h1" mb={2}>
         Lista de mascotas
       </Typography>
-      {page === 1 && loading ? (
-        <PetListLoading />
-      ) : (
-        <>
-          <GridPets pets={pets} />
-          {isNext && (
-            <Box display="flex" justifyContent={"center"}>
-              <LoadingButton
-                loading={page > 1 && loading}
-                onClick={handleNextPage}
-                variant="contained"
-              >
-                Ver más
-              </LoadingButton>
-            </Box>
-          )}
-        </>
+      <GridPets pets={pets} />
+      {isNext && (
+        <Box display="flex" justifyContent={"center"}>
+          <LoadingButton
+            loading={page > 1 && loading}
+            onClick={handleNext}
+            variant="contained"
+          >
+            Ver más
+          </LoadingButton>
+        </Box>
       )}
     </PetListContainerStyle>
   );
-};
+});
 
 const GridPets = React.memo(({ pets }) => {
   return (
@@ -68,4 +60,6 @@ const PetListLoading = () => {
   );
 };
 
-export default React.memo(PetList);
+PetList.Loading = PetListLoading;
+
+export default PetList;

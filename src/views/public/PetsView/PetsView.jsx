@@ -1,30 +1,40 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import useAxios from "axios-hooks";
 import { Container, Grid } from "@mui/material";
 import PetList from "../../../components/common/PetList";
 import Filter from "./components/Filter";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { usePets } from "../../../hooks/usePets";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const PetsView = () => {
   const [params, setParams] = useSearchParams();
+  const { user } = useAuthContext();
   const [typePet, settypePet] = useState(params.get("typepet"));
-  const [page, setPage] = useState(1);
-
   const [{ data: responseTypePets, loading: loadingTypePets }] = useAxios({
     url: "/typePets",
   });
+
+  const {
+    isNext,
+    loading: loadingGetPets,
+    pets,
+    handleNext,
+    setPage,
+    page,
+  } = usePets(`/pets`, typePet, 1, 2);
+
+  const handleSubmit = useCallback((values) => {
+    setPage(1);
+    settypePet(values.typepet);
+  }, []);
 
   useEffect(() => {
     const queryP = {};
     if (typePet) queryP.typepet = typePet;
     setParams(queryP, { replace: true });
   }, [typePet, setParams]);
-
-  const handleNextPage = useCallback(() => {
-    setPage((p) => p + 1);
-  }, [setPage]);
 
   return (
     <>
@@ -49,16 +59,22 @@ const PetsView = () => {
               loadingTypePets={loadingTypePets}
               typePets={responseTypePets}
               typePet={typePet}
-              settypePet={settypePet}
-              setPage={setPage}
+              handleSubmit={handleSubmit}
             />
           </Grid>
           <Grid item xs={12} md={8}>
-            <PetList
-              typePet={typePet}
-              page={page}
-              handleNextPage={handleNextPage}
-            />
+            {page === 1 && loadingGetPets ? (
+              <PetList.Loading />
+            ) : (
+              <PetList
+                isNext={isNext}
+                loading={loadingGetPets}
+                pets={pets}
+                typePet={typePet}
+                page={page}
+                handleNext={handleNext}
+              />
+            )}
           </Grid>
         </Grid>
       </Container>
