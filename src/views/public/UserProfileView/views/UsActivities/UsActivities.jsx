@@ -2,9 +2,9 @@ import React from "react";
 import JeSection from "../../../../../components/common/JeSection";
 import useAxios from "axios-hooks";
 import { useOutletContext } from "react-router-dom";
-import { List, Typography } from "@mui/material";
-import Activity from "../../../../../components/common/Activity/Activity";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import ActivityTimeLine from "../../../../../components/common/ActivityTimeLine";
 
 const UsActivities = () => {
   const { idUser } = useOutletContext();
@@ -24,27 +24,31 @@ const UsActivities = () => {
       </JeSection.Title>
       {loading ? (
         <>
-          <Activity.Loading />
-          <Activity.Loading width="180px" />
-          <Activity.Loading width="130px" />
-          <Activity.Loading width="190px" />
-          <Activity.Loading width="100px" />
+          <ActivityTimeLine.Loading />
+          <ActivityTimeLine.Loading width="180px" />
+          <ActivityTimeLine.Loading width="130px" />
+          <ActivityTimeLine.Loading width="190px" />
+          <ActivityTimeLine.Loading width="100px" />
         </>
       ) : !error ? (
-        <List>
-          {data.map(({ _id, action, doc, createdAt, model, status }) => (
-            <Activity
-              component="li"
-              key={_id}
-              model={model}
-              action={action}
-              doc={doc}
-              status={status}
-              createdAt={createdAt}
-            />
-          ))}
-        </List>
+        <ActivityTimeLine activities={data} />
       ) : (
+        // <List>
+        //   {data.map(
+        //     ({ _id, action, doc, createdAt, model, status, description }) => (
+        //       <Activity
+        //         component="li"
+        //         key={_id}
+        //         model={model}
+        //         action={action}
+        //         doc={doc}
+        //         status={status}
+        //         createdAt={createdAt}
+        //         description={description}
+        //       />
+        //     )
+        //   )}
+        // </List>
         <Typography paragraph>
           Ocurrió un error, vuelva a intentarlo nuevamente más tarde
         </Typography>
