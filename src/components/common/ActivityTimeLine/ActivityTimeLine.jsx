@@ -13,6 +13,10 @@ import PetsIcon from "@mui/icons-material/Pets";
 import { getDate } from "../../../assets/js/date";
 
 const ActivityTimeLine = ({ activities }) => {
+  if (!activities.length)
+    return (
+      <Typography paragraph>Aún no ha realizado ninguna actividad</Typography>
+    );
   return (
     <Timeline position="alternate" sx={{ p: 0 }}>
       {activities?.map(

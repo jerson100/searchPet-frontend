@@ -15,6 +15,10 @@ const PetList = React.memo(
     page,
     handleNext,
   }) => {
+    if (!pets?.length)
+      return (
+        <Typography paragraph>Aún no a registrado ninguna mascotas</Typography>
+      );
     return (
       <PetListContainerStyle
         component={component}
