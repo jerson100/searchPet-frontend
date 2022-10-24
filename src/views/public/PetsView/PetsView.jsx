@@ -67,6 +67,8 @@ const PetsView = () => {
               <PetList.Loading />
             ) : (
               <PetList
+                component="section"
+                title="Lista de Mascotas"
                 isNext={isNext}
                 loading={loadingGetPets}
                 pets={pets}

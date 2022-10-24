@@ -4,27 +4,40 @@ import PetListItem from "../PetListItem";
 import { PetListContainerStyle } from "./petList.style";
 import { LoadingButton } from "@mui/lab";
 
-const PetList = React.memo(({ isNext, pets, loading, page, handleNext }) => {
-  return (
-    <PetListContainerStyle component={"section"}>
-      <Typography variant="h4" component="h1" mb={2}>
-        Lista de mascotas
-      </Typography>
-      <GridPets pets={pets} />
-      {isNext && (
-        <Box display="flex" justifyContent={"center"}>
-          <LoadingButton
-            loading={page > 1 && loading}
-            onClick={handleNext}
-            variant="contained"
-          >
-            Ver más
-          </LoadingButton>
-        </Box>
-      )}
-    </PetListContainerStyle>
-  );
-});
+const PetList = React.memo(
+  ({
+    component = "section",
+    bordered = true,
+    title,
+    isNext,
+    pets,
+    loading,
+    page,
+    handleNext,
+  }) => {
+    return (
+      <PetListContainerStyle component={component} bordered={bordered}>
+        {title && (
+          <Typography variant="h4" component="h1" mb={2}>
+            Lista de mascotas
+          </Typography>
+        )}
+        <GridPets pets={pets} />
+        {isNext && (
+          <Box display="flex" justifyContent={"center"}>
+            <LoadingButton
+              loading={page > 1 && loading}
+              onClick={handleNext}
+              variant="contained"
+            >
+              Ver más
+            </LoadingButton>
+          </Box>
+        )}
+      </PetListContainerStyle>
+    );
+  }
+);
 
 const GridPets = React.memo(({ pets }) => {
   return (
