@@ -22,7 +22,7 @@ const UsActivities = () => {
       <JeSection.Title textAlign="left" variant="h5">
         Actividad
       </JeSection.Title>
-      {true ? (
+      {loading ? (
         <>
           <Activity.Loading />
           <Activity.Loading width="180px" />
