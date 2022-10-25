@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useMyLocationGps = () => {
   const [location, setlocation] = useState(null);
   useEffect(() => {
-    const id = navigator?.geolocation.watchPosition(
+    const id = navigator?.geolocation.getCurrentPosition(
       ({ coords: { latitude: lat, longitude: lng } }) => {
         setlocation({
           lat,
@@ -18,7 +18,7 @@ const useMyLocationGps = () => {
       }
     );
     return () => {
-      navigator.geolocation.clearWatch(id);
+      //   navigator.geolocation.clearWatch(id);
     };
   }, [setlocation]);
   return { location };
