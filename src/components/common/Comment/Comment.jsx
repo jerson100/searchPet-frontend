@@ -1,5 +1,6 @@
 import React from "react";
-import { Avatar, Grid, Skeleton, Typography } from "@mui/material";
+import { Link as LinkRouter } from "react-router-dom";
+import { Avatar, Grid, Link, Skeleton, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
@@ -61,13 +62,22 @@ const Comment = ({
       variants={animate && variants}
     >
       <Grid item pr={2}>
-        <Avatar alt={user.username} src={user.urlImageProfile} />
+        <Link component={LinkRouter} to={`/users/${user._id}`}>
+          <Avatar alt={user.username} src={user.urlImageProfile} />
+        </Link>
       </Grid>
       <Grid item container flexDirection={"column"}>
         <Grid item mb={1} container justifyContent={"space-between"}>
           <Grid item>
             <Typography variant="body1" component="p">
-              {user.username}
+              <Link
+                component={LinkRouter}
+                to={`/users/${user._id}`}
+                underline="hover"
+                color="text.primary"
+              >
+                {user.username}
+              </Link>
             </Typography>
             <Typography component="span" variant="caption">
               {getTweetPublicationDate(new Date(createdAt))}
