@@ -72,7 +72,6 @@ const PetsView = () => {
                 isNext={isNext}
                 loading={loadingGetPets}
                 pets={pets}
-                typePet={typePet}
                 page={page}
                 handleNext={handleNext}
               />
