@@ -84,7 +84,6 @@ const AuthProvider = ({ children }) => {
           url: "/auth/login/google",
           params: { token: token },
         });
-        console.log(data.data);
         setuser(data.data);
         setisLogued(true);
         AUTH_TOKEN.add(data.data.accessToken);
