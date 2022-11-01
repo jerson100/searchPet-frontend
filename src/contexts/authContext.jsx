@@ -18,12 +18,6 @@ const AuthProvider = ({ children }) => {
     { manual: true }
   );
 
-  const [{ loading: loadingGoogle }, executeGoogle] = useAxios(
-    {
-      method: "POST",
-    },
-    { manual: true }
-  );
   const [previousLoading, setpreviousLoading] = useState(true);
   const [, executePreviousLoading] = useAxios(
     {
@@ -80,7 +74,7 @@ const AuthProvider = ({ children }) => {
   const loginWithGoogle = useCallback(
     async (token) => {
       try {
-        const data = await executeGoogle({
+        const data = await execute({
           url: "/auth/login/google",
           params: { token: token },
         });
@@ -93,7 +87,26 @@ const AuthProvider = ({ children }) => {
         }
       }
     },
-    [executeGoogle]
+    [execute]
+  );
+
+  const loginWithFacebook = useCallback(
+    async (email, name, urlImageProfile) => {
+      try {
+        const data = await execute({
+          url: "/auth/login/facebook",
+          data: { email, name, urlImageProfile },
+        });
+        setuser(data.data);
+        setisLogued(true);
+        AUTH_TOKEN.add(data.data.accessToken);
+      } catch (e) {
+        if (e.status) {
+          enqueueSnackbar(e.message, { variant: "error" });
+        }
+      }
+    },
+    [execute]
   );
 
   const logout = useCallback(() => {
@@ -112,7 +125,7 @@ const AuthProvider = ({ children }) => {
         logout,
         previousLoading,
         loginWithGoogle,
-        loadingGoogle,
+        loginWithFacebook,
       }}
     >
       {children}
