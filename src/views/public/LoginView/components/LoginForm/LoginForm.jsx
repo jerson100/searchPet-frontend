@@ -14,6 +14,8 @@ import { useSnackbar } from "notistack";
 import SaveIcon from "@mui/icons-material/Save";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import { Link as LinkRouter } from "react-router-dom";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { Divider } from "@mui/material";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +23,8 @@ const LoginForm = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const { login, loadingLogin } = useAuthContext();
+  const { login, loadingLogin, loadingGoogle, loginWithGoogle } =
+    useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,16 +117,32 @@ const LoginForm = () => {
             Password
           </InputLabel>
         </FormControl>
-        <Box display={"flex"} justifyContent="flex-end" marginBottom={"2rem"}>
+        <Box display={"flex"} justifyContent="flex-end" marginBottom={"1rem"}>
           <LoadingButton
             type="submit"
             variant="contained"
-            loading={loadingLogin}
+            loading={loadingLogin || loadingGoogle}
             startIcon={<SaveIcon />}
             loadingPosition="start"
           >
             Acceder
           </LoadingButton>
+        </Box>
+        <Divider variant="fullWidth" sx={{ mb: 2 }}>
+          Or
+        </Divider>
+        <Box mb={2}>
+          <GoogleOAuthProvider clientId="648562013557-ecpcp805rmr4re7dpv5uujocs8uv7gi3.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                await loginWithGoogle(credentialResponse.credential);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              shape="square"
+            />
+          </GoogleOAuthProvider>
         </Box>
         <Box display={"flex"} flexDirection="column" alignItems={"center"}>
           <Typography variant="body1" marginBottom={2}>
