@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import People from "@mui/icons-material/People";
 import { useSnackbar } from "notistack";
-import SaveIcon from "@mui/icons-material/Save";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import { Link as LinkRouter } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
@@ -115,13 +114,13 @@ const LoginForm = () => {
             Password
           </InputLabel>
         </FormControl>
-        <Box display={"flex"} justifyContent="flex-end" marginBottom={"1rem"}>
+        <Box mb={2}>
           <LoadingButton
             type="submit"
             variant="contained"
             loading={loadingLogin || loadingGoogle}
-            startIcon={<SaveIcon />}
             loadingPosition="start"
+            fullWidth
           >
             Acceder
           </LoadingButton>
