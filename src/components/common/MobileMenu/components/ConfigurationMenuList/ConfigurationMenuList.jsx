@@ -27,7 +27,7 @@ const ConfigurationMenuList = () => {
             </ListSubheader>
           }
         >
-          <ListItemButton to={`/profile/${user.user._id}`} component={Link}>
+          <ListItemButton to={`/users/${user.user._id}`} component={Link}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
