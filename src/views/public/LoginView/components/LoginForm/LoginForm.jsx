@@ -128,7 +128,7 @@ const LoginForm = () => {
           Or
         </Divider>
         <GoogleButtonContainerStyle mb={2}>
-          <GoogleOAuthProvider clientId="648562013557-ecpcp805rmr4re7dpv5uujocs8uv7gi3.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
             <GoogleLogin
               width="250px"
               onSuccess={async (credentialResponse) => {
