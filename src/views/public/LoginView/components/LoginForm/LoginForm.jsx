@@ -119,7 +119,6 @@ const LoginForm = () => {
             type="submit"
             variant="contained"
             loading={loadingLogin || loadingGoogle}
-            loadingPosition="start"
             fullWidth
           >
             Acceder
