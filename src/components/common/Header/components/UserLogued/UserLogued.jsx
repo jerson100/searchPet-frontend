@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 
 const settings = [
+  { name: "Ver Perfil", nameUrl: "users" },
   { name: "Configuración", nameUrl: "configuration" },
   { name: "Logout", nameUrl: "logout" },
 ];
@@ -28,6 +29,8 @@ const UserLogued = () => {
       navigate(`/configuration`);
     } else if (e?.target?.textContent === "Logout") {
       logout();
+    } else if (e?.target?.textContent === "Ver Perfil") {
+      navigate(`/users/${user.user._id}`);
     }
   };
 
