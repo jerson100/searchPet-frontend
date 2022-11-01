@@ -1,5 +1,6 @@
-import { Avatar, Typography, Box } from "@mui/material";
 import React from "react";
+import { Avatar, Typography, Box, Link } from "@mui/material";
+import { Link as LinkRouter } from "react-router-dom";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import ButtonAcceder from "../../../ButtonAcceder";
 
@@ -22,8 +23,24 @@ const User = () => {
       {!user?.user ? (
         <ButtonAcceder isLogued={false} />
       ) : (
-        <Typography variant="h6" component="p">
-          {user.user.username}
+        <Typography
+          variant="h6"
+          component="p"
+          sx={{
+            maxWidth: "100%",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          <Link
+            component={LinkRouter}
+            underline="none"
+            color="text.primary"
+            to={`/users/${user.user._id}`}
+          >
+            {user.user.username}
+          </Link>
         </Typography>
       )}
     </Box>
