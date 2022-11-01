@@ -16,11 +16,11 @@ import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import { Link as LinkRouter } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { Divider } from "@mui/material";
+import { GoogleButtonContainerStyle } from "./loginForm.style";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const { enqueueSnackbar } = useSnackbar();
 
   const { login, loadingLogin, loadingGoogle, loginWithGoogle } =
@@ -28,8 +28,6 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //const messageE = validateSchema({ email, password }, LoginUserSchema);
-    // if (!Object.keys(messageE).length) {
     if (email && password) {
       try {
         await login(email, password);
@@ -131,19 +129,20 @@ const LoginForm = () => {
         <Divider variant="fullWidth" sx={{ mb: 2 }}>
           Or
         </Divider>
-        <Box mb={2}>
+        <GoogleButtonContainerStyle mb={2}>
           <GoogleOAuthProvider clientId="648562013557-ecpcp805rmr4re7dpv5uujocs8uv7gi3.apps.googleusercontent.com">
             <GoogleLogin
+              width="250px"
               onSuccess={async (credentialResponse) => {
                 await loginWithGoogle(credentialResponse.credential);
               }}
               onError={() => {
                 console.log("Login Failed");
               }}
-              shape="square"
+              shape="rectangular"
             />
           </GoogleOAuthProvider>
-        </Box>
+        </GoogleButtonContainerStyle>
         <Box display={"flex"} flexDirection="column" alignItems={"center"}>
           <Typography variant="body1" marginBottom={2}>
             No tienes una cuenta?
