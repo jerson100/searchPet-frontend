@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../../common/Header/Header";
 import { motion, useAnimationControls, AnimatePresence } from "framer-motion";
 import { mainLayout_variants } from "./mainLayout.variants";
@@ -18,6 +18,11 @@ const MainLayout = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const controls = useAnimationControls();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   useEffect(() => {
     return () => {
