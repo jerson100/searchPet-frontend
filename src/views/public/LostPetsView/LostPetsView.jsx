@@ -3,6 +3,7 @@ import useAxios from "axios-hooks";
 import { Box, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetList from "../../../components/common/LostPetList";
+import { Helmet } from "react-helmet";
 
 const LostPetsView = () => {
   const [{ loading, data, error }] = useAxios(
@@ -16,6 +17,11 @@ const LostPetsView = () => {
   );
   return (
     <>
+      <Helmet>
+        <title>Mascotas perdidas | SPet</title>
+        <meta name="description" content="Máscotas perdidas" />
+        <meta name="author" content="Jerson Omar Ramírez Ortiz" />
+      </Helmet>
       <Container
         sx={{
           p: { xs: 0, sm: 3 },
