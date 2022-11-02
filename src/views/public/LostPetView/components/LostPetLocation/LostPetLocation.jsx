@@ -5,7 +5,7 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
-import "leaflet-fullscreen/dist/Leaflet.fullscreen.css";
+import "/node_modules/leaflet-fullscreen/dist/Leaflet.fullscreen.css";
 // import "react-leaflet-fullscreen";
 // import "react-leaflet-fullscreen/dist/styles.css";
 import "./lostPetLocation.css";
