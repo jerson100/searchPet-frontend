@@ -12,12 +12,10 @@ const AuthLayout = ({ children, maxWidth }) => {
       alignItems={"center"}
       minHeight="100vh"
     >
-      <Box
-        maxWidth={maxWidth}
-        width="100%"
-        padding={{ xs: "0", md: "2rem", sm: "2rem 1rem" }}
-      >
-        <Paper elevation={5}>{children}</Paper>
+      <Box maxWidth={maxWidth} width="100%" padding={{ xs: "0", md: "2rem" }}>
+        <Paper elevation={5} sx={{ minHeight: { xs: "100vh", md: "initial" } }}>
+          {children}
+        </Paper>
       </Box>
     </Box>
   );
