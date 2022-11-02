@@ -77,7 +77,7 @@ const Header = ({ loadingGetUser, name, urlImageProfile, typeUser }) => {
                         zIndex: "1",
                       }}
                     >
-                      Jerson Omar Ramírez Ortiz
+                      {name}
                     </Typography>
                   )}
                 </Box>
