@@ -2,9 +2,7 @@
 
 Aplicación que permitirá encontrar a las mascotas perdidas mediante la ayuda de las personas, por medio del gps, información directa por msg o las redes sociales.
 
-Por el momento solo se realizó todo el sistema de autenticación para las turas privadas, así como rutas públicas.
-
-Estamos usando todo el stack MERN.
+Estamos usando todo el stack MERN, con sistema de autenticación de google, facebook.
 
 ## Vistas
 
