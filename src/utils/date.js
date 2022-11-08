@@ -12,10 +12,12 @@ const differenceDates = (d1, d2) => {
   const minutes = Math.floor((diff / (60 * 1000)) % 60);
   const hours = Math.floor((diff / (60 * 60 * 1000)) % 24);
   const days = Math.floor((diff / (24 * 60 * 60 * 1000)) % 30);
+  const month = Math.floor((diff / (30 * 24 * 60 * 60 * 1000)) % 12);
   const years = Math.floor(diff / (24 * 60 * 60 * 1000) / (30 * 12));
   return {
     years,
     days,
+    month,
     hours,
     minutes,
     segs,
@@ -28,11 +30,13 @@ const differenceDates = (d1, d2) => {
  * @returns {string} Una cadena de texto mencionando hace cuando se ha realizado la publicación
  */
 const getTweetPublicationDate = (publicationDate) => {
-  const { days, hours, minutes, segs } = differenceDates(
+  const { days, hours, minutes, segs, month } = differenceDates(
     publicationDate,
     new Date()
   );
-  //   console.log(days, hours, minutes, segs);
+  if (month > 0) {
+    return `${month} mes${month > 1 ? "es" : ""}`;
+  }
   if (days > 0) {
     return `${days} día${days > 1 ? "s" : ""} `;
   }
