@@ -2,7 +2,7 @@ import useAxios from "axios-hooks";
 
 const useLostPet = (idLostPet) => {
   const [{ loading: loadingLostPet, data: lostPet, error }] = useAxios({
-    url: `/lostpet/${idLostPet}`,
+    url: `/lostpets/${idLostPet}`,
     method: "GET",
   });
   return { lostPet, loadingLostPet, error };

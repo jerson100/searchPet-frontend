@@ -29,7 +29,7 @@ const LostPetRequestForm = () => {
 
   const [{ loading: loadingCreateLostPet }, executeCreateLostPet] = useAxios(
     {
-      url: "/lostpet",
+      url: "/lostpets",
       method: "POST",
     },
     { manual: true }

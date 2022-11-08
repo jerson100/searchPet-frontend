@@ -14,7 +14,7 @@ const useLostPetComments = (idLostPet) => {
   const [loadingComments, setLoadingComments] = useState(true);
   const [, getComments] = useAxios(
     {
-      url: `lostpet/${idLostPet}/comments`,
+      url: `lostpets/${idLostPet}/comments`,
       method: "GET",
     },
     { useCache: false, manual: true }
