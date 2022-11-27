@@ -10,6 +10,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import MobileMenu from "../../common/MobileMenu";
 import Footer from "../../common/Footer";
 import PetLoader from "../../common/PetLoader";
+import Heart from "../../common/Heart";
 // import CatLoader from "../../common/CatLoader";
 
 const MainLayout = () => {
@@ -98,6 +99,7 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls }) => {
           <Outlet />
         </Box>
         <Footer />
+        <Heart />
       </Box>
     </>
   );
