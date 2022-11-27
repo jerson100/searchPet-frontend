@@ -17,6 +17,7 @@ const LostPetComments = ({ idLostPet }) => {
       bgcolor={"background.paper"}
       border="solid 1px"
       borderColor={"divider"}
+      component="section"
       p={2}
     >
       <Typography variant="h5" component="h2" mb={3} id="comments">

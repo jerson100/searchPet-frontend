@@ -1,5 +1,11 @@
 import React from "react";
-import { Grid, Skeleton, useMediaQuery, Container } from "@mui/material";
+import {
+  Grid,
+  Skeleton,
+  useMediaQuery,
+  Container,
+  Typography,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import LostPetItem from "../../../components/common/LostPetItem";
 import LostPetLocation from "./components/LostPetLocation";
@@ -7,6 +13,8 @@ import useLostPet from "../../../hooks/useLostPet";
 import ErrorPage from "../../../components/common/ErrorPage";
 import LostPetComments from "./components/LostPetComments";
 import Actions from "./components/Actions";
+import LostPetRecomendation from "../../../components/common/LostPetRecomendation";
+import { Box } from "@mui/system";
 
 const LostPetView = () => {
   const params = useParams();
@@ -35,6 +43,9 @@ const LostPetView = () => {
       }}
     >
       <>
+        <Typography variant="h5" component="h1" sx={{ display: "none" }}>
+          Mascotas perdidas del usuario {lostPet?.user?.username}
+        </Typography>
         <Grid container spacing={2} mb={2}>
           <Grid item xs={12} md={5}>
             <LostPetItem
@@ -72,7 +83,20 @@ const LostPetView = () => {
             )
           )}
         </Grid>
-        {idDesktop && <LostPetComments idLostPet={lostPet?._id} />}
+        {idDesktop && (
+          <Box>
+            <Grid container spacing={2}>
+              <Grid item xs={7}>
+                <LostPetComments idLostPet={lostPet?._id} />
+              </Grid>
+              <Grid item xs={5}>
+                <Box sx={{ position: "sticky", top: "81px" }}>
+                  <LostPetRecomendation idLostPet={params.idLostPet} />
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        )}
       </>
     </Container>
   );
