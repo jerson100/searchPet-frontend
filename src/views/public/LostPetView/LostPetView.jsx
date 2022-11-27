@@ -48,17 +48,19 @@ const LostPetView = () => {
         </Typography>
         <Grid container spacing={2} mb={2}>
           <Grid item xs={12} md={5}>
-            <LostPetItem
-              loading={loadingLostPet}
-              _id={lostPet?._id}
-              createdAt={lostPet?.createdAt}
-              description={lostPet?.description}
-              images={lostPet?.images}
-              located={lostPet?.located}
-              pets={lostPet?.pets}
-              user={lostPet?.user}
-              isToPublication={false}
-            />
+            <Box sx={{ position: "sticky", top: "81px" }}>
+              <LostPetItem
+                loading={loadingLostPet}
+                _id={lostPet?._id}
+                createdAt={lostPet?.createdAt}
+                description={lostPet?.description}
+                images={lostPet?.images}
+                located={lostPet?.located}
+                pets={lostPet?.pets}
+                user={lostPet?.user}
+                isToPublication={false}
+              />
+            </Box>
           </Grid>
           {idDesktop ? (
             <Grid item xs={12} md={7}>
