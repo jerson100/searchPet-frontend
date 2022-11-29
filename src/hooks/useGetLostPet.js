@@ -1,45 +1,71 @@
 import useAxios from "axios-hooks";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
+import {
+  INITIAL_STATE_LOST_PETS,
+  LostPetsActions,
+  lostPetsReducer,
+} from "../reducers/lostPetsReducer";
 
 const useGetLostPet = (idUser, _page = 1, _length = 5) => {
-  const [loading, setLoadingPets] = useState(true);
-  const [lostPets, setLostPets] = useState([]);
-  const [isNext, setIsNext] = useState(false);
-  const [page, setPage] = useState(_page);
-  const [length, setLength] = useState(_length);
+  const [
+    { lostPets, page, loading, length, maxDistance, clientLocation, isNext },
+    dispatch,
+  ] = useReducer(lostPetsReducer, INITIAL_STATE_LOST_PETS, (data) => {
+    return { ...data, page: _page, length: _length };
+  });
+
   const [, execute] = useAxios({}, { useCache: false, manual: true });
 
   useEffect(() => {
-    setLoadingPets(true);
+    dispatch({
+      type: LostPetsActions.SET_LOADING,
+      payload: true,
+    });
     const api = async () => {
+      const query = { page, length };
+      if (maxDistance) query.maxDistance = maxDistance;
+      if (clientLocation)
+        query.currentLocation = `${clientLocation.lat}, ${clientLocation.lng}`;
       try {
         const { data } = await execute({
           url: idUser ? `users/${idUser}/lostpets` : "lostpets",
-          params: {
-            page,
-            length,
-          },
+          params: query,
         });
-        if (data.length > 0) {
-          setLostPets((prev) => [...prev, ...data]);
-        }
-        setIsNext(data.length > 0);
-        setLoadingPets(false);
-      } catch (e) {
-        setLoadingPets(false);
-      }
+        dispatch({
+          type: LostPetsActions.SET_DATA,
+          payload: data,
+        });
+      } catch (e) {}
+      dispatch({
+        type: LostPetsActions.SET_LOADING,
+        payload: false,
+      });
     };
     api();
     return () => {
-      setLoadingPets(false);
+      dispatch({
+        type: LostPetsActions.SET_LOADING,
+        payload: false,
+      });
     };
-  }, [page, length, execute]);
+  }, [page, length, execute, clientLocation, maxDistance]);
+
+  const getLostPetsByUserLocation = useCallback((location, distance) => {
+    dispatch({
+      type: LostPetsActions.SET_BY_USER_LOCATION,
+      payload: { location: location, distance: distance },
+    });
+  }, []);
 
   const nextPage = useCallback(() => {
-    setPage((prev) => prev + 1);
+    dispatch({ type: LostPetsActions.NEXT_PAGE });
   }, []);
   const previousPage = useCallback(() => {
-    setPage((prev) => (prev - 1 <= 1 ? 1 : prev - 1));
+    dispatch({ type: LostPetsActions.PREVIOUS_PAGE });
+  }, []);
+
+  const setLength = useCallback((length) => {
+    dispatch({ type: LostPetsActions.SET_LENGTH, payload: length });
   });
 
   return {
@@ -51,6 +77,7 @@ const useGetLostPet = (idUser, _page = 1, _length = 5) => {
     previousPage,
     isNext,
     setLength,
+    getLostPetsByUserLocation,
   };
 };
 

@@ -1,12 +1,21 @@
-import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import React, { useCallback } from "react";
+import { Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import LostPetList from "../../../components/common/LostPetList";
 import { Helmet } from "react-helmet";
 import { useGetLostPet } from "../../../hooks/useGetLostPet";
+import LostPetDistanceForm from "../../../components/common/LostPetDistanceForm";
 
 const LostPetsView = () => {
-  const { lostPets, loading, isNext, nextPage } = useGetLostPet();
+  const { lostPets, loading, isNext, nextPage, getLostPetsByUserLocation } =
+    useGetLostPet(null, 1, 5);
+  const handleChangeMaxDistance = useCallback(
+    (distance, location) => {
+      getLostPetsByUserLocation(location, distance);
+    },
+    [getLostPetsByUserLocation]
+  );
+
   return (
     <>
       <Helmet>
@@ -47,10 +56,10 @@ const LostPetsView = () => {
               position={"sticky"}
               top={89}
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-              hic quis ab maiores dolore enim minima, consectetur, eos qui at
-              magnam libero laborum fuga fugiat eum pariatur odio modi
-              similique.
+              <LostPetDistanceForm
+                loading={loading}
+                handleChangeMaxDistance={handleChangeMaxDistance}
+              />
             </Box>
           </Grid>
         </Grid>
