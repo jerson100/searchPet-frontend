@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import LostPetItem from "../LostPetItem";
@@ -11,6 +11,9 @@ const LostPetList = ({ items, loading, isNext, handleNextPage }) => {
         <LoadingLostPetList />
       ) : (
         <>
+          {items.length === 0 && (
+            <Typography paragraph>No se encontraron resultados.</Typography>
+          )}
           {items.map((item) => (
             <Grid item xs={12} key={item._id}>
               <LostPetItem
