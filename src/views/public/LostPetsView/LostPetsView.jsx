@@ -8,13 +8,7 @@ import LostPetDistanceForm from "../../../components/common/LostPetDistanceForm"
 
 const LostPetsView = () => {
   const { lostPets, loading, isNext, nextPage, getLostPetsByUserLocation } =
-    useGetLostPet(null, 1, 5);
-  const handleChangeMaxDistance = useCallback(
-    (distance, location) => {
-      getLostPetsByUserLocation(location, distance);
-    },
-    [getLostPetsByUserLocation]
-  );
+    useGetLostPet();
 
   return (
     <>
@@ -58,7 +52,7 @@ const LostPetsView = () => {
             >
               <LostPetDistanceForm
                 loading={loading}
-                handleChangeMaxDistance={handleChangeMaxDistance}
+                handleChangeMaxDistance={getLostPetsByUserLocation}
               />
             </Box>
           </Grid>

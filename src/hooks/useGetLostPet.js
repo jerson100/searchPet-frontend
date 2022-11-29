@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import {
   INITIAL_STATE_LOST_PETS,
   LostPetsActions,
@@ -50,7 +50,7 @@ const useGetLostPet = (idUser, _page = 1, _length = 5) => {
     };
   }, [page, length, execute, clientLocation, maxDistance]);
 
-  const getLostPetsByUserLocation = useCallback((location, distance) => {
+  const getLostPetsByUserLocation = useCallback((distance, location) => {
     dispatch({
       type: LostPetsActions.SET_BY_USER_LOCATION,
       payload: { location: location, distance: distance },

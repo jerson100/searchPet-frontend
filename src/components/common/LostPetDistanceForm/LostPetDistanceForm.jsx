@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
+  Alert,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -26,6 +27,17 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
       <Typography variant="h5" component="h1" mb={2}>
         Filtrar por:
       </Typography>
+      {!location && (
+        <Alert
+          variant="outlined"
+          severity="warning"
+          sx={{ mb: 2 }}
+          mb={2}
+          style={{ marginBottom: "1rem" }}
+        >
+          Por favor, active su geolocalización para poder filtrar
+        </Alert>
+      )}
       <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel id="demo-row-radio-buttons-group-label">
@@ -45,7 +57,12 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
             <FormControlLabel value="50000" control={<Radio />} label="50k" />
           </RadioGroup>
           <Box display="flex" justifyContent="center">
-            <LoadingButton type="submit" variant="contained" loading={loading}>
+            <LoadingButton
+              disabled={!location}
+              type="submit"
+              variant="contained"
+              loading={loading}
+            >
               Filtrar
             </LoadingButton>
           </Box>
