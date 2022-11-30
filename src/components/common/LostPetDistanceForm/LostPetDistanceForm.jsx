@@ -50,11 +50,21 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
             value={maxD}
             onChange={(evt, value) => setMaxD(value)}
           >
-            <FormControlLabel value="5000" control={<Radio />} label="5K" />
-            <FormControlLabel value="10000" control={<Radio />} label="20k" />
-            <FormControlLabel value="30000" control={<Radio />} label="30k" />
-            <FormControlLabel value="40000" control={<Radio />} label="40k" />
-            <FormControlLabel value="50000" control={<Radio />} label="50k" />
+            <FormControlLabel value="5000" control={<Radio />} label="5Km" />
+            <FormControlLabel value="10000" control={<Radio />} label="10km" />
+            <FormControlLabel value="30000" control={<Radio />} label="30km" />
+            <FormControlLabel value="50000" control={<Radio />} label="50km" />
+            <FormControlLabel value="80000" control={<Radio />} label="80km" />
+            <FormControlLabel
+              value="100000"
+              control={<Radio />}
+              label="100km"
+            />
+            <FormControlLabel
+              value="200000"
+              control={<Radio />}
+              label="200km"
+            />
           </RadioGroup>
           <Box display="flex" justifyContent="center">
             <LoadingButton
