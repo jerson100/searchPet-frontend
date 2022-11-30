@@ -80,8 +80,8 @@ const LostPetRequestForm = () => {
             images.forEach((image) => {
               formData.append("images", image, image.path);
             });
-            formData.append("longitude", location[0]);
-            formData.append("latitude", location[1]);
+            formData.append("longitude", location[1]);
+            formData.append("latitude", location[0]);
             formData.append("pets", pets);
             try {
               await executeCreateLostPet({
