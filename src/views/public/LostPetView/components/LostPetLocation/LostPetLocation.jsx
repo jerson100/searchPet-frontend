@@ -27,8 +27,8 @@ const LostPetLocation = ({ position, image, zoom = 9, fullScreen = true }) => {
     >
       <MapContainer
         center={{
-          lng: position.latitude,
-          lat: position.longitude,
+          lng: position[0],
+          lat: position[1],
         }}
         zoom={zoom}
         scrollWheelZoom
@@ -69,7 +69,7 @@ const Markers = ({ position, image }) => {
     try {
       routingControl = L.Routing.control({
         waypoints: [
-          L.latLng(position.longitude, position.latitude),
+          L.latLng(position[1], position[0]),
           L.latLng(location.lat, location.lng),
         ],
         router: L.Routing.graphHopper("b5522516-4793-4bf8-87b0-ceae7ea84729"),
@@ -97,8 +97,8 @@ const Markers = ({ position, image }) => {
     <>
       <Marker
         position={{
-          lng: position.latitude,
-          lat: position.longitude,
+          lng: position[0],
+          lat: position[1],
         }}
         icon={iconPerson}
       >

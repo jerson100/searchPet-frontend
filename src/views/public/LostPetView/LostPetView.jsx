@@ -33,7 +33,6 @@ const LostPetView = () => {
       />
     );
   }
-
   return (
     <Container
       sx={{
@@ -70,7 +69,7 @@ const LostPetView = () => {
                 </>
               ) : (
                 <LostPetLocation
-                  position={lostPet?.location}
+                  position={lostPet?.location?.coordinates}
                   image={lostPet?.user?.urlImageProfile}
                 />
               )}
