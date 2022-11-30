@@ -1,14 +1,49 @@
-import React, { useCallback } from "react";
-import { Box, Grid } from "@mui/material";
-import { Container } from "@mui/system";
-import LostPetList from "../../../components/common/LostPetList";
+import React, { useMemo } from "react";
+import { Box, Grid, Container } from "@mui/material";
 import { Helmet } from "react-helmet";
+import L from "leaflet";
+import LostPetList from "../../../components/common/LostPetList";
 import { useGetLostPet } from "../../../hooks/useGetLostPet";
 import LostPetDistanceForm from "../../../components/common/LostPetDistanceForm";
+import PointsInMap from "./components/PointsInMap/PointsInMap";
 
 const LostPetsView = () => {
   const { lostPets, loading, isNext, nextPage, getLostPetsByUserLocation } =
     useGetLostPet();
+
+  const points = useMemo(() => {
+    return lostPets?.map(
+      ({
+        location: { coordinates },
+        pets,
+        user: { username, urlImageProfile },
+        _id,
+      }) => {
+        return {
+          _id,
+          location: [coordinates[1], coordinates[0]],
+          description: `Se perdieron las mascotas: ${pets
+            .map((p) => p.name)
+            .join(", ")} de ${username}`,
+          icon: new L.Icon({
+            iconUrl:
+              urlImageProfile ||
+              "https://www.goredforwomen.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg",
+            iconRetinaUrl:
+              urlImageProfile ||
+              "https://www.goredforwomen.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg",
+            // iconAnchor: null,
+            // popupAnchor: null,
+            shadowUrl: null,
+            shadowSize: null,
+            shadowAnchor: null,
+            iconSize: new L.Point(30, 30),
+            className: "leaflet-div-icon",
+          }),
+        };
+      }
+    );
+  }, [lostPets]);
 
   return (
     <>
@@ -54,6 +89,9 @@ const LostPetsView = () => {
                 loading={loading}
                 handleChangeMaxDistance={getLostPetsByUserLocation}
               />
+              <Box sx={{ height: "50vh" }}>
+                <PointsInMap points={points} />
+              </Box>
             </Box>
           </Grid>
         </Grid>

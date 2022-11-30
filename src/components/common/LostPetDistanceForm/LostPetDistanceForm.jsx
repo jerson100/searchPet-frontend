@@ -8,9 +8,9 @@ import {
   Radio,
   RadioGroup,
   Typography,
+  Box,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Box } from "@mui/system";
 import useMyLocationGps from "../../../hooks/useMyLocationGps";
 
 const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
@@ -23,7 +23,7 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
   };
 
   return (
-    <section>
+    <Box sx={{ mb: 2 }}>
       <Typography variant="h5" component="h1" mb={2}>
         Filtrar por:
       </Typography>
@@ -68,7 +68,7 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
           </Box>
         </FormControl>
       </form>
-    </section>
+    </Box>
   );
 };
 
