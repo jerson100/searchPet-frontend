@@ -41,6 +41,9 @@ const Routing = ({
     draggableWaypoints: false,
     fitSelectedRoutes: true,
     plan: false,
+    createMarker: function () {
+      return null;
+    },
     lineOptions: {
       styles: [
         {
