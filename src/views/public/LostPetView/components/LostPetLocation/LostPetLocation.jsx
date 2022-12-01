@@ -72,11 +72,12 @@ const Markers = ({ position, image }) => {
           L.latLng(position[1], position[0]),
           L.latLng(location.lat, location.lng),
         ],
-        router: L.Routing.graphHopper("b5522516-4793-4bf8-87b0-ceae7ea84729"),
+        router: L.Routing.graphHopper(import.meta.env.VITE_GRAPH_HOVER),
         routeWhileDragging: false,
         addWaypoints: false,
         draggableWaypoints: false,
         //   show: false,
+        fitSelectedRoutes: true,
         plan: false,
         lineOptions: {
           styles: [
