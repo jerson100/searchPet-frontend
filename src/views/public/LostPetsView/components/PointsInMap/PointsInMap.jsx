@@ -59,6 +59,7 @@ const MapContent = ({ points, currentLocation }) => {
         el &&
           el.scrollIntoView({
             behavior: "smooth",
+            block: "center",
           });
       };
       map.on("popupopen", cb);
