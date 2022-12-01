@@ -1,0 +1,5 @@
+.leaflet-div-icon {
+  border-radius: 50%;
+  object-fit: cover;
+  border: solid 2px red;
+}

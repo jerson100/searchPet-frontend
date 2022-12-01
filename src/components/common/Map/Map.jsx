@@ -1,5 +1,12 @@
-import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import React, { useEffect } from "react";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
+import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import "leaflet-routing-machine";
+import "lrm-graphhopper";
+
+import "./map.css";
 
 const Map = ({
   center,
@@ -25,5 +32,43 @@ const Map = ({
     </MapContainer>
   );
 };
+
+const Routing = ({
+  waypoints,
+  config = {
+    routeWhileDragging: false,
+    addWaypoints: false,
+    draggableWaypoints: false,
+    fitSelectedRoutes: true,
+    plan: false,
+    lineOptions: {
+      styles: [
+        {
+          color: "#1565c0",
+          opacity: "0.7",
+          weight: 8,
+        },
+      ],
+    },
+  },
+}) => {
+  const map = useMap();
+  useEffect(() => {
+    if (!waypoints || !map) return;
+    let routingControl = null;
+    try {
+      routingControl = L.Routing.control({
+        waypoints: waypoints,
+        router: L.Routing.graphHopper(import.meta.env.VITE_GRAPH_HOVER),
+        ...config,
+      }).addTo(map);
+    } catch (e) {}
+    return () => {
+      if (map && routingControl) map.removeControl(routingControl);
+    };
+  }, [waypoints, map]);
+};
+
+Map.Routing = Routing;
 
 export default Map;
