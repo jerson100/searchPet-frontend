@@ -1,23 +1,18 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Box } from "@mui/material";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
-// import "react-leaflet-fullscreen";
-// import "react-leaflet-fullscreen/dist/styles.css";
 import "./lostPetLocation.css";
 import "leaflet-routing-machine";
 import "lrm-graphhopper";
 import L from "leaflet";
-import { useMap } from "react-leaflet";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import useMyLocationGps from "../../../../../hooks/useMyLocationGps";
 import Map from "../../../../../components/common/Map";
 
-const LostPetLocation = ({ position, image, zoom = 9, fullScreen = true }) => {
+const LostPetLocation = ({ position, image }) => {
   //   const position = [51.505, -0.09];
   const { location } = useMyLocationGps();
   const iconPerson = new L.Icon({
@@ -56,7 +51,7 @@ const LostPetLocation = ({ position, image, zoom = 9, fullScreen = true }) => {
           lng: position[0],
           lat: position[1],
         }}
-        zoom={zoom}
+        zoom={9}
       >
         <Map.Routing waypoints={waypoints} />
         <Marker
