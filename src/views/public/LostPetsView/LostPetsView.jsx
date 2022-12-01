@@ -32,8 +32,6 @@ const LostPetsView = () => {
             iconRetinaUrl:
               urlImageProfile ||
               "https://www.goredforwomen.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg",
-            // iconAnchor: null,
-            // popupAnchor: null,
             shadowUrl: null,
             shadowSize: null,
             shadowAnchor: null,

@@ -1,5 +1,11 @@
 .leaflet-div-icon {
   border-radius: 50%;
   object-fit: cover;
-  border: solid 2px red;
+  border: solid 1px red;
+}
+
+.leaflet-div-icon--current-user {
+  /* border-radius: 50%; */
+  object-fit: cover;
+  border: solid 2px yellow;
 }

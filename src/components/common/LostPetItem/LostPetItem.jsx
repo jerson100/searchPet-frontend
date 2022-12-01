@@ -16,10 +16,16 @@ const LostPetItem = ({
   _id,
   loading,
   isToPublication = true,
+  location,
 }) => {
   if (loading) return <LostPetItemLoading />;
   return (
-    <ContainerStyle>
+    <ContainerStyle
+      id={`${location.coordinates[1]},${location.coordinates[0]}`.replace(
+        /[,\.+-]/gi,
+        ""
+      )}
+    >
       <Box p={2}>
         <LostPetItemHeader user={user} createdAt={createdAt} />
         <Typography paragraph>{description}</Typography>

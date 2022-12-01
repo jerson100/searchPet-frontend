@@ -24,6 +24,7 @@ const LostPetList = ({ items, loading, isNext, handleNextPage }) => {
                 located={item.located}
                 user={item.user}
                 _id={item._id}
+                location={item.location}
               />
             </Grid>
           ))}
