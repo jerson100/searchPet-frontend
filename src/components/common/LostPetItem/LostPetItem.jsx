@@ -21,10 +21,13 @@ const LostPetItem = ({
   if (loading) return <LostPetItemLoading />;
   return (
     <ContainerStyle
-      id={`${location.coordinates[1]},${location.coordinates[0]}`.replace(
-        /[,\.+-]/gi,
-        ""
-      )}
+      id={
+        location &&
+        `${location.coordinates[1]},${location.coordinates[0]}`.replace(
+          /[,\.+-]/gi,
+          ""
+        )
+      }
     >
       <Box p={2}>
         <LostPetItemHeader user={user} createdAt={createdAt} />
