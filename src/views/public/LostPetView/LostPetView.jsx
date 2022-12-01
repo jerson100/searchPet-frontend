@@ -77,7 +77,7 @@ const LostPetView = () => {
           ) : (
             !loadingLostPet && (
               <Actions
-                position={lostPet?.location}
+                position={lostPet?.location?.coordinates}
                 image={lostPet?.user?.urlImageProfile}
                 idLostPet={lostPet?._id}
               />
