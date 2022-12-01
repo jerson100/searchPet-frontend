@@ -58,7 +58,7 @@ const LostPetsView = () => {
         }}
       >
         <Grid container rowSpacing={2} columnSpacing={2}>
-          <Grid item xs={12} md={8} lg={7} sx={{ order: { xs: 2, md: 1 } }}>
+          <Grid item xs={12} md={6} lg={6} sx={{ order: { xs: 2, md: 1 } }}>
             {/* {error ? (
               <Typography paragraph>
                 Ocurrió un problema al momento de obtener los registros, vuelve
@@ -74,7 +74,7 @@ const LostPetsView = () => {
               handleNextPage={nextPage}
             />
           </Grid>
-          <Grid item xs={12} md={4} lg={5} sx={{ order: { xs: 1, md: 2 } }}>
+          <Grid item xs={12} md={6} lg={6} sx={{ order: { xs: 1, md: 2 } }}>
             <Box
               bgcolor={"background.paper"}
               p={2}
