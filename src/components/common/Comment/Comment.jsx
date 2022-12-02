@@ -143,7 +143,7 @@ const ReferenceMap = ({ locations }) => {
   return (
     <Box
       sx={{
-        height: "150px",
+        height: "200px",
         border: (props) => `solid 1px ${props.palette.divider}`,
       }}
     >
