@@ -60,7 +60,7 @@ const Comment = ({
       flexWrap={"nowrap"}
       mb={2}
       borderRadius="5px"
-      sx={{ backgroundColor: "rgb(243, 242, 239)" }}
+      sx={{ backgroundColor: "rgb(243, 242, 239)", overflow: "hidden" }}
       component={motion.div}
       initial={"hidden"}
       animate={"show"}
@@ -71,7 +71,7 @@ const Comment = ({
           <Avatar alt={user.username} src={user.urlImageProfile} />
         </Link>
       </Grid>
-      <Grid item container flexDirection={"column"}>
+      <Grid item container flexDirection={"column"} sx={{ overflow: "hidden" }}>
         <Grid item mb={1} container justifyContent={"space-between"}>
           <Grid item>
             <Typography variant="body1" component="p">
@@ -94,8 +94,17 @@ const Comment = ({
             </Grid>
           )}
         </Grid>
-        <Grid item>
-          <Typography variant="body2">{description}</Typography>
+        <Grid item sx={{ maxWidth: "100%" }}>
+          <Typography
+            variant="body2"
+            sx={{
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {description}
+          </Typography>
         </Grid>
         {locations?.length > 0 && (
           <Grid item mt={2}>
