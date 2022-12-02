@@ -150,10 +150,10 @@ const ReferenceMap = ({ locations }) => {
       <Map
         center={[-11.1167582, -77.3009863]}
         zoom={9}
-        fullscreenControl={false}
-        zoomControl={false}
-        dragging={false}
-        scrollWheelZoom={false}
+        // fullscreenControl={false}
+        // zoomControl={false}
+        // dragging={false}
+        // scrollWheelZoom={false}
       >
         {locationsMemo}
         <Map.AnimatePoints points={coordinates} />
