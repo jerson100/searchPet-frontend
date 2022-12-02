@@ -1,11 +1,15 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
-import { Avatar, Grid, Link, Skeleton, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Link, Skeleton, Typography } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Map from "../Map";
+import { useMemo } from "react";
+import { Marker } from "react-leaflet";
+import L from "leaflet";
 
 const variants = {
   hidden: {
@@ -32,6 +36,7 @@ const Comment = ({
   createdAt,
   animate,
   handleDelete,
+  locations,
   loading = false,
 }) => {
   const [laodingDeleteComment, setlaodingDeleteComment] = useState(false);
@@ -92,8 +97,59 @@ const Comment = ({
         <Grid item>
           <Typography variant="body2">{description}</Typography>
         </Grid>
+        {locations?.length > 0 && (
+          <Grid item mt={2}>
+            <ReferenceMap locations={locations} />
+          </Grid>
+        )}
       </Grid>
     </Grid>
+  );
+};
+
+const ReferenceMap = ({ locations }) => {
+  const locationsMemo = useMemo(() => {
+    return locations?.map(({ coordinates: [lng, lat], _id }) => (
+      <Marker
+        key={_id}
+        position={[lat, lng]}
+        icon={
+          new L.Icon({
+            iconUrl: "/animalMark.png",
+            iconRetinaUrl: "/animalMark.png",
+            shadowUrl: null,
+            shadowSize: null,
+            shadowAnchor: null,
+            iconSize: new L.Point(40, 40),
+          })
+        }
+      ></Marker>
+    ));
+  }, [locations]);
+
+  const coordinates = useMemo(() => {
+    return locations?.map(({ coordinates: [lng, lat] }) => [lat, lng]);
+  }, [locations]);
+
+  return (
+    <Box
+      sx={{
+        height: "150px",
+        border: (props) => `solid 1px ${props.palette.divider}`,
+      }}
+    >
+      <Map
+        center={[-11.1167582, -77.3009863]}
+        zoom={9}
+        fullscreenControl={false}
+        zoomControl={false}
+        dragging={false}
+        scrollWheelZoom={false}
+      >
+        {locationsMemo}
+        <Map.AnimatePoints points={coordinates} />
+      </Map>
+    </Box>
   );
 };
 

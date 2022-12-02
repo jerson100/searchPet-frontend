@@ -21,6 +21,7 @@ const CommentList = ({ comments, handleDelete, loading = false }) => {
               description={c.description}
               createdAt={c.createdAt}
               animate={c.animateAddNewComment}
+              locations={c.locations}
               handleDelete={handleDelete}
             />
           ))}
