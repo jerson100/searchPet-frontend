@@ -65,10 +65,10 @@ const useLostPetComments = (idLostPet) => {
   );
 
   const addComment = useCallback(
-    async (description) => {
+    async (description, locations) => {
       try {
         const { data: newComment } = await createComment({
-          data: { lostPet: idLostPet, description },
+          data: { lostPet: idLostPet, description, locations },
           headers: {
             authorization: `Bearer ${AUTH_TOKEN.get()}`,
           },

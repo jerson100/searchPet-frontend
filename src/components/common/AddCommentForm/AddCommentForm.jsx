@@ -95,8 +95,8 @@ const FormContent = ({
             validationSchema={CreateLostPetCommentSchema}
             onSubmit={async ({ description }, { resetForm }) => {
               console.log(points);
+              await addComment(description, points);
               setPoints([]);
-              await addComment(description);
               resetForm();
             }}
           >
