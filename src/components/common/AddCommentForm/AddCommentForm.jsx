@@ -35,7 +35,7 @@ const AddCommentForm = ({ addComment, loadingComment }) => {
                       name="description"
                       fullWidth
                       multiline
-                      error={touched.description && errors.description}
+                      error={touched.description && !!errors.description}
                       inputLabel={"Tu comentario"}
                       rows={3}
                       sx={{ marginTop: 0, mb: 2 }}
