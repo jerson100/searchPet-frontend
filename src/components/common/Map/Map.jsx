@@ -15,6 +15,8 @@ const Map = ({
   children,
   fullscreenControl = true,
   scrollWheelZoom = true,
+  zoomControl = true,
+  dragging = true,
 }) => {
   return (
     <MapContainer
@@ -23,6 +25,8 @@ const Map = ({
       scrollWheelZoom={scrollWheelZoom}
       style={style}
       fullscreenControl={fullscreenControl}
+      zoomControl={zoomControl}
+      dragging={dragging}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -72,6 +76,16 @@ const Routing = ({
   }, [waypoints, map]);
 };
 
+const AnimatePoints = ({ points, options = { padding: [10, 10] } }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (points && points.length > 0 && map) {
+      map.fitBounds(points, options);
+    }
+  }, [points, map]);
+};
+
 Map.Routing = Routing;
+Map.AnimatePoints = AnimatePoints;
 
 export default Map;
