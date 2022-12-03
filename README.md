@@ -4,6 +4,10 @@ Aplicación que permitirá encontrar a las mascotas perdidas mediante la ayuda d
 
 Estamos usando todo el stack MERN, con sistema de autenticación de google, facebook.
 
+## Lo nuevo
+
+Ahora podemos filtrar las mascotas peridas por determinada distancia, navegar sobre ellas, realizar comentarios y enviar también la ubicaciones por donde se le pueda haber visto a las mascotas
+
 ## Vistas
 
 * /register
