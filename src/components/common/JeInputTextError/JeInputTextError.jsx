@@ -21,6 +21,7 @@ const JeInputTextError = ({
   multiline,
   rows,
   error,
+  handleIconClick,
   ...props
 }) => {
   return (
@@ -49,7 +50,11 @@ const JeInputTextError = ({
         endAdornment={
           Icon && (
             <InputAdornment position="start">
-              <IconButton aria-label="toggle password visibility" edge="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                edge="end"
+                onClick={handleIconClick}
+              >
                 <Icon />
               </IconButton>
             </InputAdornment>
@@ -79,6 +84,7 @@ JeInputTextError.propTypes = {
   multiline: PropTypes.bool,
   rows: PropTypes.number,
   error: PropTypes.bool,
+  handleIconClick: PropTypes.func,
 };
 
 JeInputTextError.defaultProps = {
