@@ -6,19 +6,12 @@ import { Popup } from "react-leaflet/Popup";
 import { useMapEvents, useMap } from "react-leaflet/hooks";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
-// import "react-leaflet-fullscreen";
-// import "react-leaflet-fullscreen/dist/styles.css";
 import Box from "@mui/material/Box";
 
 const Location = ({ location, setlocation, name, setFieldValue }) => {
   return (
-    <Box
-      marginBottom={"1rem"}
-      display="flex"
-      flexDirection={"column"}
-      height="100%"
-    >
-      <Typography variant="h4" component="h2" marginBottom={2}>
+    <Box display="flex" flexDirection={"column"} height="100%">
+      {/* <Typography variant="h4" component="h2" marginBottom={2}>
         Tu ubicación
       </Typography>
       <Typography variant="body1" component="p" marginBottom={"1rem"}>
@@ -32,8 +25,8 @@ const Location = ({ location, setlocation, name, setFieldValue }) => {
         style={{ marginBottom: "1rem" }}
       >
         No seleccione una ubicación muy cercana a su hogar
-      </Alert>
-      <Box height={"300px"} flexGrow={1} mb={2}>
+      </Alert> */}
+      <Box height={"300px"} flexGrow={1}>
         <MapContainer
           center={[-11.1167582, -77.3009863]}
           zoom={4}
