@@ -34,9 +34,12 @@ const RegisterView = () => {
           });
           setlocation(null);
           resetForm();
-          enqueueSnackbar(`Se creó la cuenta con gmail ${a.data.email}`, {
-            variant: "success",
-          });
+          enqueueSnackbar(
+            `Bienvenido ${a.data.email}, ahora tiene que confirmar su cuenta en su correo`,
+            {
+              variant: "success",
+            }
+          );
         } catch (e) {
           if (e.status) {
             enqueueSnackbar(e.message, {
