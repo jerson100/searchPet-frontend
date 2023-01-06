@@ -22,6 +22,7 @@ import UserProfileView from "../../../views/public/UserProfileView";
 import UserPets from "../../../views/public/UserProfileView/views/UserPets";
 import UserLostPets from "../../../views/public/UserProfileView/views/UserLostPets";
 import UsActivities from "../../../views/public/UserProfileView/views/UsActivities";
+import VerifyRegisterAccountToken from "../../../views/public/VerifyRegisterAccountToken";
 
 const AppRouter = () => {
   return (
@@ -40,6 +41,7 @@ const AppRouter = () => {
           <Route index element={<HomeView />} />
           <Route path="home" element={<HomeView />} />
           <Route path="pets" element={<PetsView />} />
+          <Route path="auth/verify" element={<VerifyRegisterAccountToken />} />
           <Route path="pets/:idPet" element={<PetView />} />
           <Route path="pets/lost" element={<LostPetsView />} />
           <Route path="pets/lost/:idLostPet" element={<LostPetView />} />
