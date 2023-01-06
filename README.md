@@ -6,7 +6,7 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 
 ## Lo nuevo
 
-Ahora podemos filtrar las mascotas peridas por determinada distancia, navegar sobre ellas, realizar comentarios y enviar también la ubicaciones por donde se le pueda haber visto a las mascotas
+Ahora podemos filtrar las mascotas peridas por determinada distancia, navegar sobre ellas, realizar comentarios y enviar también la ubicaciones por donde se le pueda haber visto a las mascotas, como también los usuarios nuevos que se registren necesitan confirmar que su cuenta de correo indicado en el registro es correcto, para ello se le enviará un correo a su gmail.
 
 ## Vistas
 
