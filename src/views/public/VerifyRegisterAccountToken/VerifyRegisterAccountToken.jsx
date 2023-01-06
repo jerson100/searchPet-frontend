@@ -2,10 +2,11 @@ import { Alert, AlertTitle, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import useAxios from "axios-hooks";
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const VerifyRegisterAccountToken = () => {
   const [params] = useSearchParams();
+  const navigate = useNavigate();
   const [{ error, loading }] = useAxios(
     {
       url: "auth/login/token",
@@ -33,11 +34,6 @@ const VerifyRegisterAccountToken = () => {
         <Typography paragraph mb={2}>
           Espere un momento...
         </Typography>
-      ) : error ? (
-        <Alert severity="error">
-          <AlertTitle>Error</AlertTitle>
-          {error.message ? error.message : "No se pudo verificar la cuenta"}
-        </Alert>
       ) : (
         <>
           <Alert severity="success" sx={{ marginBottom: "1rem" }}>
@@ -49,6 +45,9 @@ const VerifyRegisterAccountToken = () => {
             size="medium"
             color="primary"
             variant="contained"
+            onClick={() => {
+              navigate("/login");
+            }}
           >
             Ir al login
           </Button>
