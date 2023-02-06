@@ -55,6 +55,7 @@ const LostPetLocation = ({ position, image }) => {
   return (
     <Box
       bgcolor={"background.paper"}
+      color="black"
       border="solid 1px"
       borderColor={"divider"}
       height="100%"
