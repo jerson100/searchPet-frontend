@@ -43,7 +43,7 @@ const marks = [
 
 const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
   const { location } = useMyLocationGps();
-  const [maxD, setMaxD] = useState("");
+  const [maxD, setMaxD] = useState(0);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -81,7 +81,7 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
       )}
       <form onSubmit={handleSubmit}>
         <FormControl sx={{ width: "100%" }}>
-          <FormLabel id="demo-row-radio-buttons-group-label">
+          <FormLabel id="demo-row-radio-buttons-group-label" sx={{ mb: 2 }}>
             Distancia Máxima
           </FormLabel>
           <Box
@@ -90,6 +90,7 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
               marginLeft: "auto",
               marginRight: "auto",
             }}
+            mb={2}
           >
             <Slider
               aria-label="Restricted values"
