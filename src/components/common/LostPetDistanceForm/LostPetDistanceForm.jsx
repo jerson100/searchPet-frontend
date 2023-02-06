@@ -9,9 +9,37 @@ import {
   RadioGroup,
   Typography,
   Box,
+  Slider,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import useMyLocationGps from "../../../hooks/useMyLocationGps";
+
+const marks = [
+  {
+    value: 0,
+    label: "5km",
+  },
+  {
+    value: 12,
+    label: "25km",
+  },
+  {
+    value: 25,
+    label: "50km",
+  },
+  {
+    value: 50,
+    label: "100km",
+  },
+  {
+    value: 75,
+    label: "150km",
+  },
+  {
+    value: 100,
+    label: "200km",
+  },
+];
 
 const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
   const { location } = useMyLocationGps();
@@ -19,8 +47,21 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleChangeMaxDistance(maxD, location);
+    handleChangeMaxDistance(
+      marks.find((ma) => ma.value == maxD)?.label.replace("km", "") * 1000,
+      location
+    );
   };
+
+  function valuetext(value) {
+    return `${value}km`;
+  }
+
+  function valueLabelFormat(value) {
+    return marks.find((mark) => mark.value === value).label;
+  }
+
+  console.log(maxD);
 
   return (
     <Box sx={{ mb: 2 }}>
@@ -39,11 +80,31 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
         </Alert>
       )}
       <form onSubmit={handleSubmit}>
-        <FormControl>
+        <FormControl sx={{ width: "100%" }}>
           <FormLabel id="demo-row-radio-buttons-group-label">
             Distancia Máxima
           </FormLabel>
-          <RadioGroup
+          <Box
+            sx={{
+              width: "calc(100% - 40px)",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <Slider
+              aria-label="Restricted values"
+              defaultValue={5000}
+              valueLabelFormat={valueLabelFormat}
+              getAriaValueText={valuetext}
+              step={null}
+              valueLabelDisplay="auto"
+              onChange={(c, d) => setMaxD(d)}
+              marks={marks}
+              value={maxD}
+            />
+          </Box>
+
+          {/* <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
@@ -65,7 +126,7 @@ const LostPetDistanceForm = ({ loading, handleChangeMaxDistance }) => {
               control={<Radio />}
               label="200km"
             />
-          </RadioGroup>
+          </RadioGroup> */}
           <Box display="flex" justifyContent="center">
             <LoadingButton
               disabled={!location}
