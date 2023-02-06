@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Box, Grid, Container } from "@mui/material";
+import { Box, Grid, Container, Paper, useTheme } from "@mui/material";
 import { Helmet } from "react-helmet";
 import L from "leaflet";
 import LostPetList from "../../../components/common/LostPetList";
@@ -10,6 +10,7 @@ import PointsInMap from "./components/PointsInMap/PointsInMap";
 const LostPetsView = () => {
   const { lostPets, loading, isNext, nextPage, getLostPetsByUserLocation } =
     useGetLostPet();
+  const theme = useTheme();
 
   const points = useMemo(() => {
     return lostPets?.map(
@@ -75,13 +76,15 @@ const LostPetsView = () => {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={6} sx={{ order: { xs: 1, md: 2 } }}>
-            <Box
-              bgcolor={"background.paper"}
+            <Paper
               p={2}
-              border="solid 1px"
-              borderColor="divider"
               position={"sticky"}
               top={89}
+              variant={
+                theme.palette.mode === "light" ? "outlined" : "elevation"
+              }
+              sx={{ mb: 2 }}
+              component={Box}
             >
               <LostPetDistanceForm
                 loading={loading}
@@ -90,7 +93,7 @@ const LostPetsView = () => {
               <Box sx={{ height: "50vh" }}>
                 <PointsInMap points={points} />
               </Box>
-            </Box>
+            </Paper>
           </Grid>
         </Grid>
       </Container>

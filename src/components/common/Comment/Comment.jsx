@@ -1,6 +1,15 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
-import { Avatar, Box, Grid, Link, Skeleton, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Grid,
+  Link,
+  Paper,
+  Skeleton,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { getTweetPublicationDate } from "../../../utils/date";
 import { useAuthContext } from "../../../hooks/useAuthContext";
@@ -40,6 +49,7 @@ const Comment = ({
   loading = false,
 }) => {
   const [laodingDeleteComment, setlaodingDeleteComment] = useState(false);
+  const theme = useTheme();
 
   const _handleDelete = async () => {
     if (!laodingDeleteComment) {
@@ -52,67 +62,77 @@ const Comment = ({
   const { user: userAuth } = useAuthContext();
   if (loading) return <LoadingComment />;
   return (
-    <Grid
-      border="solid 1px"
-      borderColor="divider"
-      container
-      p={2}
-      flexWrap={"nowrap"}
-      mb={2}
-      borderRadius="5px"
-      sx={{ backgroundColor: "rgb(243, 242, 239)", overflow: "hidden" }}
+    <Paper
       component={motion.div}
       initial={"hidden"}
       animate={"show"}
       variants={animate && variants}
+      variant={theme.palette.mode === "light" ? "outlined" : "elevation"}
+      sx={{ mb: 2 }}
     >
-      <Grid item pr={2}>
-        <Link component={LinkRouter} to={`/users/${user._id}`}>
-          <Avatar alt={user.username} src={user.urlImageProfile} />
-        </Link>
-      </Grid>
-      <Grid item container flexDirection={"column"} sx={{ overflow: "hidden" }}>
-        <Grid item mb={1} container justifyContent={"space-between"}>
-          <Grid item>
-            <Typography variant="body1" component="p">
-              <Link
-                component={LinkRouter}
-                to={`/users/${user._id}`}
-                underline="hover"
-                color="text.primary"
-              >
-                {user.username}
-              </Link>
-            </Typography>
-            <Typography component="span" variant="caption">
-              {getTweetPublicationDate(new Date(createdAt))}
+      <Grid
+        container
+        p={2}
+        flexWrap={"nowrap"}
+        borderRadius="5px"
+        sx={{ /*backgroundColor: "rgb(243, 242, 239)", */ overflow: "hidden" }}
+      >
+        <Grid item pr={2}>
+          <Link component={LinkRouter} to={`/users/${user._id}`}>
+            <Avatar alt={user.username} src={user.urlImageProfile} />
+          </Link>
+        </Grid>
+        <Grid
+          item
+          container
+          flexDirection={"column"}
+          sx={{ overflow: "hidden" }}
+        >
+          <Grid item mb={1} container justifyContent={"space-between"}>
+            <Grid item>
+              <Typography variant="body1" component="p">
+                <Link
+                  component={LinkRouter}
+                  to={`/users/${user._id}`}
+                  underline="hover"
+                  color="text.primary"
+                >
+                  {user.username}
+                </Link>
+              </Typography>
+              <Typography component="span" variant="caption">
+                {getTweetPublicationDate(new Date(createdAt))}
+              </Typography>
+            </Grid>
+            {userAuth?.user._id === user._id && (
+              <Grid item>
+                <MoreVertIcon
+                  cursor="pointer"
+                  onClick={() => _handleDelete()}
+                />
+              </Grid>
+            )}
+          </Grid>
+          <Grid item sx={{ maxWidth: "100%" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {description}
             </Typography>
           </Grid>
-          {userAuth?.user._id === user._id && (
-            <Grid item>
-              <MoreVertIcon cursor="pointer" onClick={() => _handleDelete()} />
+          {locations?.length > 0 && (
+            <Grid item mt={2}>
+              <ReferenceMap locations={locations} />
             </Grid>
           )}
         </Grid>
-        <Grid item sx={{ maxWidth: "100%" }}>
-          <Typography
-            variant="body2"
-            sx={{
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {description}
-          </Typography>
-        </Grid>
-        {locations?.length > 0 && (
-          <Grid item mt={2}>
-            <ReferenceMap locations={locations} />
-          </Grid>
-        )}
       </Grid>
-    </Grid>
+    </Paper>
   );
 };
 
@@ -172,7 +192,7 @@ const LoadingComment = () => {
       flexWrap={"nowrap"}
       mb={2}
       borderRadius="5px"
-      sx={{ backgroundColor: "rgb(243, 242, 239)" }}
+      //   sx={{ backgroundColor: "rgb(243, 242, 239)" }}
     >
       <Grid item pr={2}>
         <Skeleton variant="circular" height="40px" width="40px" />

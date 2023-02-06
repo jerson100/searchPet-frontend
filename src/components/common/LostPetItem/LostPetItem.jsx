@@ -1,6 +1,14 @@
 import React from "react";
 import { Link as LinkRouter } from "react-router-dom";
-import { Box, Grid, Link, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Link,
+  Paper,
+  Skeleton,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import ImageGrid from "./components/ImageGrid";
 import PetsList from "./components/PetsList";
 import LostPetItemHeader from "./components/LostPetItemHeader";
@@ -18,9 +26,12 @@ const LostPetItem = ({
   isToPublication = true,
   location,
 }) => {
+  const theme = useTheme();
   if (loading) return <LostPetItemLoading />;
   return (
-    <ContainerStyle
+    <Paper
+      variant={theme.palette.mode === "light" ? "outlined" : "elevation"}
+      component={Box}
       id={
         location &&
         `${location.coordinates[1]},${location.coordinates[0]}`.replace(
@@ -67,7 +78,7 @@ const LostPetItem = ({
         </Grid> */}
         </Grid>
       )}
-    </ContainerStyle>
+    </Paper>
   );
 };
 

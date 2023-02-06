@@ -15,7 +15,7 @@ const ImageProfileContainerStyle = styled("div")`
 
 const PetItemStyle = styled("div")(({ theme }) => ({
   border: `solid 1px ${theme.palette.divider}`,
-  backgroundColor: "rgb(243, 242, 239)",
+  backgroundColor: `${theme.palette.background.default}`,
   //   cursor: "pointer",
   position: "relative",
   //   [theme.breakpoints.up("sm")]: {

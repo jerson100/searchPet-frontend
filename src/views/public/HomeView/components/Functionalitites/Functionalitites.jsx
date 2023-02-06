@@ -6,12 +6,19 @@ import JeSection from "../../../../../components/common/JeSection";
 import { ReactComponent as NotificationSVG } from "../../../../../assets/img/svg/notifications.svg";
 import { ReactComponent as ChatSVG } from "../../../../../assets/img/svg/chat.svg";
 import { ReactComponent as GpsSVG } from "../../../../../assets/img/svg/gps.svg";
+import { Box, Paper, useTheme } from "@mui/material";
 
 // import { ReactComponent as StarIcon } from './star.svg';
 
 const Functionalitites = () => {
+  //   const theme = useTheme();
   return (
-    <JeSection>
+    // <Paper
+    //   variant={theme.palette.mode === "light" ? "outlined" : "elevation"}
+    //   sx={{ mb: 2 }}
+    //   component={Box}
+    // >
+    <JeSection backgroundColor="inherit">
       <JeSection.Title>Funcionalidades</JeSection.Title>
       <JeSection.Content>
         <Grid container spacing={8}>
@@ -44,6 +51,7 @@ const Functionalitites = () => {
         </Grid>
       </JeSection.Content>
     </JeSection>
+    // </Paper>
   );
 };
 

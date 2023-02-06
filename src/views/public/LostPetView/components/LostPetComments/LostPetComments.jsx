@@ -14,9 +14,9 @@ const LostPetComments = ({ idLostPet }) => {
   } = useLostPetComments(idLostPet);
   return (
     <Box
-      bgcolor={"background.paper"}
       border="solid 1px"
       borderColor={"divider"}
+      bgcolor="background.default"
       component="section"
       p={2}
     >

@@ -7,25 +7,36 @@ import { SnackbarProvider } from "notistack";
 import "./configs/axios";
 import { AuthProvider } from "./contexts/authContext";
 
-let theme = createTheme();
+let theme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 theme = responsiveFontSizes(theme);
 
 function App() {
   return (
     <>
-      <GlobalStyles
-        styles={(theme) => ({
-          body: {
-            margin: 0,
-            padding: 0,
-            boxSizing: "border-box",
-            backgroundColor: "rgb(243, 242, 239)",
-          },
-        })}
-      />
       <SnackbarProvider>
         <AuthProvider>
           <ThemeProvider theme={theme}>
+            <GlobalStyles
+              styles={(theme) => {
+                return {
+                  body: {
+                    margin: 0,
+                    padding: 0,
+                    boxSizing: "border-box",
+                    backgroundColor: `${
+                      theme.palette.mode === "light"
+                        ? "rgb(243, 242, 239)"
+                        : theme.palette.background.default
+                    }`,
+                    color: `${theme.palette.text.primary}`,
+                  },
+                };
+              }}
+            />
             <AppRouter />
           </ThemeProvider>
         </AuthProvider>

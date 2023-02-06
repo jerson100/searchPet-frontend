@@ -11,7 +11,12 @@ const Footer = () => {
   return (
     <Paper
       component="footer"
-      sx={{ boxShadow: "none", padding: { xs: "1rem 0", md: "2rem 0" } }}
+      sx={{
+        boxShadow: "none",
+        padding: { xs: "1rem 0", md: "2rem 0" },
+        borderTop: "solid 1px",
+        borderColor: "divider",
+      }}
     >
       <Container>
         <Grid container>

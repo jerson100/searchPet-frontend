@@ -91,6 +91,8 @@ const ContentLayout = React.memo(({ setshowMenuMobile, controls }) => {
             flexGrow: 1,
             display: "flex",
             flexDirection: "column",
+            // bgcolor: "background.default",
+            // color: "text.primary",
             transform: {
               sm: `translateX(0)`,
             },
