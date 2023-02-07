@@ -5,6 +5,7 @@ import UserLogued from "../UserLogued";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
+import ThemeButton from "../../../ThemeButton";
 
 const RightMenu = () => {
   const { user } = useAuthContext();
@@ -22,6 +23,9 @@ const RightMenu = () => {
       }}
       component="ul"
     >
+      <li>
+        <ThemeButton />
+      </li>
       {user?.user && (
         <>
           <li>

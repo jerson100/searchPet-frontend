@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import AppRouter from "./components/route/AppRouter/AppRouter";
 import ThemeProvider from "@mui/system/ThemeProvider";
 import { createTheme, responsiveFontSizes } from "@mui/material";
@@ -7,19 +7,50 @@ import { SnackbarProvider } from "notistack";
 import "./configs/axios";
 import { AuthProvider } from "./contexts/authContext";
 
+const spet_theme = "spet_theme";
+
 let theme = createTheme({
-  //   palette: {
-  //     mode: "dark",
-  //   },
+  palette: {
+    mode: "dark",
+  },
 });
 theme = responsiveFontSizes(theme);
 
 function App() {
+  const [mode, setMode] = useState("light");
+
+  useEffect(() => {
+    const themeStorage = localStorage.getItem(spet_theme);
+    if (themeStorage && (themeStorage === "light" || themeStorage === "dark")) {
+      setMode(themeStorage);
+    } else {
+      localStorage.setItem(spet_theme, "light");
+      setMode("light");
+    }
+  }, []);
+
+  const theme = useMemo(() => {
+    let theme = createTheme({
+      palette: {
+        mode: mode,
+      },
+    });
+    return responsiveFontSizes(theme);
+  }, [mode]);
+
+  const changeTheme = useCallback(() => {
+    setMode((previousMode) => {
+      const aux = previousMode === "light" ? "dark" : "light";
+      localStorage.setItem(spet_theme, aux);
+      return aux;
+    });
+  }, []);
+
   return (
     <>
       <SnackbarProvider>
         <AuthProvider>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={{ ...theme, changeTheme }}>
             <GlobalStyles
               styles={(theme) => {
                 return `
