@@ -8,9 +8,9 @@ import "./configs/axios";
 import { AuthProvider } from "./contexts/authContext";
 
 let theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
+  //   palette: {
+  //     mode: "dark",
+  //   },
 });
 theme = responsiveFontSizes(theme);
 
@@ -51,8 +51,12 @@ function App() {
                               theme.palette.mode === "dark"
                                 ? "rgb(35 35 35)"
                                 : "rgba(158, 158, 157, 0.321)"
-                            };;
-                            outline: 1px solid rgb(35 35 35);
+                            };
+                            outline: 1px solid ${
+                              theme.palette.mode === "dark"
+                                ? "rgb(35 35 35)"
+                                : "rgba(158, 158, 157, 0.321)"
+                            };
                             border-radius: 5px;
                         }
                     }
