@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { motion } from "framer-motion";
+import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import DesktopMenu from "./components/DesktopMenu/DesktopMenu";
 import {
@@ -26,6 +27,10 @@ const Header = ({ setshowMenuMobile, controls }) => {
         borderBottom: ({ palette: { divider } }) => `solid 1px ${divider}`,
         boxShadow: "none",
         transform: { sm: `translateX(0)` },
+        backdropFilter: "blur(5px)",
+        backgroundColor: ({ palette }) => `
+            ${alpha(palette.background.paper, 0.8)}
+        `,
       }}
     >
       <Toolbar
