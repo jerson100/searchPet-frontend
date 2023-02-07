@@ -8,6 +8,7 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 
 * Se da soporte al tema dark y light.
 * Se cambia la selección por medio de botones de los kilómetros de distancia de las mascotas perdidas por un slider.
+* Desenfoque en el header
 
 ## Vistas
 
