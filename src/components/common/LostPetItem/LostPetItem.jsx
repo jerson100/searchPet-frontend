@@ -47,8 +47,8 @@ const LostPetItem = ({
       </Box>
       <Box
         sx={{
-          marginLeft: { xs: "-1px", sm: "0" },
-          marginRight: { xs: "-1px", sm: "0" },
+          marginLeft: { /*xs: "-1px",*/ sm: "0" },
+          marginRight: { /*xs: "-1px", */ sm: "0" },
         }}
       >
         <ImageGrid images={images} />
