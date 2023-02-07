@@ -10,7 +10,6 @@ const ThemeButton = () => {
   return (
     <>
       <MaterialUISwitch
-        sx={{ m: 1 }}
         checked={theme.palette.mode === "dark"}
         onClick={handleClick}
       />

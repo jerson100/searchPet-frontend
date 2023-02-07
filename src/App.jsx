@@ -9,13 +9,6 @@ import { AuthProvider } from "./contexts/authContext";
 
 const spet_theme = "spet_theme";
 
-let theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
-theme = responsiveFontSizes(theme);
-
 function App() {
   const [mode, setMode] = useState("light");
 
