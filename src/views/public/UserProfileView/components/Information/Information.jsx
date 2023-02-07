@@ -50,12 +50,24 @@ const Information = ({
           </JeSection.Title>
           <JeSection.Content>
             <InformationRow description="Username:">
-              <Typography paragraph mb={0}>
+              <Typography
+                paragraph
+                mb={0}
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
                 {username}
               </Typography>
             </InformationRow>
             <InformationRow description="Desde:">
-              <Typography paragraph mb={0}>
+              <Typography
+                paragraph
+                mb={0}
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
                 {formatedDate}
               </Typography>
             </InformationRow>
