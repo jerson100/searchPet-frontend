@@ -116,7 +116,7 @@ const LostPetRequestForm = () => {
         >
           {({ touched, errors, values, setFieldValue }) => (
             <Form>
-              <Grid container spacing={3}>
+              <Grid container spacing={3} mb={2}>
                 <Grid item xs={12} md={4}>
                   <LostPetsSelect
                     name="pets"

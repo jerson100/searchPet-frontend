@@ -11,7 +11,12 @@ const AddPetView = () => {
         <title>Agregar Mascota | Spet</title>
         <meta name="description" content="Agregar nueva mascota" />
       </Helmet>
-      <JeSection component={"div"} title={"Agregar Mascota"} maxWidth={"md"}>
+      <JeSection
+        component={"div"}
+        title={"Agregar Mascota"}
+        maxWidth={"md"}
+        backgroundColor="inherit"
+      >
         <AddPetForm />
       </JeSection>
     </>
