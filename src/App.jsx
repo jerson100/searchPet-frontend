@@ -22,19 +22,41 @@ function App() {
           <ThemeProvider theme={theme}>
             <GlobalStyles
               styles={(theme) => {
-                return {
-                  body: {
-                    margin: 0,
-                    padding: 0,
-                    boxSizing: "border-box",
-                    backgroundColor: `${
-                      theme.palette.mode === "light"
-                        ? "rgb(243, 242, 239)"
-                        : theme.palette.background.default
-                    }`,
-                    color: `${theme.palette.text.primary}`,
-                  },
-                };
+                return `
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        background-color: ${
+                          theme.palette.mode === "light"
+                            ? "rgb(243, 242, 239)"
+                            : theme.palette.background.default
+                        };
+                        color: ${theme.palette.text.primary};
+                    }
+                    @media screen and (min-width: 760px) {
+                        body::-webkit-scrollbar {
+                            width: 10px;
+                        }
+                
+                        body::-webkit-scrollbar-track {
+                            /* box-shadow: inset 0 0 6px rgb(158, 158, 157); */
+                            /* border: solid 1px rgb(158, 158, 157); */
+                            background-color: rgba(158, 158, 157, 0.321);
+                        }
+                
+                        body::-webkit-scrollbar-thumb {
+                            /* background-color: rgb(158, 158, 157); */
+                            background-color:  ${
+                              theme.palette.mode === "dark"
+                                ? "rgb(35 35 35)"
+                                : "rgba(158, 158, 157, 0.321)"
+                            };;
+                            outline: 1px solid rgb(35 35 35);
+                            border-radius: 5px;
+                        }
+                    }
+                `;
               }}
             />
             <AppRouter />
