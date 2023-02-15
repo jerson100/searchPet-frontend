@@ -116,11 +116,11 @@ const Comment = ({
           <Grid item sx={{ maxWidth: "100%" }}>
             <Typography
               variant="body2"
-              sx={{
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-              }}
+              //   sx={{
+              //     overflow: "hidden",
+              //     whiteSpace: "nowrap",
+              //     textOverflow: "ellipsis",
+              //   }}
             >
               {description}
             </Typography>
