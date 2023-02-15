@@ -40,6 +40,7 @@ const MobileMenu = ({ setshowMenuMobile }) => {
           right: "0",
           bottom: "0",
           backgroundColor: "rgba(0,0,0,.4)",
+          backdropFilter: "blur(5px)",
           zIndex: (props) => {
             return props.zIndex.appBar + 1;
           },
