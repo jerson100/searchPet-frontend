@@ -80,6 +80,7 @@ const LostPetView = () => {
                 position={lostPet?.location?.coordinates}
                 image={lostPet?.user?.urlImageProfile}
                 idLostPet={lostPet?._id}
+                idAuthorPost={lostPet?.user?._id}
               />
             )
           )}
@@ -88,7 +89,10 @@ const LostPetView = () => {
           <Box>
             <Grid container spacing={2}>
               <Grid item xs={7}>
-                <LostPetComments idLostPet={lostPet?._id} />
+                <LostPetComments
+                  idLostPet={lostPet?._id}
+                  idAuthorPost={lostPet?.user?._id}
+                />
               </Grid>
               <Grid item xs={5}>
                 <Box sx={{ position: "sticky", top: "81px" }}>

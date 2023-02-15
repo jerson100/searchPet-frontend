@@ -44,6 +44,7 @@ function App() {
       <SnackbarProvider>
         <AuthProvider>
           <ThemeProvider theme={{ ...theme, changeTheme }}>
+            {/* <SocketProvider> */}
             <GlobalStyles
               styles={(theme) => {
                 return `

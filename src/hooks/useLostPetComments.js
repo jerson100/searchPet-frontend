@@ -4,8 +4,10 @@ import axios from "../configs/axios";
 import { AUTH_TOKEN } from "../configs/localstorage";
 import { useSnackbar } from "notistack";
 import { useAuthContext } from "./useAuthContext";
+import socket from "../configs/socket";
+import { NOTIFICATIONS } from "../consts/socket";
 
-const useLostPetComments = (idLostPet) => {
+const useLostPetComments = (idLostPet, idAuthorPost = "") => {
   const [comments, setComments] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useAuthContext();
@@ -79,6 +81,17 @@ const useLostPetComments = (idLostPet) => {
         ]);
         enqueueSnackbar("Comentario creado", {
           variant: "success",
+        });
+        socket.emit("notification", {
+          from: newComment.user,
+          to: idAuthorPost,
+          type: NOTIFICATIONS.LOST_PET_COMMENT,
+          message: `${user.user.username} comentó tu publicación`,
+          data: {
+            ...newComment,
+            username: user.user.username,
+            urlImageProfile: user.user.urlImageProfile,
+          },
         });
       } catch (e) {
         if (e.status) {

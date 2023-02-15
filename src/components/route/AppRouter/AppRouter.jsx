@@ -23,47 +23,53 @@ import UserPets from "../../../views/public/UserProfileView/views/UserPets";
 import UserLostPets from "../../../views/public/UserProfileView/views/UserLostPets";
 import UsActivities from "../../../views/public/UserProfileView/views/UsActivities";
 import VerifyRegisterAccountToken from "../../../views/public/VerifyRegisterAccountToken";
+import { SocketProvider } from "../../../contexts/socketContext";
 
 const AppRouter = () => {
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <PublicRouter>
-              <LoginView />
-            </PublicRouter>
-          }
-        />
-        <Route path="/register" element={<RegisterView />} />
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<HomeView />} />
-          <Route path="home" element={<HomeView />} />
-          <Route path="pets" element={<PetsView />} />
-          <Route path="auth/verify" element={<VerifyRegisterAccountToken />} />
-          <Route path="pets/:idPet" element={<PetView />} />
-          <Route path="pets/lost" element={<LostPetsView />} />
-          <Route path="pets/lost/:idLostPet" element={<LostPetView />} />
-          <Route path="pets" element={<PetLayout />}>
-            <Route path="add" element={<AddPetView />} />
-            <Route path="lost/add" element={<AddLostPetView />} />
+      <SocketProvider>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <PublicRouter>
+                <LoginView />
+              </PublicRouter>
+            }
+          />
+          <Route path="/register" element={<RegisterView />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomeView />} />
+            <Route path="home" element={<HomeView />} />
+            <Route path="pets" element={<PetsView />} />
+            <Route
+              path="auth/verify"
+              element={<VerifyRegisterAccountToken />}
+            />
+            <Route path="pets/:idPet" element={<PetView />} />
+            <Route path="pets/lost" element={<LostPetsView />} />
+            <Route path="pets/lost/:idLostPet" element={<LostPetView />} />
+            <Route path="pets" element={<PetLayout />}>
+              <Route path="add" element={<AddPetView />} />
+              <Route path="lost/add" element={<AddLostPetView />} />
+            </Route>
+            <Route path="we" element={<WeView />} />
+            <Route path="team" element={<TeamView />} />
+            <Route path="users/:idUser" element={<UserProfileView />}>
+              <Route index element={<UsActivities />} />
+              <Route path="activities" element={<UsActivities />} />
+              <Route path="pets" element={<UserPets />} />
+              <Route path="lost-pets" element={<UserLostPets />} />
+            </Route>
+            <Route path="configuration" element={<ConfigurationLayout />}>
+              <Route index element={<ConfigurationView />} />
+              <Route path="reset-password" element={<ResetPasswordView />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
           </Route>
-          <Route path="we" element={<WeView />} />
-          <Route path="team" element={<TeamView />} />
-          <Route path="users/:idUser" element={<UserProfileView />}>
-            <Route index element={<UsActivities />} />
-            <Route path="activities" element={<UsActivities />} />
-            <Route path="pets" element={<UserPets />} />
-            <Route path="lost-pets" element={<UserLostPets />} />
-          </Route>
-          <Route path="configuration" element={<ConfigurationLayout />}>
-            <Route index element={<ConfigurationView />} />
-            <Route path="reset-password" element={<ResetPasswordView />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </SocketProvider>
     </Router>
   );
 };

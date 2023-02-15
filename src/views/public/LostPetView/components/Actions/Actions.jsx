@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Dialog, Fab, Slide } from "@mui/material";
+import { Dialog, Fab, Paper, Slide } from "@mui/material";
 import MessageTwoToneIcon from "@mui/icons-material/MessageTwoTone";
 import CloseIcon from "@mui/icons-material/Close";
 import LostPetLocation from "../LostPetLocation";
@@ -11,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Actions = ({ position, image, idLostPet }) => {
+const Actions = ({ position, image, idLostPet, idAuthorPost }) => {
   const [showMap, setShowMap] = useState(false);
   const [showCommets, setShowCommets] = useState(false);
   return ReactDOM.createPortal(
@@ -77,6 +77,7 @@ const Actions = ({ position, image, idLostPet }) => {
         fullScreen
         open={showCommets}
         onClose={() => setShowCommets(false)}
+        PaperProps={{ sx: { display: "initial" } }}
       >
         <Fab
           aria-label={"close"}
@@ -94,7 +95,7 @@ const Actions = ({ position, image, idLostPet }) => {
         >
           <CloseIcon />
         </Fab>
-        <LostPetComments idLostPet={idLostPet} />
+        <LostPetComments idLostPet={idLostPet} idAuthorPost={idAuthorPost} />
       </Dialog>
     </>,
     document.body
