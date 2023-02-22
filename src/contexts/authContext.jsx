@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setuser] = useState(null);
+
   const [isLogued, setisLogued] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -41,6 +42,7 @@ const AuthProvider = ({ children }) => {
             ...data.data,
             accessToken: token,
           });
+          console.log(data.data);
           setisLogued(true);
           AUTH_TOKEN.add(token);
         } catch (e) {

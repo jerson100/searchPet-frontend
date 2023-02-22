@@ -3,9 +3,9 @@ import { Badge, IconButton, Stack } from "@mui/material";
 import ButtonAcceder from "../../../ButtonAcceder";
 import UserLogued from "../UserLogued";
 import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import ThemeButton from "../../../ThemeButton";
+import NotificationTop from "../TopNotification";
 
 const RightMenu = () => {
   const { user } = useAuthContext();
@@ -40,15 +40,7 @@ const RightMenu = () => {
             </IconButton>
           </li>
           <li>
-            <IconButton
-              size="medium"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <NotificationTop />
           </li>
         </>
       )}
