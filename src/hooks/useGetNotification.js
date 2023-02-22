@@ -24,7 +24,15 @@ const useNotification = (page = 1, length = 5) => {
 
   useEffect(() => {
     const getData = async () => {
-      await execute();
+      try {
+        await execute();
+      } catch (e) {
+        if (e.status) {
+          if (e.status === 401) {
+            window.location.href = "/login";
+          }
+        }
+      }
     };
     getData();
   }, [page, length]);
