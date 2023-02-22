@@ -1,13 +1,23 @@
 import { Box, Paper } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { AUTH_TOKEN } from "../../../configs/localstorage";
 import useNotification from "../../../hooks/useGetNotification";
 import Notification from "./components/Notification";
 
 const Notifications = () => {
   const { notifications, loading } = useNotification();
   const navigate = useNavigate();
-  const handleClick = useCallback((to) => {
+  const handleClick = useCallback((to, idNotification) => {
+    fetch(
+      `${import.meta.env.VITE_API_URL}/notifications/${idNotification}/seen`,
+      {
+        method: "PATCH",
+        headers: {
+          authorization: `Bearer ${AUTH_TOKEN.get()}`,
+        },
+      }
+    );
     navigate(to);
   }, []);
   return (
@@ -32,7 +42,8 @@ const Notifications = () => {
               username={n.from.username}
               seen={n.seen}
               handleClick={handleClick}
-              key={i}
+              key={n._id}
+              idNotification={n._id}
             />
           ))}
         </Paper>

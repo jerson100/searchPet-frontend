@@ -11,11 +11,12 @@ const Notification = ({
   path,
   handleClick,
   seen = false,
+  idNotification,
 }) => {
   return (
     <li>
       <NotificationContainerStyle
-        onClick={() => handleClick(path)}
+        onClick={() => handleClick(path, idNotification)}
         component={"article"}
         isSeen={seen}
         sx={{
