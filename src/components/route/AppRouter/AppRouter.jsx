@@ -24,6 +24,7 @@ import UserLostPets from "../../../views/public/UserProfileView/views/UserLostPe
 import UsActivities from "../../../views/public/UserProfileView/views/UsActivities";
 import VerifyRegisterAccountToken from "../../../views/public/VerifyRegisterAccountToken";
 import { SocketProvider } from "../../../contexts/socketContext";
+import NotificationsView from "../../../views/private/NotificationsView";
 
 const AppRouter = () => {
   return (
@@ -41,6 +42,7 @@ const AppRouter = () => {
           <Route path="/register" element={<RegisterView />} />
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomeView />} />
+            <Route path="notifications" element={<NotificationsView />} />
             <Route path="home" element={<HomeView />} />
             <Route path="pets" element={<PetsView />} />
             <Route

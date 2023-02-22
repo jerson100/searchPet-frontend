@@ -92,6 +92,13 @@ const AuthProvider = ({ children }) => {
     [execute]
   );
 
+  const resetSeenNotifications = useCallback(() => {
+    setuser((us) => ({
+      ...us,
+      seen_notifications: 0,
+    }));
+  }, []);
+
   const loginWithFacebook = useCallback(
     async (email, name, urlImageProfile) => {
       try {
@@ -128,6 +135,7 @@ const AuthProvider = ({ children }) => {
         previousLoading,
         loginWithGoogle,
         loginWithFacebook,
+        resetSeenNotifications,
       }}
     >
       {children}

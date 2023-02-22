@@ -8,12 +8,13 @@ const TopNotification = () => {
   const navigate = useNavigate();
 
   const {
-    user: { seen_notifications, resetSeenNotifications },
+    user: { seen_notifications },
+    resetSeenNotifications,
   } = useAuthContext();
 
   const handleClick = () => {
     resetSeenNotifications();
-    navigate("/");
+    navigate("/notifications");
   };
 
   return (
