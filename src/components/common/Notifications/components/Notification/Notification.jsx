@@ -31,6 +31,20 @@ const Notification = ({
           pb: 2,
         }}
       >
+        {!seen && (
+          <Box
+            sx={{
+              width: 6,
+              height: 6,
+              position: "absolute",
+              left: "12px",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "100%",
+              backgroundColor: ({ palette }) => palette.primary.dark,
+            }}
+          />
+        )}
         <Box>
           <Avatar
             alt={username}

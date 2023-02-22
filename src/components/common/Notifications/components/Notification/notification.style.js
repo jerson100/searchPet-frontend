@@ -11,22 +11,10 @@ const NotificationContainerStyle = styled(Box)`
   background-color: ${(props) => {
     return !props.isSeen ? "#1565c033" : null;
   }};
+
   &:hover {
     background-color: ${(props) => {
       return !props.isSeen ? "#1565c047" : "#0000001c";
-    }};
-  }
-  &::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 100%;
-    background-color: ${(props) => {
-      return props.theme.palette.primary.dark;
     }};
   }
 `;
