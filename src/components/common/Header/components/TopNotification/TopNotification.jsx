@@ -9,11 +9,9 @@ const TopNotification = () => {
 
   const {
     user: { seen_notifications },
-    resetSeenNotifications,
   } = useAuthContext();
 
   const handleClick = () => {
-    resetSeenNotifications();
     navigate("/notifications");
   };
 
