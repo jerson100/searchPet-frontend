@@ -44,6 +44,7 @@ const Notifications = () => {
               handleClick={handleClick}
               key={n._id}
               idNotification={n._id}
+              createdAt={n.createdAt}
             />
           ))}
         </Paper>

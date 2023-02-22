@@ -1,8 +1,9 @@
 import { Avatar, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useMemo } from "react";
 import MoreHoriz from "@mui/icons-material/MoreHoriz";
 import { NotificationContainerStyle } from "./notification.style";
+import { getTweetPublicationDate } from "../../../../../utils/date";
 
 const Notification = ({
   username,
@@ -12,7 +13,11 @@ const Notification = ({
   handleClick,
   seen = false,
   idNotification,
+  createdAt,
 }) => {
+  const timeMemo = useMemo(() => {
+    return getTweetPublicationDate(new Date(createdAt));
+  }, [createdAt]);
   return (
     <li>
       <NotificationContainerStyle
@@ -46,7 +51,9 @@ const Notification = ({
             gap: 1,
           }}
         >
-          <Typography variant="caption">10 minutos</Typography>
+          <Typography variant="caption" sx={{ mr: "12px" }}>
+            {timeMemo}
+          </Typography>
           <div>
             <IconButton color="primary" aria-label="ver acciones">
               <MoreHoriz />
