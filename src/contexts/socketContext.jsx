@@ -27,21 +27,16 @@ const SocketProvider = ({ children }) => {
         localStorage.setItem("sessionID", sessionID);
         // console.log("connected user");
       });
-      socket.on("notification", ({ from, to, type, message, data }) => {
-        // console.log(data);
-        // console.log(NOTIFICATIONS.LOST_PET_COMMENT);
+      socket.on("notification", ({ from, to, type, content, data, path }) => {
         if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
-          enqueueSnackbar(message, {
-            // variant: "commentNotification",
+          enqueueSnackbar(content, {
             persist: true,
             content: (key, message) => (
               <CommentNotification
                 id={key}
                 message={message}
                 comment={data}
-                handleClickTo={() => {
-                  navigate(`/pets/lost/${data.lostPet}`);
-                }}
+                handleClickTo={() => navigate(path)}
               />
             ),
           });

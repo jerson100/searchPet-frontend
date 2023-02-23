@@ -86,7 +86,8 @@ const useLostPetComments = (idLostPet, idAuthorPost = "") => {
           from: newComment.user,
           to: idAuthorPost,
           type: NOTIFICATIONS.LOST_PET_COMMENT,
-          message: `${user.user.username} comentó tu publicación`,
+          message: `${user.user.username} comentó tu publicación: "${newComment.description}"`,
+          path: `/pets/lost/${idLostPet}`,
           data: {
             ...newComment,
             username: user.user.username,
