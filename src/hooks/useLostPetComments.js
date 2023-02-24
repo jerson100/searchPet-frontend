@@ -90,8 +90,13 @@ const useLostPetComments = (idLostPet, idAuthorPost = "") => {
           path: `/pets/lost/${idLostPet}`,
           data: {
             ...newComment,
-            username: user.user.username,
-            urlImageProfile: user.user.urlImageProfile,
+            user: {
+              _id: newComment.user,
+              username: user.user.username,
+              email: user.user.email,
+              urlImageProfile: user.user.urlImageProfile,
+              typeUser: user.user.typeUser,
+            },
           },
         });
       } catch (e) {

@@ -15,7 +15,7 @@ const SocketProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("auth user", userContext.user);
+    // console.log("auth user", userContext.user);
     if (userContext.user) {
       const sessionID = SESSION_ID_STORAGE.get();
       const auth = { userID: userContext.user.user._id };
@@ -27,25 +27,28 @@ const SocketProvider = ({ children }) => {
         socket.userID = userID;
         SESSION_ID_STORAGE.add(sessionID);
       });
-      socket.on("notification", ({ from, to, type, content, data, path }) => {
-        if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
-          enqueueSnackbar(content, {
-            persist: true,
-            content: (key, message) => (
-              <CommentNotification
-                id={key}
-                message={message}
-                comment={data}
-                handleClickTo={() => navigate(path)}
-              />
-            ),
-          });
+      socket.on(
+        "notifications",
+        ({ from, to, type, content, data: newComment, path }) => {
+          if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
+            enqueueSnackbar(content, {
+              persist: true,
+              content: (key, message) => (
+                <CommentNotification
+                  id={key}
+                  message={message}
+                  comment={newComment}
+                  handleClickTo={() => navigate(path)}
+                />
+              ),
+            });
+          }
         }
-      });
+      );
     }
     return () => {
       socket.off("session");
-      socket.off("notification");
+      socket.off("notifications");
     };
   }, [userContext.user]);
 

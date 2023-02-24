@@ -87,7 +87,10 @@ const CommentWrapper = ({ comment, onClick }) => {
           <Link
           // component={LinkRouter} to={`/users/${comment.user._id}`}
           >
-            <Avatar alt={comment.username} src={comment.urlImageProfile} />
+            <Avatar
+              alt={comment.user.username}
+              src={comment.user.urlImageProfile}
+            />
           </Link>
         </Grid>
         <Grid
@@ -105,7 +108,7 @@ const CommentWrapper = ({ comment, onClick }) => {
                   underline="hover"
                   color="text.primary"
                 >
-                  {comment.username}
+                  {comment.user.username}
                 </Link>
               </Typography>
               {/* <Typography component="span" variant="caption">
