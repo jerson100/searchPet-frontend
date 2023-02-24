@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AUTH_TOKEN } from "../../../configs/localstorage";
@@ -6,7 +6,7 @@ import useNotification from "../../../hooks/useGetNotification";
 import Notification from "./components/Notification";
 
 const Notifications = () => {
-  const { notifications, loading } = useNotification();
+  const { notifications, loading, error } = useNotification();
   const navigate = useNavigate();
   const handleClick = useCallback((to, idNotification) => {
     fetch(
@@ -23,7 +23,13 @@ const Notifications = () => {
   return (
     <Box sx={{ maxWidth: "540px", marginLeft: "auto", marginRight: "auto" }}>
       {loading ? (
-        <p>Cargando...</p>
+        <Typography>Cargando...</Typography>
+      ) : error ? (
+        <Typography>Ocurrió un error, intentelo más tarde</Typography>
+      ) : !notifications.length ? (
+        <Typography textAlign={"center"}>
+          Aún no tiene notificaciones
+        </Typography>
       ) : (
         <Paper
           component="ul"
