@@ -5,6 +5,7 @@ import { NOTIFICATIONS } from "../consts/socket";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import CommentNotification from "../components/common/CommentNotification";
+import { SESSION_ID_STORAGE } from "../configs/localstorage";
 
 const SocketContext = createContext();
 
@@ -16,7 +17,7 @@ const SocketProvider = ({ children }) => {
   useEffect(() => {
     console.log("auth user", userContext.user);
     if (userContext.user) {
-      const sessionID = localStorage.getItem("sessionID");
+      const sessionID = SESSION_ID_STORAGE.get();
       const auth = { userID: userContext.user.user._id };
       if (sessionID) auth.sessionID = sessionID;
       socket.auth = auth;
@@ -24,8 +25,7 @@ const SocketProvider = ({ children }) => {
       socket.on("session", ({ sessionID, userID }) => {
         socket.auth = { sessionID, userID };
         socket.userID = userID;
-        localStorage.setItem("sessionID", sessionID);
-        // console.log("connected user");
+        SESSION_ID_STORAGE.add(sessionID);
       });
       socket.on("notification", ({ from, to, type, content, data, path }) => {
         if (type === NOTIFICATIONS.LOST_PET_COMMENT) {

@@ -3,6 +3,7 @@ import useAxios from "axios-hooks";
 import { useSnackbar } from "notistack";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { AUTH_TOKEN } from "../configs/localstorage";
+import socket from "../configs/socket";
 
 const AuthContext = createContext();
 
@@ -42,10 +43,11 @@ const AuthProvider = ({ children }) => {
             ...data.data,
             accessToken: token,
           });
-          console.log(data.data);
+          //   console.log(data.data);
           setisLogued(true);
           AUTH_TOKEN.add(token);
         } catch (e) {
+          console.log(e);
           AUTH_TOKEN.remove();
         }
       }
@@ -122,6 +124,9 @@ const AuthProvider = ({ children }) => {
     AUTH_TOKEN.remove();
     setisLogued(false);
     setuser(null);
+    if (socket) {
+      socket.disconnect();
+    }
   }, []);
 
   return (

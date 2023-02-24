@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { AUTH_TOKEN } from "../configs/localstorage";
 // import { useCallback, useState } from "react";
 
-const useNotification = (page = 1, length = 5) => {
+const useNotification = (page = 1, length = 10000) => {
   const [{ loading, data, response, error }, execute] = useAxios(
     {
       url: `/notifications`,

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 // import Paper from "@mui/material/Paper";
 import LoginForm from "./components/LoginForm";
 import AuthLayout from "../../../components/common/AuthLayout";
 import { Helmet } from "react-helmet";
+import { SESSION_ID_STORAGE } from "../../../configs/localstorage";
 
 const LoginView = () => {
+  useEffect(() => SESSION_ID_STORAGE.remove(), []);
   return (
     <>
       <Helmet>

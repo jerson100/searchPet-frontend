@@ -12,7 +12,7 @@ const NotificationsView = () => {
   }, [resetSeenNotifications]);
 
   return (
-    <Container sx={{ mt: 2 }}>
+    <Container sx={{ mt: 2, mb: 2 }}>
       <Notifications />
     </Container>
   );
