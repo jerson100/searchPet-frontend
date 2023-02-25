@@ -5,6 +5,7 @@ import { NOTIFICATIONS } from "../consts/socket";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import CommentNotification from "../components/common/CommentNotification";
+import notificationService from "../api/notification.service";
 import { SESSION_ID_STORAGE } from "../configs/localstorage";
 
 const SocketContext = createContext();
@@ -29,7 +30,15 @@ const SocketProvider = ({ children }) => {
       });
       socket.on(
         "notifications",
-        ({ from, to, type, content, data: newComment, path }) => {
+        ({
+          from,
+          to,
+          type,
+          content,
+          data: newComment,
+          path,
+          _id: idNotification,
+        }) => {
           if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
             userContext.addOneNotification();
             enqueueSnackbar(content, {
@@ -39,7 +48,10 @@ const SocketProvider = ({ children }) => {
                   id={key}
                   message={message}
                   comment={newComment}
-                  handleClickTo={() => navigate(path)}
+                  handleClickTo={() => {
+                    notificationService.seen({ idNotification });
+                    navigate(path);
+                  }}
                 />
               ),
             });
