@@ -31,6 +31,7 @@ const SocketProvider = ({ children }) => {
         "notifications",
         ({ from, to, type, content, data: newComment, path }) => {
           if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
+            userContext.addOneNotification();
             enqueueSnackbar(content, {
               persist: true,
               content: (key, message) => (
