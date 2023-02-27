@@ -40,7 +40,7 @@ const SocketProvider = ({ children }) => {
           _id: idNotification,
         }) => {
           if (type === NOTIFICATIONS.LOST_PET_COMMENT) {
-            userContext.addOneNotification();
+            userContext.addOneNotification({ idNotification });
             enqueueSnackbar(content, {
               persist: true,
               content: (key, message) => (
@@ -50,6 +50,7 @@ const SocketProvider = ({ children }) => {
                   comment={newComment}
                   handleClickTo={() => {
                     notificationService.seen({ idNotification });
+                    userContext.seenNotification({ idNotification });
                     navigate(path);
                   }}
                 />

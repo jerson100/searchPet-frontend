@@ -9,7 +9,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setuser] = useState(null);
-
+  const [newNotifications, setnewnotifications] = useState([]);
   const [isLogued, setisLogued] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -99,13 +99,18 @@ const AuthProvider = ({ children }) => {
       ...us,
       seen_notifications: 0,
     }));
+    setnewnotifications([]);
   }, []);
 
-  const addOneNotification = useCallback(() => {
-    setuser((us) => ({
-      ...us,
-      seen_notifications: us.seen_notifications + 1,
-    }));
+  const addOneNotification = useCallback(({ idNotification }) => {
+    setnewnotifications((prev) => [idNotification, ...prev]);
+  }, []);
+
+  const seenNotification = useCallback(({ idNotification }) => {
+    setnewnotifications((prev) => {
+      console.log(prev, idNotification);
+      return prev.filter((n) => n != idNotification);
+    });
   }, []);
 
   const loginWithFacebook = useCallback(
@@ -140,7 +145,10 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         loadingLogin,
-        user: user,
+        user: user && {
+          ...user,
+          seen_notifications: user.seen_notifications + newNotifications.length,
+        },
         isLogued: isLogued,
         login,
         logout,
@@ -149,6 +157,7 @@ const AuthProvider = ({ children }) => {
         loginWithFacebook,
         resetSeenNotifications,
         addOneNotification,
+        seenNotification,
       }}
     >
       {children}

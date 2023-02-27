@@ -2,16 +2,23 @@ import { Box, Paper, Typography } from "@mui/material";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import notificationService from "../../../api/notification.service";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 import useNotification from "../../../hooks/useGetNotification";
 import Notification from "./components/Notification";
 
 const Notifications = () => {
   const { notifications, loading, error } = useNotification();
+  const userContext = useAuthContext();
   const navigate = useNavigate();
-  const handleClick = useCallback((to, idNotification) => {
-    notificationService.seen({ idNotification });
-    navigate(to);
-  }, []);
+
+  const handleClick = useCallback(
+    (to, idNotification) => {
+      notificationService.seen({ idNotification });
+      userContext.seenNotification({ idNotification });
+      navigate(to);
+    },
+    [userContext.seenNotification]
+  );
   return (
     <Box sx={{ maxWidth: "540px", marginLeft: "auto", marginRight: "auto" }}>
       {loading ? (
