@@ -60,17 +60,17 @@ function App() {
                         color: ${theme.palette.text.primary};
                     }
                     @media screen and (min-width: 760px) {
-                        body::-webkit-scrollbar {
+                        *::-webkit-scrollbar {
                             width: 10px;
                         }
                 
-                        body::-webkit-scrollbar-track {
+                        *::-webkit-scrollbar-track {
                             /* box-shadow: inset 0 0 6px rgb(158, 158, 157); */
                             /* border: solid 1px rgb(158, 158, 157); */
                             background-color: rgba(158, 158, 157, 0.321);
                         }
                 
-                        body::-webkit-scrollbar-thumb {
+                        *::-webkit-scrollbar-thumb {
                             /* background-color: rgb(158, 158, 157); */
                             background-color:  ${
                               theme.palette.mode === "dark"

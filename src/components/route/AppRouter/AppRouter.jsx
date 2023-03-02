@@ -25,6 +25,8 @@ import UsActivities from "../../../views/public/UserProfileView/views/UsActiviti
 import VerifyRegisterAccountToken from "../../../views/public/VerifyRegisterAccountToken";
 import { SocketProvider } from "../../../contexts/socketContext";
 import NotificationsView from "../../../views/private/NotificationsView";
+import ChatView from "../../../views/private/ChatView";
+import PrivateRouter from "../PrivateRouter";
 
 const AppRouter = () => {
   return (
@@ -43,6 +45,19 @@ const AppRouter = () => {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomeView />} />
             <Route path="notifications" element={<NotificationsView />} />
+            <Route path="" element={<PrivateRouter />}>
+              <Route path="chats" element={<ChatView />} />
+              <Route path="pets/add" element={<AddPetView />} />
+              <Route path="pets/lost/add" element={<AddLostPetView />} />
+              <Route
+                path="configuration"
+                element={<ConfigurationView />}
+              ></Route>
+              <Route
+                path="configuration/reset-password"
+                element={<ResetPasswordView />}
+              />
+            </Route>
             <Route path="home" element={<HomeView />} />
             <Route path="pets" element={<PetsView />} />
             <Route
@@ -52,10 +67,7 @@ const AppRouter = () => {
             <Route path="pets/:idPet" element={<PetView />} />
             <Route path="pets/lost" element={<LostPetsView />} />
             <Route path="pets/lost/:idLostPet" element={<LostPetView />} />
-            <Route path="pets" element={<PetLayout />}>
-              <Route path="add" element={<AddPetView />} />
-              <Route path="lost/add" element={<AddLostPetView />} />
-            </Route>
+            {/* <Route path="pets" element={<PrivateRouter />}></Route> */}
             <Route path="we" element={<WeView />} />
             <Route path="team" element={<TeamView />} />
             <Route path="users/:idUser" element={<UserProfileView />}>
@@ -64,10 +76,7 @@ const AppRouter = () => {
               <Route path="pets" element={<UserPets />} />
               <Route path="lost-pets" element={<UserLostPets />} />
             </Route>
-            <Route path="configuration" element={<ConfigurationLayout />}>
-              <Route index element={<ConfigurationView />} />
-              <Route path="reset-password" element={<ResetPasswordView />} />
-            </Route>
+
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
