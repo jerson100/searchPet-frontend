@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const URL = "http://localhost:4210";
+const URL = import.meta.env.VITE_BACKEND_URL;
 const socket = io(URL, { autoConnect: false });
 
 socket.onAny((event, ...args) => {
