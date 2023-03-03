@@ -6,9 +6,7 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 
 ## Lo nuevo
 
-* Se da soporte al tema dark y light.
-* Se cambia la selección por medio de botones de los kilómetros de distancia de las mascotas perdidas por un slider.
-* Desenfoque en el header
+* Notificationes en tiempo real de los comentarios de las publicaciones.
 
 ## Vistas
 
@@ -26,6 +24,8 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 * /users/:idUser
 * /configuration
 * /reset-password
+* /chat
+* /notifications
 * Error Page
 
 ## Autor
