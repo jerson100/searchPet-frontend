@@ -3,9 +3,26 @@ import { Box } from "@mui/system";
 import React from "react";
 import { ChatItemContainerStyle } from "./chatItem.style";
 
-const ChatItem = ({ urlImageProfile, name, lastMessage, _id }) => {
+const ChatItem = ({
+  urlImageProfile,
+  name,
+  lastMessage,
+  _id,
+  handleClick,
+  email,
+}) => {
+  const _handleClick = () => {
+    handleClick({
+      urlImageProfile,
+      name,
+      lastMessage,
+      _id,
+      handleClick,
+      email,
+    });
+  };
   return (
-    <ChatItemContainerStyle elevation={2}>
+    <ChatItemContainerStyle elevation={2} onClick={_handleClick}>
       <Box display="flex" gap="1rem">
         <Box>
           <Avatar

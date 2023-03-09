@@ -4,7 +4,7 @@ import useChatContext from "../../../../../hooks/useChatContext";
 import ChatItem from "../ChatItem";
 
 const ChatList = () => {
-  const { chats } = useChatContext();
+  const { chats, selectChat } = useChatContext();
   return (
     <Box
       sx={{
@@ -16,14 +16,8 @@ const ChatList = () => {
         flexGrow: 1,
       }}
     >
-      {chats.map(({ _id, lastMessage, name, urlImageProfile }, i) => (
-        <ChatItem
-          key={_id}
-          _id={_id}
-          lastMessage={lastMessage}
-          name={name}
-          urlImageProfile={urlImageProfile}
-        />
+      {chats.map((chat, i) => (
+        <ChatItem key={chat._id} {...chat} handleClick={selectChat} />
       ))}
     </Box>
   );

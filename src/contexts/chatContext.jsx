@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import { useMemo } from "react";
 
 const ChatContext = createContext();
@@ -10,6 +10,7 @@ const _chats = [
     name: "Jerson Ramírez Ortiz",
     type: "private",
     urlImageProfile: "https://avatars.githubusercontent.com/u/43390194?v=4",
+    email: "juamkoo@gmail.com",
     lastMessage: {
       text: "Mensaje de ejemplo",
       createdAt: "Hace 5hrs",
@@ -19,6 +20,7 @@ const _chats = [
     _id: 2,
     name: "Manuel Quispe",
     type: "private",
+    email: "manuel15@gmail.com",
     urlImageProfile:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80",
     lastMessage: {
@@ -30,6 +32,7 @@ const _chats = [
     _id: 3,
     name: "Roberto saenz",
     type: "private",
+    email: "robertosa@gmail.com",
     urlImageProfile:
       "https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=",
     lastMessage: {
@@ -41,6 +44,7 @@ const _chats = [
     _id: 4,
     name: "Juan Carlos",
     type: "private",
+    email: "jucarl153@gmail.com",
     urlImageProfile:
       "https://media.istockphoto.com/id/1355480439/photo/smiling-man-having-video-call-from-home.jpg?s=612x612&w=0&k=20&c=k4AtJeY_sE7ZBR5ThpuYjIMJGE9hQoLapDnCAkFp0EE=",
     lastMessage: {
@@ -52,6 +56,7 @@ const _chats = [
     _id: 5,
     name: "Jesús Natalán",
     type: "private",
+    email: "jesuTal3@gmail.com",
     urlImageProfile:
       "https://pbs.twimg.com/profile_images/1485050791488483328/UNJ05AV8_400x400.jpg",
     lastMessage: {
@@ -63,6 +68,7 @@ const _chats = [
     _id: 6,
     name: "Laura Mantilla",
     type: "private",
+    email: "Laui3@gmail.com",
     urlImageProfile:
       "https://media.istockphoto.com/photos/close-up-portrait-of-brunette-woman-picture-id1154642632?b=1&k=20&m=1154642632&s=612x612&w=0&h=StstyxyDdiJQgUSTlaWv2ITXSMb029KzXijHtsaTQEg=",
     lastMessage: {
@@ -74,6 +80,7 @@ const _chats = [
     _id: 7,
     name: "Juana Lary",
     type: "private",
+    email: "Lazy78@gmail.com",
     urlImageProfile:
       "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg?fit=640,427",
     lastMessage: {
@@ -85,6 +92,7 @@ const _chats = [
     _id: 8,
     name: "Ana Lopito",
     type: "private",
+    email: "anaLop1@gmail.com",
     urlImageProfile:
       "https://cdn-sites-images.46graus.com/files/photos/c22c5bf1/611a6c66-c49a-4a9d-9df4-e480257c1509/dscf8101-1920x1280.jpg",
     lastMessage: {
@@ -96,6 +104,7 @@ const _chats = [
     _id: 9,
     name: "Los Intocables",
     type: "group",
+    email: "LosItol@gmail.com",
     urlImageProfile:
       "https://media.gettyimages.com/id/1187719689/photo/intocable-winner-of-best-norte%C3%B1o-album-poses-in-the-press-room-during-the-20th-annual-latin.jpg?s=612x612&w=gi&k=20&c=o7Zj7MxCGoQzcSiwCHBevfWsUs8yCbjnLuYHqRfA9qA=",
     lastMessage: {
@@ -119,9 +128,14 @@ const _chats = [
 const ChatProvider = ({ children }) => {
   const [chats, setchats] = useState(() => _chats);
   const [currentChat, setCurrentChat] = useState();
+
+  const selectChat = useCallback((selectedChat) => {
+    setCurrentChat(selectedChat);
+  }, []);
+  console.log(currentChat);
   const values = useMemo(() => {
-    return { chats, currentChat: currentChat };
-  }, [chats, currentChat]);
+    return { chats, currentChat: currentChat, selectChat };
+  }, [chats, currentChat, selectChat]);
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
 

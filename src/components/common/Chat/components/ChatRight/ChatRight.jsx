@@ -1,18 +1,22 @@
-import { Avatar, Paper } from "@mui/material";
+import { Avatar, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import useChatContext from "../../../../../hooks/useChatContext";
+import Message from "../../../Message";
+import MessageForm from "../../../MessageForm";
 import NoSelectedChat from "../NoSelectedChat";
 
 const ChatRight = () => {
   const { currentChat } = useChatContext();
   return (
-    <Paper>
+    <Paper component={Box} sx={{ display: "flex", flexDirection: "column" }}>
       {!currentChat ? (
         <NoSelectedChat />
       ) : (
         <>
           <Header currentChat={currentChat} />
+          <Message room={currentChat._id} />
+          <MessageForm />
         </>
       )}
     </Paper>
@@ -44,13 +48,7 @@ const Header = ({ currentChat }) => {
         >
           {name}
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{ marginBottom: ".25rem" }}
-          fontWeight="bold"
-        >
-          {email}
-        </Typography>
+        <Typography variant="body2">{email}</Typography>
       </Box>
     </Box>
   );

@@ -9,6 +9,7 @@ const NoSelectedChat = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        userSelect: "none",
       }}
     >
       <Typography variant="body2" component="p">
