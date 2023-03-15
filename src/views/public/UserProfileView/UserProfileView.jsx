@@ -45,7 +45,9 @@ const UserProfileView = () => {
         loadingGetUser={loadingGetUser}
         urlImageProfile={us?.urlImageProfile}
         typeUser={us?.typeUser}
+        idUser={us?._id}
         name={`${us?.name} ${us?.paternalSurname} ${us?.maternalSurname}`}
+        email={us?.email}
       />
       <Container>
         <Grid container mb={3} spacing={2}>

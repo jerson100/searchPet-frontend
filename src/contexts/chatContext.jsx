@@ -1,5 +1,7 @@
-import React, { createContext, useCallback, useState } from "react";
+import useAxios from "axios-hooks";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { useMemo } from "react";
+import { AUTH_TOKEN } from "../configs/localstorage";
 
 const ChatContext = createContext();
 
@@ -125,17 +127,61 @@ const _chats = [
   },
 ];
 
-const ChatProvider = ({ children }) => {
-  const [chats, setchats] = useState(() => _chats);
+const ChatProvider = ({ children, newChat }) => {
+  //   const [chats, setchats] = useState(() => _chats);
+  const [chats, setchats] = useState([]);
   const [currentChat, setCurrentChat] = useState();
+  const [loadingChats, setLoadingChats] = useState(false);
+  const [errorChats, setErrorChats] = useState("");
+  const [{}, getChats] = useAxios(
+    {
+      url: "/chats",
+    },
+    {
+      manual: true,
+      useCache: false,
+    }
+  );
 
   const selectChat = useCallback((selectedChat) => {
     setCurrentChat(selectedChat);
   }, []);
-  console.log(currentChat);
+
+  useEffect(() => {
+    const getApi = async () => {
+      setLoadingChats(true);
+      try {
+        const data = await getChats({
+          headers: {
+            authorization: `Bearer ${AUTH_TOKEN.get()}`,
+          },
+        });
+        setchats(data.data);
+        setLoadingChats(false);
+      } catch (e) {
+        setLoadingChats(false);
+        setErrorChats(e.message || "Ocurrió un error");
+      }
+    };
+    getApi();
+  }, []);
+
+  useEffect(() => {
+    if (!loadingChats && newChat) {
+      setCurrentChat(newChat);
+    }
+  }, [loadingChats, newChat]);
+
   const values = useMemo(() => {
-    return { chats, currentChat: currentChat, selectChat };
-  }, [chats, currentChat, selectChat]);
+    let ch = newChat ? [newChat, ...chats] : chats;
+    return {
+      chats: ch,
+      currentChat: currentChat,
+      selectChat,
+      loadingChats,
+      errorChats,
+    };
+  }, [chats, currentChat, selectChat, newChat, loadingChats, errorChats]);
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
 

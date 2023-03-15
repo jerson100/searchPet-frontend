@@ -1,11 +1,11 @@
-import { IconButton, TextField } from "@mui/material";
+import { IconButton, Skeleton, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Send as SendIcon, Photo as PhotoIcon } from "@mui/icons-material";
 
-const MessageForm = () => {
+const MessageForm = ({ loadingChats }) => {
   const [message, setMessage] = useState("");
-  const handleChange = ({ target: value }) => {
+  const handleChange = ({ target: { value } }) => {
     setMessage(value);
   };
   return (
@@ -18,22 +18,36 @@ const MessageForm = () => {
       }}
     >
       <Box>
-        <TextField
-          type="text"
-          variant="outlined"
-          value={message}
-          onChange={handleChange}
-          fullWidth
-          size="small"
-          placeholder="Escribe algo..."
-        />
+        {loadingChats ? (
+          <Skeleton variant="rectangular" height="40px" />
+        ) : (
+          <TextField
+            type="text"
+            variant="outlined"
+            value={message}
+            onChange={handleChange}
+            fullWidth
+            size="small"
+            placeholder="Escribe algo..."
+          />
+        )}
       </Box>
-      <IconButton size="small">
-        <PhotoIcon />
-      </IconButton>
-      <IconButton size="small">
-        <SendIcon />
-      </IconButton>
+
+      {loadingChats ? (
+        <>
+          <Skeleton variant="circular" sx={{ width: "40px", height: "40px" }} />
+          <Skeleton variant="circular" sx={{ width: "40px", height: "40px" }} />
+        </>
+      ) : (
+        <>
+          <IconButton size="small">
+            <PhotoIcon />
+          </IconButton>
+          <IconButton size="small">
+            <SendIcon />
+          </IconButton>
+        </>
+      )}
     </Box>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import {
   Avatar,
   Box,
+  Button,
   Container,
   Grid,
   Skeleton,
@@ -14,12 +15,22 @@ import SecurityIcon from "@mui/icons-material/Security";
 import MobileNavigation from "../MobileNavigation";
 import DesktopNavigation from "../DesktopNavigation";
 import Banner from "../Banner";
+import { useAuthContext } from "../../../../../hooks/useAuthContext";
+import ButtonMessage from "../../../../../components/common/ButtonMessge/ButtonMessage";
 
-const Header = ({ loadingGetUser, name, urlImageProfile, typeUser }) => {
+const Header = ({
+  loadingGetUser,
+  idUser,
+  name,
+  urlImageProfile,
+  typeUser,
+  email,
+}) => {
   const {
     breakpoints: { down },
   } = useTheme();
   const isMobile = useMediaQuery(down("sm"));
+
   return (
     <>
       <Banner loadingGetUser={loadingGetUser} />
@@ -66,19 +77,12 @@ const Header = ({ loadingGetUser, name, urlImageProfile, typeUser }) => {
                       <Skeleton height="30px" width="180px" />
                     </>
                   ) : (
-                    <Typography
-                      variant={"h5"}
-                      component="h1"
-                      color="white"
-                      sx={{
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        zIndex: "1",
-                      }}
-                    >
-                      {name}
-                    </Typography>
+                    <RightHeader
+                      idUser={idUser}
+                      name={name}
+                      urlImageProfile={urlImageProfile}
+                      email={email}
+                    />
                   )}
                 </Box>
                 {loadingGetUser ? (
@@ -93,6 +97,34 @@ const Header = ({ loadingGetUser, name, urlImageProfile, typeUser }) => {
           </Box>
         </Container>
       </Box>
+    </>
+  );
+};
+
+const RightHeader = ({ idUser, name, urlImageProfile, email }) => {
+  //   const { user } = useAuthContext();
+  return (
+    <>
+      <Typography
+        variant={"h5"}
+        component="h1"
+        color="white"
+        sx={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          zIndex: "1",
+          mr: 2,
+        }}
+      >
+        {name}
+      </Typography>
+      <ButtonMessage
+        idUser={idUser}
+        name={name}
+        urlImageProfile={urlImageProfile}
+        email={email}
+      />
     </>
   );
 };

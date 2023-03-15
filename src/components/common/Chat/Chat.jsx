@@ -1,12 +1,17 @@
-import React from "react";
-import { Box, Grid } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box } from "@mui/material";
 import ChatLeft from "./components/ChatLeft";
 import ChatRight from "./components/ChatRight";
 import { ChatProvider } from "../../../contexts/chatContext";
+import { useLocation } from "react-router-dom";
 
 const Chat = () => {
+  const { state } = useLocation();
+  useEffect(() => {
+    window.history.replaceState(null, "");
+  }, []);
   return (
-    <ChatProvider>
+    <ChatProvider newChat={state?.chat}>
       <Box
         sx={{
           display: "grid",
@@ -16,7 +21,6 @@ const Chat = () => {
           height: "100%",
           gap: "1rem",
           flexGrow: 1,
-          //   flexDirection: "column",
         }}
       >
         <ChatLeft />
