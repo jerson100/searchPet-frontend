@@ -4,7 +4,7 @@ import useChatContext from "../../../../../hooks/useChatContext";
 import ChatItem from "../ChatItem";
 
 const ChatList = () => {
-  const { chats, selectChat, loadingChats } = useChatContext();
+  const { chats, selectChat, loadingChats, currentChat } = useChatContext();
   return (
     <Box
       sx={{
@@ -26,7 +26,12 @@ const ChatList = () => {
         </>
       ) : (
         chats.map((chat, i) => (
-          <ChatItem key={chat._id} {...chat} handleClick={selectChat} />
+          <ChatItem
+            key={chat._id}
+            {...chat}
+            handleClick={selectChat}
+            isSelected={currentChat?._id === chat._id}
+          />
         ))
       )}
     </Box>

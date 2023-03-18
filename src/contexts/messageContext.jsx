@@ -18,8 +18,7 @@ const MessageProvider = ({ children }) => {
   const [messages, setMessages] = useState(() => []);
   const [loadingNewMessage, setloadingNewMessage] = useState(false);
   const [errorNewMessage, setErrorNewMessage] = useState();
-  const { addLastMessageToChat, addNewPrivateChat, currentChat } =
-    useChatContext();
+  const { addLastMessageToChat, currentChat } = useChatContext();
   const [
     {
       loading: loadingGetMessages,
@@ -30,12 +29,13 @@ const MessageProvider = ({ children }) => {
     {
       url: `/chats/${currentChat?._id}/messages`,
       method: "GET",
-      header: {
+      headers: {
         authorization: `Bearer ${AUTH_TOKEN.get()}`,
       },
     },
-    { manual: currentChat._id !== "new" }
+    { useCache: false }
   );
+
   const [, newMessageApi] = useAxios(
     {
       url: `/messages`,
@@ -54,31 +54,31 @@ const MessageProvider = ({ children }) => {
     async ({ type = "text", text, image, cords }) => {
       setloadingNewMessage(true);
       try {
-        const { chat, isNew: isNewChat } = await addNewPrivateChat();
-        console.log(chat, isNewChat);
         const { data: newMessage } = await newMessageApi({
           headers: {
             authorization: `Bearer ${AUTH_TOKEN.get()}`,
           },
-          data: { chat: chat._id, sender: user.user._id, text: text, type },
+          data: {
+            chat: currentChat._id,
+            sender: user.user._id,
+            text: text,
+            type,
+          },
         });
-        console.log(newMessage);
+        // console.log(newMessage);
         setMessages((prev) => [...prev, newMessage]);
         setloadingNewMessage(false);
-        addLastMessageToChat({
-          chat: chat._id,
-          newlastMessage: newMessage,
-        });
+        // addLastMessageToChat({
+        //   chat: chat._id,
+        //   newlastMessage: newMessage,
+        // });
         io.emit("new-message", newMessage);
-        if (isNewChat) {
-          io.emit("new-chat", chat);
-        }
       } catch (e) {
         console.log(e);
         setloadingNewMessage(false);
       }
     },
-    [addLastMessageToChat, user]
+    [/*addLastMessageToChat, */ user, currentChat]
   );
   const values = useMemo(() => {
     return {

@@ -11,7 +11,7 @@ const Chat = () => {
     window.history.replaceState(null, "");
   }, []);
   return (
-    <ChatProvider newChat={state?.chat}>
+    <ChatProvider roomTarget={state?.roomTarget}>
       <Box
         sx={{
           display: "grid",

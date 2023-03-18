@@ -10,6 +10,7 @@ const ChatItem = ({
   _id,
   handleClick,
   email,
+  isSelected = false,
 }) => {
   const _handleClick = () => {
     handleClick({
@@ -22,7 +23,11 @@ const ChatItem = ({
     });
   };
   return (
-    <ChatItemContainerStyle elevation={2} onClick={_handleClick}>
+    <ChatItemContainerStyle
+      elevation={2}
+      onClick={_handleClick}
+      isselected={isSelected.toString()}
+    >
       <Box display="flex" gap="1rem">
         <Box>
           <Avatar
@@ -74,4 +79,4 @@ const ChatItem = ({
   );
 };
 
-export default ChatItem;
+export default React.memo(ChatItem);
