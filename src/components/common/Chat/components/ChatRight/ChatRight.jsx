@@ -3,7 +3,6 @@ import { Box } from "@mui/system";
 import React from "react";
 import useChatContext from "../../../../../hooks/useChatContext";
 import Message from "../../../Message";
-import MessageForm from "../../../MessageForm";
 import NoSelectedChat from "../NoSelectedChat";
 
 const ChatRight = () => {
@@ -16,7 +15,6 @@ const ChatRight = () => {
         <>
           <Header currentChat={currentChat} loadingChats={loadingChats} />
           <Message room={currentChat._id} loadingChats={loadingChats} />
-          <MessageForm loadingChats={loadingChats} />
         </>
       )}
     </Paper>

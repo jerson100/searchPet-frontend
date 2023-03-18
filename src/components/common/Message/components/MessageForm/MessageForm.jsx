@@ -2,11 +2,19 @@ import { IconButton, Skeleton, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Send as SendIcon, Photo as PhotoIcon } from "@mui/icons-material";
+import useChatContext from "../../../../../hooks/useChatContext";
+import useMessageContext from "../../../../../hooks/useMessageContext";
 
-const MessageForm = ({ loadingChats }) => {
+const MessageForm = () => {
   const [message, setMessage] = useState("");
+  const { loadingGetMessages, addNewMessage, loadingNewMessage } =
+    useMessageContext();
+  const { loadingChats } = useChatContext();
   const handleChange = ({ target: { value } }) => {
     setMessage(value);
+  };
+  const handleClick = async () => {
+    addNewMessage({ text: message });
   };
   return (
     <Box
@@ -18,7 +26,7 @@ const MessageForm = ({ loadingChats }) => {
       }}
     >
       <Box>
-        {loadingChats ? (
+        {loadingChats | loadingGetMessages ? (
           <Skeleton variant="rectangular" height="40px" />
         ) : (
           <TextField
@@ -33,7 +41,7 @@ const MessageForm = ({ loadingChats }) => {
         )}
       </Box>
 
-      {loadingChats ? (
+      {loadingChats | loadingGetMessages ? (
         <>
           <Skeleton variant="circular" sx={{ width: "40px", height: "40px" }} />
           <Skeleton variant="circular" sx={{ width: "40px", height: "40px" }} />
@@ -43,7 +51,7 @@ const MessageForm = ({ loadingChats }) => {
           <IconButton size="small">
             <PhotoIcon />
           </IconButton>
-          <IconButton size="small">
+          <IconButton size="small" onClick={handleClick}>
             <SendIcon />
           </IconButton>
         </>

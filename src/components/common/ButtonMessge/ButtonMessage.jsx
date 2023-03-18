@@ -21,6 +21,7 @@ const ButtonMessage = ({ idUser, urlImageProfile, name, email }) => {
               urlImageProfile,
               lastMessage: null,
               email,
+              admin: user.user._id,
               users: [user.user._id, idUser],
             },
           }}

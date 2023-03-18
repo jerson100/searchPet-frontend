@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import React from "react";
+import useMessageContext from "../../../../../hooks/useMessageContext";
 import MessageItem from "../MessageItem";
 
-const MessageList = ({ messages }) => {
+const MessageList = () => {
+  const { messages } = useMessageContext();
   return (
     <Box
       sx={{ listStyle: "none", margin: 0, padding: 0 }}
