@@ -9,13 +9,19 @@ const MessageForm = () => {
   const [message, setMessage] = useState("");
   const { loadingGetMessages, addNewMessage, loadingNewMessage } =
     useMessageContext();
+
   const { loadingChats } = useChatContext();
+
   const handleChange = ({ target: { value } }) => {
     setMessage(value);
   };
-  const handleClick = async () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     addNewMessage({ text: message });
+    setMessage("");
   };
+
   return (
     <Box
       sx={{
@@ -24,6 +30,8 @@ const MessageForm = () => {
         gap: 1,
         p: 2,
       }}
+      component={"form"}
+      onSubmit={handleSubmit}
     >
       <Box>
         {loadingChats | loadingGetMessages ? (
@@ -51,7 +59,7 @@ const MessageForm = () => {
           <IconButton size="small">
             <PhotoIcon />
           </IconButton>
-          <IconButton size="small" onClick={handleClick}>
+          <IconButton type="submit" size="small">
             <SendIcon />
           </IconButton>
         </>
