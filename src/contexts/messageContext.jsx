@@ -45,6 +45,15 @@ const MessageProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    io.on("new-message", (newMessage) => {
+      setMessages((prev) => [...prev, newMessage]);
+    });
+    return () => {
+      io.off("new-message");
+    };
+  }, []);
+
+  useEffect(() => {
     if (dataMessages) {
       setMessages(dataMessages);
     }
@@ -72,7 +81,7 @@ const MessageProvider = ({ children }) => {
         //   chat: chat._id,
         //   newlastMessage: newMessage,
         // });
-        io.emit("new-message", newMessage);
+        io.emit("send-message", newMessage);
       } catch (e) {
         console.log(e);
         setloadingNewMessage(false);

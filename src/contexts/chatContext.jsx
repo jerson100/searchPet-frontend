@@ -1,7 +1,14 @@
 import useAxios from "axios-hooks";
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useMemo } from "react";
 import { AUTH_TOKEN } from "../configs/localstorage";
+import io from "../configs/socket";
 
 const ChatContext = createContext();
 
@@ -10,6 +17,7 @@ const ChatProvider = ({ children, roomTarget }) => {
   const [currentChat, setCurrentChat] = useState();
   const [loadingChats, setLoadingChats] = useState(false);
   const [errorChats, setErrorChats] = useState("");
+  const prevRoomRef = useRef();
   const [{}, getChats] = useAxios(
     {
       url: "/chats",
@@ -19,6 +27,28 @@ const ChatProvider = ({ children, roomTarget }) => {
       useCache: false,
     }
   );
+
+  useEffect(() => {
+    prevRoomRef.current = currentChat;
+  });
+
+  const prevRoom = prevRoomRef.current;
+
+  useEffect(() => {
+    if (prevRoom && currentChat)
+      switchRooms({ prev: prevRoom, current: currentChat });
+    else if (currentChat) {
+      initialRoom(currentChat);
+    }
+  }, [currentChat]);
+
+  const switchRooms = ({ prev, current }) => {
+    io.emit("switch-room", { prev, current });
+  };
+
+  const initialRoom = (room) => {
+    io.emit("join-chat", room);
+  };
 
   const selectChat = useCallback((selectedChat) => {
     setCurrentChat(selectedChat);
@@ -62,6 +92,12 @@ const ChatProvider = ({ children, roomTarget }) => {
       setCurrentChat(chats.find((chat) => chat._id === roomTarget));
     }
   }, [loadingChats, roomTarget, chats]);
+
+  //   useEffect(() => {
+  //     if (currentChat) {
+  //       io.emit("join-chat", currentChat);
+  //     }
+  //   }, [currentChat]);
 
   const values = useMemo(() => {
     return {
