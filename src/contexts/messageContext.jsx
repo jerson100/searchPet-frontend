@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { AUTH_TOKEN } from "../configs/localstorage";
@@ -54,10 +55,14 @@ const MessageProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (dataMessages) {
+    if (loadingGetMessages) {
+      setMessages([]);
+    } else if (!errorGetMessages) {
       setMessages(dataMessages);
+    } else {
+      setMessages([]);
     }
-  }, [dataMessages]);
+  }, [loadingGetMessages, dataMessages]);
 
   const addNewMessage = useCallback(
     async ({ type = "text", text, image, cords }) => {
