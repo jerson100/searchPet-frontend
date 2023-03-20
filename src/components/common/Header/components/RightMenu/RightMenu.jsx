@@ -6,6 +6,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { useAuthContext } from "../../../../../hooks/useAuthContext";
 import ThemeButton from "../../../ThemeButton";
 import NotificationTop from "../TopNotification";
+import { Link } from "react-router-dom";
 
 const RightMenu = () => {
   const { user } = useAuthContext();
@@ -33,10 +34,12 @@ const RightMenu = () => {
               size="medium"
               aria-label="show 4 new mails"
               color="inherit"
+              LinkComponent={Link}
+              to="/chats"
             >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
+              {/* <Badge badgeContent={4} color="error"> */}
+              <MailIcon />
+              {/* </Badge> */}
             </IconButton>
           </li>
           <li>
