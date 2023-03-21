@@ -1,5 +1,6 @@
 import { Avatar, Box, Skeleton, Typography } from "@mui/material";
 import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { getTweetPublicationDate } from "../../../../../utils/date";
 
 const MessageItem = React.memo(
@@ -36,7 +37,7 @@ const MessageItem = React.memo(
             display: "flex",
             flexDirection: isMyMessage ? "row" : "row-reverse",
           }}
-          gap={1}
+          gap={2}
         >
           <Box
             sx={{
@@ -58,23 +59,41 @@ const MessageItem = React.memo(
               </>
             ) : (
               <>
-                <Typography
-                  variant="body2"
-                  component="p"
+                <Box
                   sx={{
-                    maxWidth: "150px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    background: isMyMessage
-                      ? "#1565c033"
-                      : "rgba(0, 0, 0,0.21)",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "8px",
+                    position: "relative",
+                    mb: "3px",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      right: isMyMessage ? "-8px" : "100%",
+                      top: "calc(35px / 2)",
+                      transform: `translateY(-50%) rotate(${
+                        isMyMessage ? 0 : "180"
+                      }deg)`,
+                      borderLeft: `8px solid ${
+                        isMyMessage ? "#1565c033" : "rgba(0, 0, 0,0.21)"
+                      }`,
+                      borderTop: "8px solid transparent",
+                      borderBottom: "8px solid transparent",
+                    },
                   }}
                 >
-                  {text}
-                </Typography>
+                  <Typography
+                    variant="body2"
+                    component="p"
+                    sx={{
+                      maxWidth: "180px",
+                      background: isMyMessage
+                        ? "#1565c033"
+                        : "rgba(0, 0, 0,0.21)",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    {text}
+                  </Typography>
+                </Box>
                 <Typography
                   variant="caption"
                   component="p"
@@ -86,16 +105,19 @@ const MessageItem = React.memo(
             )}
           </Box>
           {loading ? (
-            <Skeleton
-              variant="circular"
-              sx={{ width: { xs: 35, md: 35 }, height: { xs: 35, md: 35 } }}
-            />
+            <Skeleton variant="circular" sx={{ width: 35, height: 35 }} />
           ) : (
-            <Avatar
-              alt={sender.name}
-              src={sender.urlImageProfile}
-              sx={{ width: { xs: 35, md: 35 }, height: { xs: 35, md: 35 } }}
-            />
+            <Box
+              component={Link}
+              to={`/users/${sender._id}`}
+              sx={{ alignSelf: "flex-start" }}
+            >
+              <Avatar
+                alt={sender.name}
+                src={sender.urlImageProfile}
+                sx={{ width: 35, height: 35 }}
+              />
+            </Box>
           )}
         </Box>
       </Box>
