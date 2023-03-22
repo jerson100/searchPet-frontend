@@ -87,7 +87,7 @@ const MessageItem = React.memo(
                   }}
                 >
                   {images?.length ? (
-                    <Box mb={1}>
+                    <Box mb={1} height="200px">
                       <ImageGrid images={images} />
                     </Box>
                   ) : (
