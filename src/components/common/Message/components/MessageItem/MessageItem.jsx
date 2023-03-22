@@ -2,6 +2,7 @@ import { Avatar, Box, Skeleton, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { getTweetPublicationDate } from "../../../../../utils/date";
+import ImageGrid from "../../../ImageGrid";
 
 const MessageItem = React.memo(
   ({
@@ -11,7 +12,7 @@ const MessageItem = React.memo(
     createdAt,
     updatedAt,
     text,
-    image,
+    images,
     cords,
     seen,
     isMyMessage = false,
@@ -63,6 +64,12 @@ const MessageItem = React.memo(
                   sx={{
                     position: "relative",
                     mb: "3px",
+                    maxWidth: "180px",
+                    background: isMyMessage
+                      ? "#1565c033"
+                      : "rgba(0, 0, 0,0.21)",
+                    padding: "1rem",
+                    borderRadius: "8px",
                     "&::after": {
                       content: '""',
                       position: "absolute",
@@ -79,18 +86,14 @@ const MessageItem = React.memo(
                     },
                   }}
                 >
-                  <Typography
-                    variant="body2"
-                    component="p"
-                    sx={{
-                      maxWidth: "180px",
-                      background: isMyMessage
-                        ? "#1565c033"
-                        : "rgba(0, 0, 0,0.21)",
-                      padding: "0.5rem 1rem",
-                      borderRadius: "8px",
-                    }}
-                  >
+                  {images?.length ? (
+                    <Box mb={1}>
+                      <ImageGrid images={images} />
+                    </Box>
+                  ) : (
+                    ""
+                  )}
+                  <Typography variant="body2" component="p">
                     {text}
                   </Typography>
                 </Box>

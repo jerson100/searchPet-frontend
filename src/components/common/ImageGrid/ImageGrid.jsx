@@ -26,7 +26,7 @@ const ImageGrid = ({ images }) => {
         display={"flex"}
         flexWrap="wrap"
         sx={{
-          height: { xs: "300px", sm: "400px" },
+          height: "100%",
           alignItems: "stretch",
           overflow: "hidden",
         }}

@@ -9,10 +9,10 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import ImageGrid from "./components/ImageGrid";
 import PetsList from "./components/PetsList";
 import LostPetItemHeader from "./components/LostPetItemHeader";
 import { ContainerStyle } from "./lostPetItem.style";
+import ImageGrid from "../ImageGrid";
 
 const LostPetItem = ({
   createdAt,
@@ -49,6 +49,7 @@ const LostPetItem = ({
         sx={{
           marginLeft: { /*xs: "-1px",*/ sm: "0" },
           marginRight: { /*xs: "-1px", */ sm: "0" },
+          height: { xs: "300px", sm: "400px" },
         }}
       >
         <ImageGrid images={images} />

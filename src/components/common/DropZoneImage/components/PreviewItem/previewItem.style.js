@@ -9,6 +9,7 @@ const PreviewItemStyle = styled("div")`
     }) => divider};
   height: 100px;
   width: 100px;
+  box-sizing: border-box;
   position: relative;
   img {
     display: block;

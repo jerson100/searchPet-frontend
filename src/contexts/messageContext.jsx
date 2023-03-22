@@ -11,6 +11,7 @@ import { AUTH_TOKEN } from "../configs/localstorage";
 import useChatContext from "../hooks/useChatContext";
 import io from "../configs/socket";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useSnackbar } from "notistack";
 
 const MessageContext = createContext();
 
@@ -18,6 +19,7 @@ const MessageProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [messages, setMessages] = useState(() => []);
   const [loadingNewMessage, setloadingNewMessage] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const [errorNewMessage, setErrorNewMessage] = useState();
   const { addLastMessageToChat, currentChat } = useChatContext();
   const audioRef = useRef(new Audio("newMessage.mp3"));
@@ -71,16 +73,21 @@ const MessageProvider = ({ children }) => {
     async ({ type = "text", text, image, cords }) => {
       setloadingNewMessage(true);
       try {
+        const formData = new FormData();
+        formData.append("text", text);
+        image?.forEach((img) => {
+          formData.append("images", img, img.path);
+        });
+        formData.append("type", type);
+        formData.append("chat", currentChat._id);
+        formData.append("sender", user.user._id);
+        console.log(formData);
         const { data: newMessage } = await newMessageApi({
           headers: {
             authorization: `Bearer ${AUTH_TOKEN.get()}`,
+            "content-type": "multipart/form-data",
           },
-          data: {
-            chat: currentChat._id,
-            sender: user.user._id,
-            text: text,
-            type,
-          },
+          data: formData,
         });
         // console.log(newMessage);
         setMessages((prev) => [...prev, newMessage]);
@@ -93,6 +100,20 @@ const MessageProvider = ({ children }) => {
       } catch (e) {
         console.log(e);
         setloadingNewMessage(false);
+        if (e.status) {
+          if (e.status === 401) {
+            window.location.href = "/login";
+          } else {
+            enqueueSnackbar(e.message, { variant: "error" });
+          }
+        } else {
+          enqueueSnackbar(
+            "Ocurrió un error, intentelo más tarde o póngase en contacto con el administrador",
+            {
+              variant: "error",
+            }
+          );
+        }
       }
     },
     [/*addLastMessageToChat, */ user, currentChat]
