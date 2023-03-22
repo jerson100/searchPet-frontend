@@ -1,9 +1,10 @@
 import { Avatar, Paper, Skeleton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useChatContext from "../../../../../hooks/useChatContext";
 import Message from "../../../Message";
 import NoSelectedChat from "../NoSelectedChat";
+import io from "../../../../../configs/socket";
 
 const ChatRight = () => {
   const { currentChat, loadingChats } = useChatContext();
@@ -22,7 +23,7 @@ const ChatRight = () => {
 };
 
 const Header = ({ currentChat, loadingChats }) => {
-  const { name, urlImageProfile, email } = currentChat;
+  const { name, urlImageProfile } = currentChat;
   return (
     <Box
       sx={{
@@ -61,11 +62,37 @@ const Header = ({ currentChat, loadingChats }) => {
             >
               {name}
             </Typography>
-            <Typography variant="body2">{email}</Typography>
+            <UserTypings />
           </>
         )}
       </Box>
     </Box>
+  );
+};
+
+const UserTypings = () => {
+  const [userTyping, setUserTyping] = useState([]);
+
+  useEffect(() => {
+    io.on("typing", ({ username }) => {
+      setUserTyping((prev) =>
+        prev.find((p) => p === username) ? prev : [...prev, username]
+      );
+    });
+    io.on("stop-typing", ({ username }) => {
+      setUserTyping((prev) => prev.filter((us) => us !== username));
+    });
+    return () => {
+      setUserTyping([]);
+      io.off("typing");
+      io.off("stop-typing");
+    };
+  }, []);
+
+  return (
+    <Typography variant="body2">
+      {userTyping.length ? `${userTyping.join(", ")} está escribiendo...` : ""}
+    </Typography>
   );
 };
 

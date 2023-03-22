@@ -94,6 +94,7 @@ const MessageProvider = ({ children }) => {
     },
     [/*addLastMessageToChat, */ user, currentChat]
   );
+
   const values = useMemo(() => {
     return {
       messages,

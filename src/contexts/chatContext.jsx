@@ -43,7 +43,7 @@ const ChatProvider = ({ children, roomTarget }) => {
   }, [currentChat]);
 
   const switchRooms = ({ prev, current }) => {
-    io.emit("switch-room", { prev, current });
+    io.emit("switch-chat", { prev, current });
   };
 
   const initialRoom = (room) => {
