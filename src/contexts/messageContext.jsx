@@ -49,6 +49,25 @@ const MessageProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    if (errorGetMessages) {
+      if (errorGetMessages.status) {
+        if (errorGetMessages.status === 401) {
+          window.location.href = "/login";
+        } else {
+          enqueueSnackbar(errorGetMessages.message, { variant: "error" });
+        }
+      } else {
+        enqueueSnackbar(
+          "Ocurrió un error, intentelo más tarde o póngase en contacto con el administrador",
+          {
+            variant: "error",
+          }
+        );
+      }
+    }
+  }, [errorGetMessages]);
+
+  useEffect(() => {
     io.on("new-message", (newMessage) => {
       setMessages((prev) => [...prev, newMessage]);
       audioRef.current.currentTime = 0;
