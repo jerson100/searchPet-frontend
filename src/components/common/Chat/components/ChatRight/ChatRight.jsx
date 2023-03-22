@@ -62,7 +62,7 @@ const Header = ({ currentChat, loadingChats }) => {
             >
               {name}
             </Typography>
-            <UserTypings />
+            <UserTypings currentChat={currentChat} />
           </>
         )}
       </Box>
@@ -70,8 +70,12 @@ const Header = ({ currentChat, loadingChats }) => {
   );
 };
 
-const UserTypings = () => {
+const UserTypings = ({ currentChat }) => {
   const [userTyping, setUserTyping] = useState([]);
+
+  useEffect(() => {
+    setUserTyping([]);
+  }, [currentChat]);
 
   useEffect(() => {
     io.on("typing", ({ username }) => {

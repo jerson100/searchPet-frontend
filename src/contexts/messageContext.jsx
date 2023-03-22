@@ -20,6 +20,7 @@ const MessageProvider = ({ children }) => {
   const [loadingNewMessage, setloadingNewMessage] = useState(false);
   const [errorNewMessage, setErrorNewMessage] = useState();
   const { addLastMessageToChat, currentChat } = useChatContext();
+  const audioRef = useRef(new Audio("newMessage.mp3"));
   const [
     {
       loading: loadingGetMessages,
@@ -48,6 +49,8 @@ const MessageProvider = ({ children }) => {
   useEffect(() => {
     io.on("new-message", (newMessage) => {
       setMessages((prev) => [...prev, newMessage]);
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
     });
     return () => {
       io.off("new-message");

@@ -35,26 +35,17 @@ const ChatProvider = ({ children, roomTarget }) => {
   const prevRoom = prevRoomRef.current;
 
   useEffect(() => {
-    if (prevRoom && currentChat)
-      switchRooms({ prev: prevRoom, current: currentChat });
-    else if (currentChat) {
-      initialRoom(currentChat);
+    if (prevRoom && currentChat) {
+      //switch rooms
+      io.emit("switch-chat", { prev: prevRoom, current: currentChat });
+    } else if (currentChat) {
+      io.emit("join-chat", currentChat);
     }
   }, [currentChat]);
-
-  const switchRooms = ({ prev, current }) => {
-    io.emit("switch-chat", { prev, current });
-  };
-
-  const initialRoom = (room) => {
-    io.emit("join-chat", room);
-  };
 
   const selectChat = useCallback((selectedChat) => {
     setCurrentChat(selectedChat);
   }, []);
-
-  const addNewPrivateChat = useCallback(async () => {}, [currentChat]);
 
   useEffect(() => {
     const getApi = async () => {
@@ -78,7 +69,7 @@ const ChatProvider = ({ children, roomTarget }) => {
   const addLastMessageToChat = useCallback(({ chat, newlastMessage }) => {
     setchats((prev) => {
       const indexChat = prev.findIndex((c) => {
-        console.log(c, chat);
+        // console.log(c, chat);
         return c._id === chat;
       });
       const deletedChat = prev[indexChat];
@@ -93,12 +84,6 @@ const ChatProvider = ({ children, roomTarget }) => {
     }
   }, [loadingChats, roomTarget, chats]);
 
-  //   useEffect(() => {
-  //     if (currentChat) {
-  //       io.emit("join-chat", currentChat);
-  //     }
-  //   }, [currentChat]);
-
   const values = useMemo(() => {
     return {
       chats,
@@ -107,7 +92,6 @@ const ChatProvider = ({ children, roomTarget }) => {
       loadingChats,
       errorChats,
       addLastMessageToChat,
-      addNewPrivateChat,
     };
   }, [
     chats,
@@ -116,7 +100,6 @@ const ChatProvider = ({ children, roomTarget }) => {
     loadingChats,
     errorChats,
     addLastMessageToChat,
-    addNewPrivateChat,
   ]);
   return <ChatContext.Provider value={values}>{children}</ChatContext.Provider>;
 };
