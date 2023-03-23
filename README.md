@@ -6,7 +6,7 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 
 ## Lo nuevo
 
-* Notificationes en tiempo real de los comentarios de las publicaciones.
+* Soporte a mensajes de texto e imágenes, con sonido ante nuevos mensajes.
 
 ## Vistas
 
@@ -24,8 +24,8 @@ Estamos usando todo el stack MERN, con sistema de autenticación de google, face
 * /users/:idUser
 * /configuration
 * /reset-password
-* /chat
 * /notifications
+* /chats
 * Error Page
 
 ## Autor
