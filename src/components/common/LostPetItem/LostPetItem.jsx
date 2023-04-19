@@ -45,15 +45,18 @@ const LostPetItem = ({
         <Typography paragraph>{description}</Typography>
         <PetsList pets={pets} />
       </Box>
-      <Box
-        sx={{
-          marginLeft: { /*xs: "-1px",*/ sm: "0" },
-          marginRight: { /*xs: "-1px", */ sm: "0" },
-          height: { xs: "300px", sm: "400px" },
-        }}
-      >
-        <ImageGrid images={images} />
-      </Box>
+
+      {images?.length ? (
+        <Box
+          sx={{
+            marginLeft: { /*xs: "-1px",*/ sm: "0" },
+            marginRight: { /*xs: "-1px", */ sm: "0" },
+            height: { xs: "300px", sm: "400px" },
+          }}
+        >
+          <ImageGrid images={images} />{" "}
+        </Box>
+      ) : null}
       {isToPublication && (
         <Grid container p={2} justifyContent="flex-end" spacing={2}>
           <Grid item>

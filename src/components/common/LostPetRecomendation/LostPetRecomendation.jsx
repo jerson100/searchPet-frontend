@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import useAxios from "axios-hooks";
 import { Box } from "@mui/system";
-import LostPetItem from "../LostPetItem";
 import { Link } from "react-router-dom";
 import { useMemo } from "react";
+import LostPetList from "../LostPetList/LostPetList";
 
 const LostPetRecomendation = ({ idLostPet }) => {
   const [{ loading, data, error }] = useAxios(
@@ -29,31 +29,18 @@ const LostPetRecomendation = ({ idLostPet }) => {
       component="section"
       backgroundColor={"background.paper"}
     >
-      {loading ? (
-        <Typography paragraph>Cargando...</Typography>
-      ) : error ? (
+      <Typography variant="h5" mb={2}>
+        Otras mascotas Perdidas
+      </Typography>
+      {error ? (
         <Typography paragraph>
           Ocurrió un error, vuelva a intentarlo más tarde.
         </Typography>
-      ) : data?.length === 0 ? (
+      ) : !loading && data?.length === 0 ? (
         <Typography paragraph>No hay máscotas perdidas</Typography>
       ) : (
         <>
-          <Typography variant="h5" mb={2}>
-            Otras mascotas Perdidas
-          </Typography>
-          {dataFilter.map((item) => (
-            <Grid item xs={12} key={item._id} mb={2}>
-              <LostPetItem
-                createdAt={item.createdAt}
-                description={item.description}
-                pets={item.pets}
-                located={item.located}
-                user={item.user}
-                _id={item._id}
-              />
-            </Grid>
-          ))}
+          <LostPetList items={dataFilter} loading={loading} />
           <Button
             sx={{
               marginLeft: "auto",
